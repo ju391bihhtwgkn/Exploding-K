@@ -1,3 +1,5 @@
+package view
+
 object Exploding {
   def main(Args: Array[String]): Unit = {
 
