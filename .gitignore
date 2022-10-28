@@ -46,3 +46,5 @@ sudoku.log
 
 # Application backup
 grid.json
+
+.json
