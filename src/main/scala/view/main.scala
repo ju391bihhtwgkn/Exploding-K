@@ -59,14 +59,6 @@ object main {
           }
         }
       }
-
-      /*
-    print("Du bist am zug. Möchtest du 1: eine Karte ziehen oder 2: erst die oberen drei Karten anschauen")
-    val choice = readLine()
-    choice match {
-      case "1" => print("Your new Card: " + cdeck.takeCard())
-      case "2" => print("Thats the first three Cards" + cdeck.spy())
-     */
     }
   }
 
