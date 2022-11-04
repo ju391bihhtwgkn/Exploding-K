@@ -1,6 +1,8 @@
 package model
 
-case class Player(name: String) {
+import view.Card
+
+case class Player(name: String, handCards: List[Card]) {
 
   var hasLost: Boolean = false;
 
