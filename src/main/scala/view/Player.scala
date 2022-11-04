@@ -1,6 +1,6 @@
 package view
 
-case class Player(name: String) {
+case class Player(name: String,handCards: Vector[Card]) {
 
   var hasLost: Boolean = false;
 
