@@ -1,6 +1,6 @@
 package view
 
-import scala.::
+import scala.util.control.Breaks._
 import scala.io.StdIn.readLine
 
 object main {
@@ -60,6 +60,6 @@ object main {
         }
       }
     }
-  }
 
+  }
 }
