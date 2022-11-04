@@ -1,4 +1,4 @@
-package model
+package view
 
 case class Player(name: String) {
 
