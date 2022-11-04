@@ -7,6 +7,6 @@ object DrawPile {
   val defuseCard = new Card("Defuse", "Put your last drawn Card back into the deck")
   val drawFromTheBottom = new Card("Draw from the bottom", "End your turn by drawing the card at the bottom of the draw pile")
 
-  def createDeck(): List[Card] = List(explodingKittenCard, drawFromTheBottom, drawFromTheBottom, catCard, explodingKittenCard, catCard)
+  def createDeck(): List[Card] = List(defuseCard, drawFromTheBottom, explodingKittenCard, drawFromTheBottom, defuseCard, catCard, explodingKittenCard, catCard)
 
 }
