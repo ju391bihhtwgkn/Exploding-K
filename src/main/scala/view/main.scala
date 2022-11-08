@@ -25,7 +25,7 @@ object main {
 
     var cdeck = Carddeck().addCard(Card("Exploding", "You die"), 2)
     cdeck = cdeck.addCard(Card("Random Card", "Do what you want"), 8)
-<<<<<<< HEAD
+
     print("Du bist am zug. Möchtest du 1: eine Karte ziehen oder 2: erst die oberen drei Karten anschauen, keine lust mehr geb str. D ein.\n")
     while (true){
       val choice = readLine()
@@ -35,40 +35,6 @@ object main {
         case "2" => print("Thats the first three Cards\n" + cdeck.spy())
         case _ => {print("Spiel beendet\n")
                     break
-=======
-
-    while (input != "q") {
-      println(players(counter).name + " it is your turn!" + eol + "Play a Card or draw a card to end your turn" + eol)
-      println("These are your cards:" + eol)
-      val playercards = players(counter).handCards
-      for (card <- playercards) {
-        print(card + eol)
-      }
-
-      input = readLine()
-
-      input match {
-        case "q" => None
-        case "d" => {
-          val topCard = cdeck.takeCard()
-          cdeck.reduce()
-          print("Your new Card: " + topCard + eol)
-          val handCardAfterDraw = players(counter).handCards ++ Vector(topCard)
-          players(counter) = players(counter).copy(players(counter).name, handCardAfterDraw)
-
-          if (topCard.name == "Exploding") {
-            if (players(counter).handCards.find(_.name == "Defuse") == None) {
-              players(counter).hasLost = true
-              print(eol + "Sorry! " + players(counter) + " you drew an Exploding Kitten and therefore lost the game")
-              input = "q"
-            } else {
-              print(players(counter).name + " has defused a bomb!" + eol)
-            }
-
-            counter += 1
-            counter %= players.length
-          }
->>>>>>> 22a6c18b38732788a025b6a9dc1646d05aae31cd
         }
       }
     }
