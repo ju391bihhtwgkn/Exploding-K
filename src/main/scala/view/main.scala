@@ -10,8 +10,8 @@ object main {
     while (true){
       val choice = readLine()
       choice match {
-        case "1" => {print("Your new Card:\n" + cdeck.takeCard())
-                    cdeck = cdeck.reduce()}
+        case "1" => {print("Your new Card:\n" + cdeck.takeCardTop())
+                    cdeck = cdeck.reduceTop()}
         case "2" => print("Thats the first three Cards\n" + cdeck.spy())
         case _ => {print("Spiel beendet\n")
                     break

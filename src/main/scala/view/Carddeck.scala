@@ -1,5 +1,7 @@
 package view
 
+import scala.util.Random
+
 case class Carddeck() {
 
   var deck = Vector[Card]()
@@ -18,15 +20,41 @@ case class Carddeck() {
     else deck.take(deck.length)
   }
 
-  def takeCard() : Card = {
+  def takeCardTop() : Card = {
     deck.head
   }
 
+  def teakeCardBottom() : Card = {
+    deck.last
+  }
 
-  def reduce() : Carddeck ={
+  def reduceTop() : Carddeck ={
     val newdeck : Carddeck = Carddeck()
     newdeck.deck = deck.tail
     newdeck
+  }
+
+  def reduceBottom() : Carddeck = {
+    val newdeck : Carddeck = Carddeck()
+    newdeck.deck = deck.init
+    newdeck
+  }
+
+  def hideCardInDeck(card : Card, position : Int) : Carddeck = {
+    val newDeck : Carddeck = Carddeck()
+    newDeck.deck = deck.take(position-1)
+    newDeck.deck = newDeck.deck :+ card
+    if(position == 0) newDeck.deck = newDeck.deck ++ this.deck.take(deck.length)
+    else newDeck.deck = newDeck.deck ++ this.deck.take(deck.length - (position - 1))
+    newDeck
+  }
+
+  def shuffleDeck() : Carddeck = {
+    val l = deck.indices.toList
+    val shuf = Random.shuffle(l)
+    var newCardDeck: Carddeck = Carddeck()
+    shuf.foreach(x => newCardDeck = newCardDeck.addCard(deck(x)))
+    newCardDeck
   }
 
 }

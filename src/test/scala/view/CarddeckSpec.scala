@@ -2,11 +2,14 @@ package view
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should._
 
+import scala.collection.immutable
+
 class CarddeckSpec() extends AnyWordSpec with Matchers {
   val eol = sys.props("line.separator")
 
   val kartenstapel: Carddeck = Carddeck()
   val card: Card = Card("Expl", "Death")
+  val card2 : Card = Card("Normal", "Cill")
 
   "Create empty Carddeck" in {
     kartenstapel.len() should be (0)
@@ -21,8 +24,7 @@ class CarddeckSpec() extends AnyWordSpec with Matchers {
       kartenstapel2.addCard(card, 2).deck should be (Vector(card, card, card))
     }
   }
-  val kartenstapel1 = kartenstapel.addCard(card)
-  val kartenstapel2 = kartenstapel1.addCard(card)
+  val kartenstapel2 = kartenstapel.addCard(card, 2)
 
   "Look first 3 Cards" should {
 
@@ -37,12 +39,48 @@ class CarddeckSpec() extends AnyWordSpec with Matchers {
     }
   }
 
-  "Take a card" in {
-    val k3 = kartenstapel2.addCard(card)
-    k3.len() should be (3)
-    k3.takeCard() should be (card)
-    val k4 = k3.reduce()
-    k4.len() should be (2)
+  val k3 = kartenstapel2.addCard(card2)
+
+  "Take a card " should  {
+    "from the Top" in {
+      k3.len() should be (3)
+      k3.takeCardTop() should be (card)
+      val k4 = k3.reduceTop()
+      k4.len() should be (2)
+    }
+    "from the Bottom" in {
+      k3.len() should be (3)
+      k3.reduceBottom() should be (card2)
+      val k4 = k3.reduceBottom()
+      k4.len() should be (2)
+    }
+  }
+
+  "Shuffle Cards" should  {
+    val k3 = kartenstapel2.addCard(card2, 2)
+    val k5 = k3.shuffleDeck()
+    "Not the same as before" in {
+      k5.deck should not be (k3.deck)
+    }
+    "Still have the all Elements" in {
+      k5.len() should be (k3.len())
+    }
+  }
+
+  "Put Exploding Kitten in the Deck" should  {
+    val c1 = Card("Normal", "Chill")
+    val c2 = Card("ExplKitten", "Die")
+    val cDeck = Carddeck().addCard(c1, 4)
+    "On Top" in {
+      cDeck.hideCardInDeck(c2, 0).deck should be (Vector(c2, c1, c1, c1, c1))
+    }
+    "In the middle" in {
+      cDeck.hideCardInDeck(c2, 3).deck should be (Vector(c1, c1, c2, c1, c1))
+    }
+    "At the End" in {
+      cDeck.hideCardInDeck(c2, 5).deck should be (Vector(c1, c1, c1, c1, c2))
+    }
+
   }
 
 }
