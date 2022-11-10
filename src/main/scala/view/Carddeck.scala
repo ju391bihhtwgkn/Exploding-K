@@ -24,7 +24,7 @@ case class Carddeck() {
     deck.head
   }
 
-  def teakeCardBottom() : Card = {
+  def takeCardBottom() : Card = {
     deck.last
   }
 
