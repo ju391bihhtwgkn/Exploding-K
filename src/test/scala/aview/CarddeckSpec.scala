@@ -1,4 +1,5 @@
-package view
+package aview
+import model.{Card, Carddeck}
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should._
 

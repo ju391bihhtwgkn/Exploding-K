@@ -1,6 +1,6 @@
+import model.{Card, Player}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
-import view.{Card, Player}
 
 class PlayerSpec() extends AnyWordSpec with Matchers {
   val eol = sys.props("line.separator")
