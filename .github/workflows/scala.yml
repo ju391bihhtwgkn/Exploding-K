@@ -19,7 +19,7 @@ jobs:
    - name: run tests
      run: sbt test
      
-run_tests:
+ run_tests:
    runs-on: ubuntu-latest
    steps:
      - uses: actions/checkout@v2
