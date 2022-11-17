@@ -1,9 +1,10 @@
 package aview
-import model.{Card, Carddeck}
+
+
+import de.htwg.se.explodingKitten.model.{Card, Carddeck}
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should._
 
-import scala.collection.immutable
 
 class CarddeckSpec() extends AnyWordSpec with Matchers {
   val eol = sys.props("line.separator")
@@ -51,7 +52,7 @@ class CarddeckSpec() extends AnyWordSpec with Matchers {
     }
     "from the Bottom" in {
       k3.len() should be (3)
-      k3.reduceBottom() should be (card2)
+      k3.takeCardBottom() should be (card2)
       val k4 = k3.reduceBottom()
       k4.len() should be (2)
     }

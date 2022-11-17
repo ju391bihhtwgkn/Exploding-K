@@ -57,4 +57,6 @@ case class Carddeck() {
     else newDeck.deck = newDeck.deck ++ this.deck.take(deck.length - (position - 1))
     newDeck
   }
+
+  def len() : Int = deck.length
 }

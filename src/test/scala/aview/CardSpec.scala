@@ -1,6 +1,7 @@
 package aview
 
-import model.Card
+
+import de.htwg.se.explodingKitten.model.Card
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
