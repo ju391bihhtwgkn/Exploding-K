@@ -1,11 +1,11 @@
-ThisBuild / version := "0.1.0-SNAPSHOT"
-
-ThisBuild / scalaVersion := "2.13.10"
-
-lazy val root = (project in file("."))
+lazy val root = project
+  .in(file("."))
   .settings(
-    name := "Exploding-K"
+    name := "Exploding-K",
+    version := "0.1.0-SNAPSHOT",
+    scalaVersion := "2.13.10",
+    libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.14",
+    libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.14" % "test",
+    jacocoCoverallsRepoToken := sys.env.get("COVERALLS_REPO_TOKEN")
   )
-
-libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.14"
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.14" % "test"
+.enablePlugins(JacocoCoverallsPlugin)
