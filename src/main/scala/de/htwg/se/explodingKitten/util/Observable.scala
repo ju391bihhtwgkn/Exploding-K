@@ -1,11 +1,8 @@
 package de.htwg.se.explodingKitten.util
 
-import de.htwg.se.explodingKitten.model.{Card, Carddeck}
-
 
 trait Observer {
   def update: Unit
-  //def addCard: Unit
 }
 
 class Observable {

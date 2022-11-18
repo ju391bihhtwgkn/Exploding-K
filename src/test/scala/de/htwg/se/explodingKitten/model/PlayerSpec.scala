@@ -1,4 +1,5 @@
-import de.htwg.se.explodingKitten.model.{Card, Player}
+package de.htwg.se.explodingKitten.model
+
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 

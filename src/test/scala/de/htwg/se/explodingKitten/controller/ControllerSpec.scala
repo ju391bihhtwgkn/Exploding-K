@@ -1,0 +1,62 @@
+package de.htwg.se.explodingKitten.controller
+
+import de.htwg.se.explodingKitten.model.{Card, Carddeck}
+import de.htwg.se.explodingKitten.util.Observer
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
+
+
+class ControllerSpec extends AnyWordSpec with Matchers {
+
+  val card = Card("test", "test")
+  val card2 = Card("test2", "test2")
+  val cardBottom = Card("bottom", "bottom")
+
+  "A Controller" when {
+    "observed by an Observer" should {
+      val controller = new Controller(Carddeck())
+      val observer = new Observer {
+        var updated: Boolean = false
+        def isUpdated: Boolean = updated
+        override def update: Unit = {updated = true; updated}
+      }
+      controller.add(observer)
+      "notify its Observers after card is added to the deck" in {
+        controller.addCard(card, 4)
+        controller.addCard(card, 8)
+        controller.addCard(cardBottom,5)
+        observer.updated should be(true)
+        controller.deck.len() should be(17)
+      }
+      "notify its Observers after card is drawn from the top" in {
+        val x = controller.takeTopCard()
+        observer.updated should be(true)
+        controller.deck.len() should be(16)
+        x should be(Card("test", "test"))
+      }
+      "notify its Observers after card is drawn from the bottom" in {
+        val y = controller.takeCardBottom()
+        observer.updated should be(true)
+        controller.deck.len() should be(15)
+        y should be(Card("bottom", "bottom"))
+      }
+      "notify its Observers after a player looked at the top 3 Cards" in {
+        val spy = controller.spy()
+        observer.updated should be(true)
+        spy should be(Vector(card, card, card))
+      }
+      "notify its Observers after the deck was shuffled" in {
+        val unshuffled = controller.deck
+        val shuffled = controller.shuffle()
+        observer.updated should be(true)
+        shuffled.deck should not be(unshuffled.deck)
+      }
+      "notify its Observers after the player put a card into the deck" in {
+        val explodingCard = Card("Exploding", "BOOOM")
+        controller.hideCardInDeck(explodingCard, 0)
+        observer.updated should be(true)
+        controller.deck.takeCardTop() should be(explodingCard)
+      }
+    }
+  }
+}

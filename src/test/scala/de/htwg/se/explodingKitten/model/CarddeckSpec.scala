@@ -1,9 +1,7 @@
-package aview
+package de.htwg.se.explodingKitten.model
 
-
-import de.htwg.se.explodingKitten.model.{Card, Carddeck}
-import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should._
+import org.scalatest.wordspec.AnyWordSpec
 
 
 class CarddeckSpec() extends AnyWordSpec with Matchers {
