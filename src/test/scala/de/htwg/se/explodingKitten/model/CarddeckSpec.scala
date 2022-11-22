@@ -8,8 +8,8 @@ class CarddeckSpec() extends AnyWordSpec with Matchers {
   val eol = sys.props("line.separator")
 
   val kartenstapel: Carddeck = Carddeck()
-  val card: Card = Card("Expl", "Death")
-  val card2 : Card = Card("Normal", "Cill")
+  val card: Card = Card("Expl", "Death", 1)
+  val card2 : Card = Card("Normal", "Cill", 1)
 
   "Create empty Carddeck" in {
     kartenstapel.len() should be (0)
@@ -68,8 +68,8 @@ class CarddeckSpec() extends AnyWordSpec with Matchers {
   }
 
   "Put Exploding Kitten in the Deck" should  {
-    val c1 = Card("Normal", "Chill")
-    val c2 = Card("ExplKitten", "Die")
+    val c1 = Card("Normal", "Chill", 1)
+    val c2 = Card("ExplKitten", "Die", 1)
     val cDeck = Carddeck().addCard(c1, 4)
     "On Top" in {
       cDeck.hideCardInDeck(c2, 0).deck should be (Vector(c2, c1, c1, c1, c1))

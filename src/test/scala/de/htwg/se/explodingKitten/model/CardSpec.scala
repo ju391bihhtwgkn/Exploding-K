@@ -5,7 +5,7 @@ import org.scalatest.wordspec.AnyWordSpec
 
 class CardSpec() extends AnyWordSpec with Matchers {
   val eol = sys.props("line.separator")
-  val card = new Card("","")
+  val card = new Card("","", 1)
   "have a name " in {
     card.cardName("Melon Cat") should be ("+++ Melon Cat +++" + eol)
   }
@@ -16,13 +16,13 @@ class CardSpec() extends AnyWordSpec with Matchers {
     card.card("Melon Cat", "Combine 2 or 3 to draw a card from a Player") should be("+++ Melon Cat +++" + eol +  "+++ Combine 2 or 3 to draw a card from a Player +++" + eol)
   }
   "should have a nice string representation" in {
-    val card = Card("Melon Cat", "Combine 2 or 3 to draw a card from a Player")
+    val card = Card("Melon Cat", "Combine 2 or 3 to draw a card from a Player", 1)
     card.toString() should be("+++ Melon Cat +++" + eol + "+++ Combine 2 or 3 to draw a card from a Player +++" + eol)
   }
 
   "A Card" when {
     "name is set to Melon Cat and description is set" should {
-      val card = new Card("Melon Cat","Combine 2 or 3 to draw a card from a Player")
+      val card = new Card("Melon Cat","Combine 2 or 3 to draw a card from a Player", 1)
       card.cardName("Melon Cat") in {
         card.name should be("Melon Cat")
       }

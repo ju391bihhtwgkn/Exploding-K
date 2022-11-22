@@ -1,6 +1,6 @@
 package de.htwg.se.explodingKitten.model
 
-case class Card(val name: String, val description: String) {
+case class Card(val name: String, val description: String, val actionCode : Int) {
 
   val eol = sys.props("line.separator")
 

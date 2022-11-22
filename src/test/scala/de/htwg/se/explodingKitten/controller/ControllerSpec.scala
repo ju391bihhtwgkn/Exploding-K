@@ -8,9 +8,9 @@ import org.scalatest.wordspec.AnyWordSpec
 
 class ControllerSpec extends AnyWordSpec with Matchers {
 
-  val card = Card("test", "test")
-  val card2 = Card("test2", "test2")
-  val cardBottom = Card("bottom", "bottom")
+  val card = Card("test", "test", 1)
+  val card2 = Card("test2", "test2", 1)
+  val cardBottom = Card("bottom", "bottom", 1)
 
   "A Controller" when {
     "observed by an Observer" should {
@@ -32,13 +32,13 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         val x = controller.takeTopCard()
         observer.updated should be(true)
         controller.deck.len() should be(16)
-        x should be(Card("test", "test"))
+        x should be(Card("test", "test", 1))
       }
       "notify its Observers after card is drawn from the bottom" in {
         val y = controller.takeCardBottom()
         observer.updated should be(true)
         controller.deck.len() should be(15)
-        y should be(Card("bottom", "bottom"))
+        y should be(Card("bottom", "bottom", 1))
       }
       "notify its Observers after a player looked at the top 3 Cards" in {
         val spy = controller.spy()
@@ -52,7 +52,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         shuffled.deck should not be(unshuffled.deck)
       }
       "notify its Observers after the player put a card into the deck" in {
-        val explodingCard = Card("Exploding", "BOOOM")
+        val explodingCard = Card("Exploding", "BOOOM", 1)
         controller.hideCardInDeck(explodingCard, 0)
         observer.updated should be(true)
         controller.deck.takeCardTop() should be(explodingCard)

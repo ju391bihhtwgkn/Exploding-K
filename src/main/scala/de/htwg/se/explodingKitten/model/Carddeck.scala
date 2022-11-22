@@ -45,7 +45,6 @@ case class Carddeck() {
     val shuf = Random.shuffle(l)
     var newCardDeck: Carddeck = Carddeck()
     shuf.foreach(x => newCardDeck = newCardDeck.addCard(deck(x)))
-    shuf.foreach{print}
     newCardDeck
   }
 
