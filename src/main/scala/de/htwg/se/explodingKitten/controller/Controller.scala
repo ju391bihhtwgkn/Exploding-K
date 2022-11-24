@@ -36,7 +36,6 @@ class Controller(var deck: Carddeck) extends Observable {
     notifyObservers
     deck
   }
-
   def hideCardInDeck(card: Card, position: Int): Carddeck = {
     deck = deck.hideCardInDeck(card, position)
     notifyObservers

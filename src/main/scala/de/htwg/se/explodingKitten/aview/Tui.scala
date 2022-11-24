@@ -10,8 +10,8 @@ import scala.util.control.Breaks.break
 class Tui(controller: Controller) extends Observer {
 
   controller.add(this)
-  val card = Card("Random Card", "Bla")
-  val card2 = Card("Exploding Kitten", "BOOOOOOMM")
+  val card = Card("MelonCat")
+  val card2 = Card("ExplodingKitten")
 
   def processInputLine(input: String): Unit = {
     input match {

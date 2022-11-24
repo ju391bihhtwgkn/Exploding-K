@@ -8,9 +8,10 @@ import org.scalatest.wordspec.AnyWordSpec
 
 class ControllerSpec extends AnyWordSpec with Matchers {
 
-  val card = Card("test", "test")
-  val card2 = Card("test2", "test2")
-  val cardBottom = Card("bottom", "bottom")
+  val card = Card("MelonCat")
+  val card2 = Card("ExplodingKitten")
+  val cardBottom = Card("DrawFromTheBottom")
+  print(card)
 
   "A Controller" when {
     "observed by an Observer" should {
@@ -23,7 +24,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       controller.add(observer)
       "notify its Observers after card is added to the deck" in {
         controller.addCard(card, 4)
-        controller.addCard(card, 8)
+        controller.addCard(card2, 8)
         controller.addCard(cardBottom,5)
         observer.updated should be(true)
         controller.deck.len() should be(17)
@@ -32,13 +33,18 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         val x = controller.takeTopCard()
         observer.updated should be(true)
         controller.deck.len() should be(16)
-        x should be(Card("test", "test"))
+        x.cardName should be("Melon Cat")
+        x.cardDescription should be("Combine 2 or 3 to draw a card from a player")
+        x should be (card)
+        //x should be (Card("MelonCat"))
       }
       "notify its Observers after card is drawn from the bottom" in {
         val y = controller.takeCardBottom()
         observer.updated should be(true)
         controller.deck.len() should be(15)
-        y should be(Card("bottom", "bottom"))
+        y should be(cardBottom)
+        y.cardName should be ("Draw from the bottom")
+        y.cardDescription should be ("Draw a card from the bottom")
       }
       "notify its Observers after a player looked at the top 3 Cards" in {
         val spy = controller.spy()
@@ -52,7 +58,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         shuffled.deck should not be(unshuffled.deck)
       }
       "notify its Observers after the player put a card into the deck" in {
-        val explodingCard = Card("Exploding", "BOOOM")
+        val explodingCard = Card("ExplodingKitten")
         controller.hideCardInDeck(explodingCard, 0)
         observer.updated should be(true)
         controller.deck.takeCardTop() should be(explodingCard)
