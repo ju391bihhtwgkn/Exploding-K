@@ -43,8 +43,8 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         observer.updated should be(true)
         controller.deck.len() should be(15)
         y should be(cardBottom)
-        y.cardName should be ("Draw from the bottom")
-        y.cardDescription should be ("Draw a card from the bottom")
+        y.cardName should be ("Draw from the Bottom")
+        y.cardDescription should be ("Draw a card from the Bottom")
       }
       "notify its Observers after a player looked at the top 3 Cards" in {
         val spy = controller.spy()
