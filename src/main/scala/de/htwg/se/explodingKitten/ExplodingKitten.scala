@@ -18,7 +18,7 @@ object ExplodingKitten {
   val context = new GameContext(new TakeCard)
 
   def main(args: Array[String]): Unit = {
-    val p1 = Player("Wiebke", Vector(cat, cat, defuseCard))
+    val p1 = Player("Wiebke", Vector(cat, cat, defuseCard, cardFromBottom))
     val p2 = Player("Julian", Vector(lookToFuture, cat, cat))
 
 
