@@ -8,8 +8,8 @@ import scala.util.control.Breaks.break
 class PlayCard extends Move {
   override def makeMove(person: Player, carddeck: Controller): Player = {
     print("Welche Karte wollen Sie spielen? Geben Sie die PlatzNr. der Karte ein:") //Tui aktivieren
-    //val cNr = readLine().toInt
-    val card = person.chooseCardToPlay(1)
+    val cNr = readLine().toInt
+    val card = person.chooseCardToPlay(cNr)
     var newPerson = person.playCard(card)
     print(newPerson.handCards)
     card.actionCode match {
