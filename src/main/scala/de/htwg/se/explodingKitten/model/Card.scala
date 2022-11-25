@@ -20,14 +20,14 @@ object Card {
   private class SeeTheFuture extends Card {
     override def cardName: String = "See the Future"
     override def cardDescription: String = "Look at the top 3 cards"
-    override def card:String = cardName + cardDescription
+    override def card:String = cardName + eol + cardDescription
     override def toString: String = card
   }
 
   private class Skip extends Card {
     override def cardName: String = "Skip"
     override def cardDescription: String = "End your turn without drawing a card"
-    override def card:String = cardName + cardDescription
+    override def card:String = cardName + eol + cardDescription
     override def toString: String = card
   }
 
@@ -35,41 +35,41 @@ object Card {
     override def cardName: String = "Attack"
     override def cardDescription: String = "End your turn without drawing a card.\n" +
                                             "Force the next player to take 2 turns"
-    override def card: String = cardName + cardDescription
+    override def card: String = cardName + eol + cardDescription
     override def toString: String = card
   }
 
   private class TargetedAttack extends Card {
     override def cardName: String = "Targeted Attack"
     override def cardDescription: String = "End your turn and force the player of your choice to take two turns."
-    override def card:String = cardName + cardDescription
+    override def card:String = cardName + eol + cardDescription
     override def toString: String = card
   }
 
   private class Defuse extends Card {
     override def cardName: String = "Defuse"
     override def cardDescription: String = "Defuse the exploding kitten"
-    override def card:String = cardName + cardDescription
+    override def card:String = cardName + eol + cardDescription
     override def toString: String = card
   }
 
   private class ExplodingKitten extends Card {
     override def cardName: String = "Exploding Kitten"
     override def cardDescription: String = "BOOOOM!"
-    override def card:String = cardName + cardDescription
+    override def card:String = cardName + eol + cardDescription
     override def toString: String = card
   }
 
   private class AlterTheFuture extends Card {
     override def cardName: String = "Alter the Future"
     override def cardDescription: String = "Privately view and rearrange the top three cards in the draw pile"
-    override def card:String = cardName + cardDescription
+    override def card:String = cardName + eol + cardDescription
     override def toString: String = card
   }
   private class FeralCat extends Card {
     override def cardName: String = "Feral Cat"
     override def cardDescription: String = "Use this as any cat card"
-    override def card:String = cardName + cardDescription
+    override def card:String = cardName + eol + cardDescription
     override def toString: String = card
   }
 
@@ -83,28 +83,28 @@ object Card {
   private class BeardedCat extends Card {
     override def cardName: String = "Bearded Cat"
     override def cardDescription: String = "Combine 2 or 3 to draw a card from a player"
-    override def card:String = cardName + cardDescription
+    override def card:String = cardName + eol + cardDescription
     override def toString: String = card
   }
 
   private class TacoCat extends Card {
     override def cardName: String = "Taco Cat"
     override def cardDescription: String = "Combine 2 or 3 to draw a card from a player"
-    override def card:String = cardName + cardDescription
+    override def card:String = cardName + eol + cardDescription
     override def toString: String = card
   }
 
   private class HairyPotatoCat extends Card {
     override def cardName: String = "Hairy Potato Cat"
     override def cardDescription: String = "Combine 2 or 3 to draw a card from a player"
-    override def card:String = cardName + cardDescription
+    override def card:String = cardName + eol + cardDescription
     override def toString: String = card
   }
 
   private class RainbowCat extends Card {
     override def cardName: String = "Rainbow Cat"
     override def cardDescription: String = "Combine 2 or 3 to draw a card from a player"
-    override def card:String = cardName + cardDescription
+    override def card:String = cardName + eol + cardDescription
     override def toString: String = card
   }
 
