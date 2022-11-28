@@ -1,19 +1,37 @@
 package de.htwg.se.explodingKitten.model
+import de.htwg.se.explodingKitten.model.Cards.defensCat
+import status.{State, playingStatus, waitingStatus}
 
-import scala.io.StdIn.readLine
 
-case class Player(name: String, handCards: Vector[Card], hasLost : Boolean = false) {
+case class Player(name: String, handCards: Vector[Card], var hasLost : Boolean = false) {
 
-  def setHasLost(value : Boolean) : Player = Player(name, handCards, value)
+  var state: State = new waitingStatus(this)
 
-  def takeCard(card: Card) : Player = Player(name, handCards :+ card)
+  def copyKonstruktor(): Player ={
+    val p = Player(this.name, this.handCards, this.hasLost)
+    p.changeState(this.state)
+    p
+  }
+
+  def changeState(stat : State) : Unit = state = stat
+
+  def setHasLost() : Unit = hasLost = true
+
+  def takeCard(card: Card) : Player = {
+    val p = Player(name, this.handCards :+ card)
+    p.changeState(this.state)
+    p
+  }
+
 
   def playCard(stelle : Int) : Player = {
     val idx = stelle -1
     var temp = Vector[Card]()
     temp = handCards.take(idx)
     temp = temp ++ handCards.takeRight(handCards.length - idx -1)
-    Player(name, temp)
+    val p = Player(name, temp, hasLost)
+    p.changeState(this.state)
+    p
   }
 
   def playCard(card : Card) : Player = {
@@ -21,7 +39,9 @@ case class Player(name: String, handCards: Vector[Card], hasLost : Boolean = fal
     var temp = Vector[Card]()
     temp = handCards.take(idx)
     temp = temp ++ handCards.takeRight(handCards.length - idx - 1)
-    Player(name, temp)
+    val p = Player(name, temp, hasLost)
+    p.changeState(this.state)
+    p
   }
 
   def chooseCardToPlay(cardNr : Int) : Card = {

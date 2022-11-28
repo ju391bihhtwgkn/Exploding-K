@@ -1,4 +1,4 @@
-package strategies.Game
+package strategies
 
 import de.htwg.se.explodingKitten.controller.Controller
 import de.htwg.se.explodingKitten.model.{Card, Player}
@@ -11,7 +11,7 @@ class PlayCard extends Move {
     val cNr = readLine().toInt
     val card = person.chooseCardToPlay(cNr)
     var newPerson = person.playCard(card)
-    print(newPerson.handCards)
+    //print(newPerson.handCards)
     card.actionCode match {
       case 2 => {
         carddeck.spy()

@@ -1,13 +1,15 @@
 package de.htwg.se.explodingKitten
 
-import de.htwg.se.explodingKitten.aview.Tui
 import de.htwg.se.explodingKitten.model.{Card, Carddeck, Player}
 import de.htwg.se.explodingKitten.controller.Controller
-import strategies.Game.{GameContext, PlayCard, TakeCard}
 
 import scala.io.StdIn.readLine
-import scala.util.control.Breaks.break
+import scala.util.control.Breaks._
 import de.htwg.se.explodingKitten.model.Cards.{cardFromBottom, cat, defuseCard, explCard, lookToFuture}
+import status.playingStatus
+import strategies.{GameContext, PlayCard, TakeCard, newMove}
+
+import scala.collection.immutable.BitSet.empty.foreach
 
 object ExplodingKitten {
 
@@ -15,33 +17,45 @@ object ExplodingKitten {
   val tui = new Tui(controller)
   controller.notifyObservers
 
-  val context = new GameContext(new TakeCard)
+  val context = new GameContext(new newMove)
 
   def main(args: Array[String]): Unit = {
-    val p1 = Player("Wiebke", Vector(cat, cat, defuseCard, cardFromBottom))
-    val p2 = Player("Julian", Vector(lookToFuture, cat, cat))
+    var p1 = Player("Wiebke", Vector(cat, cat, defuseCard, cardFromBottom))
+    var p2 = Player("Julian", Vector(lookToFuture, cat, cat))
+    var p3 = Player("Random", Vector(cat, lookToFuture, defuseCard, cat))
+
+    var players = Vector(p1, p2, p3)
+    p1.changeState(new playingStatus(p1))
+    var p = Player("", Vector())
+    breakable {
+      while (true) {
+        for (player <- players) {
+          var input: String = ""
+            input = readLine()
+            input match {
+              case "t" => {
+                context.setStrategy(new TakeCard)
+              }
+              case "p" => {
+                context.setStrategy(new PlayCard)
+              }
+              case _ => {
+                break
+              }
+            }
+            //tui.processInputLine(input)
+            p = context.executeStrategy(player, controller)
+          player.state.onPlay()
+          players = (players :+ p).tail
+          players.head.changeState(new playingStatus(players.head))
+          print("Nächster Spieler ist " + players.head.name)
 
 
-    var input: String = ""
-
-
-
-    do {
-      input = readLine()
-      input match {
-        case "t" =>{
-          context.setStrategy(new TakeCard)
-        }
-        case "p" => {
-          context.setStrategy(new PlayCard)
-        }
-        case _ =>{
-          break
         }
       }
-      //tui.processInputLine(input)
-      context.executeStrategy(p1, controller)
-    } while (input != "q")
+    }
+
+
   }
 
   //Karten Anzeigen

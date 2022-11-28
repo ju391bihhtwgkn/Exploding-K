@@ -3,6 +3,7 @@ package de.htwg.se.explodingKitten.model
 import de.htwg.se.explodingKitten.model.Cards._
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
+import status.{playingStatus, waitingStatus}
 
 class PlayerSpec() extends AnyWordSpec with Matchers {
   val eol = sys.props("line.separator")
@@ -28,12 +29,13 @@ class PlayerSpec() extends AnyWordSpec with Matchers {
         player.hasLost should be(false)
       }
       "loose the Game" in {
-        player.setHasLost(true).hasLost should be(true)
+        player.setHasLost()
+        player.hasLost should be(true)
       }
     }
   }
 
-  "Player should Play with Cards" when {
+  "Player should Play with Cards" should {
     val player2 = Player("Wiebke", Vector(cat, explCard, lookToFuture, defuseCard, cat))
     "Take a Card" in{
       player2.takeCard(cat).handCards should be (Vector(cat, explCard, lookToFuture, defuseCard, cat, cat))
@@ -54,5 +56,17 @@ class PlayerSpec() extends AnyWordSpec with Matchers {
     player.chooseCardToPlay(2) should be (defuseCard)
     player.chooseCardToPlay(1) should be (cat)
     player.chooseCardToPlay(3) should be (lookToFuture)
+  }
+
+  "check Status" when {
+    val p1 = Player("P1", Vector(cat))
+    p1.changeState(new playingStatus(p1))
+    "Status play" in {
+      p1.state shouldBe a [playingStatus]
+    }
+    val p2 = p1.takeCard(cat)
+    "Status is still playing" in {
+      p2.state shouldBe a [playingStatus]
+    }
   }
 }

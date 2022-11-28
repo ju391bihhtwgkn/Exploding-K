@@ -4,7 +4,7 @@ import de.htwg.se.explodingKitten.controller.Controller
 import de.htwg.se.explodingKitten.model.{Card, Carddeck, Player}
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
-import strategies.Game.{GameContext, TakeCard}
+import strategies.{GameContext, TakeCard}
 
 
 class TakeCardSpec() extends AnyWordSpec with Matchers{
@@ -32,7 +32,7 @@ class TakeCardSpec() extends AnyWordSpec with Matchers{
 
   "Make a move" when {
     val context = new GameContext(new TakeCard)
-    val deck = new Controller(Carddeck().addCard(explCard,2))
+    val deck = new Controller(Carddeck().addCard(explCard,5))
     "Got a Bomb" in {
       context.executeStrategy(p, deck).handCards should be(p.handCards)
     }

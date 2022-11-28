@@ -5,7 +5,7 @@ import org.scalatest.wordspec.AnyWordSpec
 import de.htwg.se.explodingKitten.model.Cards._
 import de.htwg.se.explodingKitten.controller.Controller
 import de.htwg.se.explodingKitten.model.{Card, Carddeck, Player}
-import strategies.Game.{GameContext, PlayCard, TakeCard}
+import strategies.{GameContext, PlayCard}
 
 
 class PlayCardSpec() extends AnyWordSpec with Matchers{

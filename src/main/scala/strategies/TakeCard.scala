@@ -1,4 +1,4 @@
-package strategies.Game
+package strategies
 
 import de.htwg.se.explodingKitten.controller.Controller
 import de.htwg.se.explodingKitten.model.{Card, Player}
@@ -23,8 +23,12 @@ class TakeCard extends Move {
         //carddeck.hideCardInDeck(explCard, 2)
         return person.playCard(defuseCard)
       }
-      return person.setHasLost(true)
+      person.setHasLost()
     }
     person
   }
+}
+
+class newMove extends Move{
+  override def makeMove(person: Player, carddeck: Controller): Player = person
 }
