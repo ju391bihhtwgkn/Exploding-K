@@ -1,6 +1,5 @@
 package de.htwg.se.explodingKitten.model
 import de.htwg.se.explodingKitten.model.Cards.defensCat
-import status.{State, playingStatus, waitingStatus}
 
 
 case class Player(name: String, handCards: Vector[Card], var hasLost : Boolean = false) {

@@ -1,11 +1,9 @@
-package de.htwg.se.explodingKitten.strategies
+package de.htwg.se.explodingKitten.model
 
+import de.htwg.se.explodingKitten.controller.{Controller, GameContext}
+import de.htwg.se.explodingKitten.model.Cards._
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
-import de.htwg.se.explodingKitten.model.Cards._
-import de.htwg.se.explodingKitten.controller.Controller
-import de.htwg.se.explodingKitten.model.{Card, Carddeck, Player}
-import strategies.{GameContext, PlayCard}
 
 
 class PlayCardSpec() extends AnyWordSpec with Matchers{

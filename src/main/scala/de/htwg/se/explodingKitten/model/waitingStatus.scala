@@ -1,9 +1,4 @@
-package status
-
-import de.htwg.se.explodingKitten.controller.Controller
-import de.htwg.se.explodingKitten.model.{Card, Carddeck, Player}
-import status.State
-import strategies.{GameContext, TakeCard}
+package de.htwg.se.explodingKitten.model
 
 class waitingStatus(player : Player) extends State(player) {
 

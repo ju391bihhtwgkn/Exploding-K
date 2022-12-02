@@ -1,7 +1,7 @@
 package de.htwg.se.explodingKitten.controller
 
-import de.htwg.se.explodingKitten.model.{Card, Carddeck}
-import de.htwg.se.explodingKitten.util.Observable
+import de.htwg.se.explodingKitten.model.{Card, Carddeck, TakeCard}
+import de.htwg.se.explodingKitten.util.{Observable, UndoManager}
 
 class Controller(var deck: Carddeck) extends Observable {
 

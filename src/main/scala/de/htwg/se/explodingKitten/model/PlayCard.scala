@@ -1,9 +1,8 @@
-package strategies
+package de.htwg.se.explodingKitten.model
 
-import de.htwg.se.explodingKitten.controller.Controller
-import de.htwg.se.explodingKitten.model.{Card, Player}
+import de.htwg.se.explodingKitten.controller.{Controller, GameContext}
+
 import scala.io.StdIn.readLine
-import scala.util.control.Breaks.break
 
 class PlayCard extends Move {
   override def makeMove(person: Player, carddeck: Controller): Player = {

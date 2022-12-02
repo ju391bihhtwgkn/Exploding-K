@@ -1,7 +1,6 @@
-package strategies
+package de.htwg.se.explodingKitten.model
 
 import de.htwg.se.explodingKitten.controller.Controller
-import de.htwg.se.explodingKitten.model.{Card, Player}
 import de.htwg.se.explodingKitten.model.Cards._
 
 
@@ -9,11 +8,12 @@ class TakeCard extends Move {
 
   override def makeMove(person : Player, carddeck : Controller): Player = {
     val tempCard = carddeck.takeTopCard()
+    println("You have drawn this Card: " + tempCard)
     carddeck.reduceTop()
     val p = checkOnExploding(person, carddeck, tempCard)
     if (p.hasLost){
       return p}
-    p.takeCard(tempCard)
+    person.takeCard(tempCard)
   }
 
   def checkOnExploding(person : Player, carddeck : Controller, tempCard : Card): Player ={

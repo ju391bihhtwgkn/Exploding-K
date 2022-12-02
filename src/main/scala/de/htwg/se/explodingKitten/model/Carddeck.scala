@@ -5,6 +5,7 @@ import scala.util.Random
 case class Carddeck() {
 
     var deck = Vector[Card]()
+    val drawnCards = Vector[Card]()
 
   def addCard(card: Card, anz: Int = 1): Carddeck = {
     val newdeck : Carddeck = Carddeck()
@@ -14,6 +15,7 @@ case class Carddeck() {
   }
 
   def takeCardTop(): Card = {
+    val drawnDeck : Carddeck = Carddeck()
     val card = deck.head
     card
   }

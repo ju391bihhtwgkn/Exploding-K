@@ -3,7 +3,6 @@ package de.htwg.se.explodingKitten.model
 import de.htwg.se.explodingKitten.model.Cards._
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
-import status.{playingStatus, waitingStatus}
 
 class PlayerSpec() extends AnyWordSpec with Matchers {
   val eol = sys.props("line.separator")

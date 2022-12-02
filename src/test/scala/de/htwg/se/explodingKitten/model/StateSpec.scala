@@ -1,11 +1,9 @@
-package de.htwg.se.explodingKitten.State
+package de.htwg.se.explodingKitten.model
 
-import de.htwg.se.explodingKitten.model.Player
-import org.scalatest.matchers.must.Matchers
-import org.scalatest.wordspec.AnyWordSpec
 import de.htwg.se.explodingKitten.model.Cards._
+import org.scalatest.matchers.must.Matchers
 import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
-import status._
+import org.scalatest.wordspec.AnyWordSpec
 
 class StateSpec extends AnyWordSpec with Matchers{
   var player = Player("Wiebke", Vector(cat, cat, cat))
