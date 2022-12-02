@@ -1,14 +1,13 @@
 package de.htwg.se.explodingKitten.model
 
 import de.htwg.se.explodingKitten.controller.{Controller, GameContext}
-import de.htwg.se.explodingKitten.model.Cards._
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
 
 class PlayCardSpec() extends AnyWordSpec with Matchers{
-  var p = Player("Ich", Vector(lookToFuture, cardFromBottom))
-  val c = new Controller(Carddeck().addCard(cat, 2).addCard(explCard).addCard(lookToFuture, 2))
+  var p = Player("Ich", Vector(Card("SeeTheFuture"), Card("DrawFromTheBottom")))
+  val c = new Controller(Carddeck().addCard(Card("FeralCat"), 2).addCard(Card("ExplodingKitten")).addCard(Card("SeeTheFuture"), 2))
 
   "Create a context" when {
     val tk = new PlayCard
@@ -21,9 +20,9 @@ class PlayCardSpec() extends AnyWordSpec with Matchers{
     val context = new GameContext(new PlayCard)
     "Played the first Card" in{
       p = context.executeStrategy(p, c)
-      p.handCards should be (Vector(cardFromBottom))
+      p.handCards should be (Vector(Card("DrawFromTheBottom")))
       p = context.executeStrategy(p, c)
-      p.handCards should be (Vector(lookToFuture))
+      p.handCards should be (Vector(Card("SeeTheFuture")))
     }
 
   }

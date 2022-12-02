@@ -1,18 +1,17 @@
 package de.htwg.se.explodingKitten
 
 import de.htwg.se.explodingKitten.aview.Tui
-import de.htwg.se.explodingKitten.model.{Card, Carddeck, PlayCard, Player, TakeCard, newMove, playingStatus}
+import de.htwg.se.explodingKitten.model.{Card, Carddeck, PlayCard, TakeCard, newMove, playingStatus}
 import de.htwg.se.explodingKitten.controller.{Controller, GameContext}
 
 import scala.io.StdIn.readLine
 import scala.util.control.Breaks._
-import de.htwg.se.explodingKitten.model.Cards.{cardFromBottom, cat, defuseCard, explCard, lookToFuture}
 
 import scala.collection.immutable.BitSet.empty.foreach
 
 object ExplodingKitten {
 
-  val controller = new Controller(Carddeck().addCard(cat, 2).addCard(explCard).addCard(cardFromBottom, 2))
+  val controller = new Controller(Carddeck().addCard(Card("FeralCat"), 2).addCard(Card("ExplodingKitten")).addCard(Card("DrawFromTheBottom"), 2))
   val tui = new Tui(controller)
 //  controller.notifyObservers
 

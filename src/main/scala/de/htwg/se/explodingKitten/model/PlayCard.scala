@@ -24,7 +24,7 @@ class PlayCard extends Move {
         newPerson
       }
       case _ => {
-        person
+        newPerson
       }
     }
   }

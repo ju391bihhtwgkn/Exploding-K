@@ -1,12 +1,11 @@
 package de.htwg.se.explodingKitten.model
 
-import de.htwg.se.explodingKitten.model.Cards._
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
 import org.scalatest.wordspec.AnyWordSpec
 
 class StateSpec extends AnyWordSpec with Matchers{
-  var player = Player("Wiebke", Vector(cat, cat, cat))
+  var player = Player("Wiebke", Vector(Card("TacoCat"), Card("TacoCat"), Card("TacoCat")))
   "Check Status" when{
     "Status Play beginn" in{
       player.state shouldBe a [waitingStatus]

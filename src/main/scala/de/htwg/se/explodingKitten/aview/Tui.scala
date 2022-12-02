@@ -1,8 +1,7 @@
 package de.htwg.se.explodingKitten.aview
 
 import de.htwg.se.explodingKitten.controller.{Controller, GameContext}
-import de.htwg.se.explodingKitten.model.Cards.{cardFromBottom, cat, defuseCard, lookToFuture}
-import de.htwg.se.explodingKitten.model.{Card, Carddeck, PlayCard, Player, TakeCard, newMove, playingStatus}
+import de.htwg.se.explodingKitten.model.{Card, Player, newMove, playingStatus}
 import de.htwg.se.explodingKitten.util.Observer
 
 import scala.io.StdIn.readLine
@@ -12,9 +11,9 @@ class Tui(controller: Controller) extends Observer {
 
   controller.add(this)
 
-  var p1 = Player("Wiebke", Vector(cat, cat, defuseCard, cardFromBottom))
-  var p2 = Player("Julian", Vector(lookToFuture, cat, cat))
-  var p3 = Player("Random", Vector(cat, lookToFuture, defuseCard, cat))
+  var p1 = Player("Wiebke", Vector(Card("FeralCat"), Card("FeralCat"), Card("Defuse"), Card("DrawFromTheBottom")))
+  var p2 = Player("Julian", Vector(Card("SeeTheFuture"), Card("FeralCat"), Card("FeralCat")))
+  var p3 = Player("Random", Vector(Card("FeralCat"), Card("SeeTheFuture"), Card("Defuse"), Card("FeralCat")))
 
   var players = Vector(p1, p2, p3)
   p1.changeState(new playingStatus(p1))
@@ -48,7 +47,7 @@ class Tui(controller: Controller) extends Observer {
             }
           }
               p = context.executeStrategy(player, controller)
-              player.state.onPlay()
+              p.state.onPlay()
               players = (players :+ p).tail
               players.head.changeState(new playingStatus(players.head))
               //print("Nächster Spieler ist " + players.head.name)

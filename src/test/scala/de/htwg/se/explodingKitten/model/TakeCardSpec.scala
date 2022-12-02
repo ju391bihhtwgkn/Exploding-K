@@ -1,14 +1,13 @@
 package de.htwg.se.explodingKitten.model
 
 import de.htwg.se.explodingKitten.controller.{Controller, GameContext}
-import de.htwg.se.explodingKitten.model.Cards._
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
 
 class TakeCardSpec() extends AnyWordSpec with Matchers{
-  var p = Player("Ich", Vector(lookToFuture))
-  val c = new Controller(Carddeck().addCard(cat, 2).addCard(explCard).addCard(cardFromBottom, 2))
+  var p = Player("Ich", Vector(Card("SeeTheFuture")))
+  val c = new Controller(Carddeck().addCard(Card("TacoCat"), 2).addCard(Card("ExplodingKitten")).addCard(Card("DrawFromTheBottom"), 2))
 
   "Create a context" when {
     val tk = new TakeCard
@@ -20,23 +19,23 @@ class TakeCardSpec() extends AnyWordSpec with Matchers{
   "Check out if its a Bomb" when {
     val bombcheck = new TakeCard
     "Bombe ohne Leben" in {
-      bombcheck.checkOnExploding(p, c, explCard).hasLost should be (true)
+      bombcheck.checkOnExploding(p, c, Card("ExplodingKitten")).hasLost should be (true)
     }
     "Bombe mit Leben" in {
-      p = p.takeCard(defuseCard)
-      bombcheck.checkOnExploding(p, c, explCard).hasLost should be (false)
+      p = p.takeCard(Card("Defuse"))
+      bombcheck.checkOnExploding(p, c, Card("ExplodingKitten")).hasLost should be (false)
     }
 
   }
 
   "Make a move" when {
     val context = new GameContext(new TakeCard)
-    val deck = new Controller(Carddeck().addCard(explCard,5))
+    val deck = new Controller(Carddeck().addCard(Card("ExplodingKitten"),5))
     "Got a Bomb" in {
       context.executeStrategy(p, deck).handCards should be(p.handCards)
     }
     "Got no Bomb" in {
-      context.executeStrategy(p, c).handCards should be (Vector(lookToFuture, cat))
+      context.executeStrategy(p, c).handCards should be (Vector(Card("SeeTheFuture"), Card("TacoCat")))
     }
 
   }

@@ -1,7 +1,7 @@
 package de.htwg.se.explodingKitten.model
 
 import de.htwg.se.explodingKitten.controller.Controller
-import de.htwg.se.explodingKitten.model.Cards._
+import de.htwg.se.explodingKitten.model.Player
 
 
 class TakeCard extends Move {
@@ -17,11 +17,11 @@ class TakeCard extends Move {
   }
 
   def checkOnExploding(person : Player, carddeck : Controller, tempCard : Card): Player ={
-    if(tempCard == explCard){
-      if(person.handCards.contains(defuseCard)){
+    if(tempCard == Card("ExplodingKitten")) {
+      if (person.handCards.contains(Card("Defuse"))) {
         //Abfrage wo die Karte versteckt werden soll
         //carddeck.hideCardInDeck(explCard, 2)
-        return person.playCard(defuseCard)
+        return person.playCard(Card("Defuse"))
       }
       person.setHasLost()
     }
