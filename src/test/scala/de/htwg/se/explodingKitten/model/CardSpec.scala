@@ -85,19 +85,3 @@ class CardSpec() extends AnyWordSpec with Matchers {
     RainbowCat.toString() should be("Rainbow Cat" + eol + "Combine 2 or 3 to draw a card from a player")
   }
 }
-  /*
-  "A Card" when {
-    "name is set to Melon Cat and description is set" should {
-      val card = Card("Melon Cat")
-      card.cardName in {
-        cardName should be("Melon Cat")
-      }
-      "have a description" in {
-        card.description should be("Combine 2 or 3 to draw a card from a Player")
-      }
-    }
-  };}
-
-
-
-   */

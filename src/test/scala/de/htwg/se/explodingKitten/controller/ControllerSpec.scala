@@ -25,7 +25,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
       "notify its Observers after card is added to the deck" in {
         controller.addCard(card, 4)
         controller.addCard(card2, 8)
-        controller.addCard(cardBottom,5)
+        controller.addCard(Card("DrawFromTheBottom"),5)
         observer.updated should be(true)
         controller.deck.len() should be(17)
       }
@@ -42,9 +42,9 @@ class ControllerSpec extends AnyWordSpec with Matchers {
         val y = controller.takeCardBottom()
         observer.updated should be(true)
         controller.deck.len() should be(15)
-        y should be(cardBottom)
-        y.cardName should be ("Draw from the Bottom")
-        y.cardDescription should be ("Draw a card from the Bottom")
+        y should be(Card("DrawFromTheBottom"))
+        y.cardName should be ("Draw from the bottom")
+        y.cardDescription should be ("Draw a card from the bottom")
       }
       "notify its Observers after a player looked at the top 3 Cards" in {
         val spy = controller.spy()

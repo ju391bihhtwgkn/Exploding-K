@@ -1,19 +1,63 @@
 package de.htwg.se.explodingKitten.aview
 
-import de.htwg.se.explodingKitten.model.{Card, Carddeck}
-
+import de.htwg.se.explodingKitten.controller.{Controller, GameContext}
+import de.htwg.se.explodingKitten.model.{Card, Player, newMove, playingStatus}
 import de.htwg.se.explodingKitten.util.Observer
-import de.htwg.se.explodingKitten.controller.Controller
 
-import scala.util.control.Breaks.break
+import scala.io.StdIn.readLine
+import scala.util.control.Breaks.{break, breakable}
 
 class Tui(controller: Controller) extends Observer {
 
   controller.add(this)
-  val card = Card("MelonCat")
-  val card2 = Card("ExplodingKitten")
 
-  def processInputLine(input: String): Unit = {
+  var p1 = Player("Wiebke", Vector(Card("FeralCat"), Card("FeralCat"), Card("Defuse"), Card("DrawFromTheBottom")))
+  var p2 = Player("Julian", Vector(Card("SeeTheFuture"), Card("FeralCat"), Card("FeralCat")))
+  var p3 = Player("Random", Vector(Card("FeralCat"), Card("SeeTheFuture"), Card("Defuse"), Card("FeralCat")))
+
+  var players = Vector(p1, p2, p3)
+  p1.changeState(new playingStatus(p1))
+  var p = Player("", Vector())
+
+  val context = new GameContext(new newMove)
+
+  def processInputLine(): Unit = {
+    breakable {
+      while(true) {
+        for (player <- players) {
+          println("Your turn! " + player + "\n")
+          println("These are you Cards\n" + player.handCards)
+          var input: String = ""
+          input = readLine()
+          input match {
+            case "t" => {
+              context.takeCard(context)
+            }
+            case "p" => {
+              context.playCard(context)
+            }
+            case "u" => {
+              context.undo
+            }
+            case "r" => {
+              context.redo
+            }
+            case _ => {
+              break
+            }
+          }
+              p = context.executeStrategy(player, controller)
+              p.state.onPlay()
+              players = (players :+ p).tail
+              players.head.changeState(new playingStatus(players.head))
+              //print("Nächster Spieler ist " + players.head.name)
+        }
+      }
+    }
+
+
+      /*
+
     input match {
       case "0" => {
         print("add Card to Deck")
@@ -40,12 +84,13 @@ class Tui(controller: Controller) extends Observer {
         print("Put Card into deck\n")
         controller.hideCardInDeck(card2, 1)
       }
-        case _ => {
+      case _ => {
         print("Spiel beendet\n")
         break
       }
     }
-  }
 
-  override def update: Unit = println(controller.deck)
+     */
+    }
+  override def update: Unit = controller.deck
 }

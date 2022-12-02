@@ -5,6 +5,7 @@ import scala.util.Random
 case class Carddeck() {
 
     var deck = Vector[Card]()
+    var drawnCards = Vector[Card]()
 
   def addCard(card: Card, anz: Int = 1): Carddeck = {
     val newdeck : Carddeck = Carddeck()
@@ -14,7 +15,10 @@ case class Carddeck() {
   }
 
   def takeCardTop(): Card = {
+    val drawnDeck : Carddeck = Carddeck()
     val card = deck.head
+    val helpVector = Vector[Card]().padTo(1, card)
+    drawnDeck.drawnCards = drawnCards ++ helpVector
     card
   }
 
@@ -45,7 +49,6 @@ case class Carddeck() {
     val shuf = Random.shuffle(l)
     var newCardDeck: Carddeck = Carddeck()
     shuf.foreach(x => newCardDeck = newCardDeck.addCard(deck(x)))
-    shuf.foreach{print}
     newCardDeck
   }
 
