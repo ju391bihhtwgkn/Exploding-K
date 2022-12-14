@@ -1,8 +1,9 @@
 package de.htwg.se.explodingKitten.util
 
-trait Command {
+import de.htwg.se.explodingKitten.model.Gamestate
 
-  def doStep: Unit
-  def undoStep: Unit
-  def redoStep: Unit
+trait Command {
+  def doStep(): Gamestate
+  def undoStep(): Gamestate
+  def redoStep(): Gamestate
 }

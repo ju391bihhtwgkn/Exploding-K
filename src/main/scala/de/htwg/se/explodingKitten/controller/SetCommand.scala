@@ -1,18 +1,28 @@
 package de.htwg.se.explodingKitten.controller
 
-import de.htwg.se.explodingKitten.ExplodingKitten.controller
-import de.htwg.se.explodingKitten.model.{Move, TakeCard}
+import de.htwg.se.explodingKitten.model.Gamestate
+import de.htwg.se.explodingKitten.model.strategy.{Move}
 import de.htwg.se.explodingKitten.util.Command
 
 
-class SetCommand(strategy: Move, gameContext: GameContext) extends Command {
+class SetCommand(strategy: Move, controller: Controller) extends Command {
 
-  override def doStep: Unit = gameContext.setStrategy(strategy)
+  val state: Gamestate = controller.gameState
 
-  override def undoStep: Unit = ""
+  override def doStep(): Gamestate = {
+    val newState = controller.gameState.handle(strategy)
+    controller.gameState = newState
+    state
+  }
 
-  override def redoStep: Unit = gameContext.setStrategy(strategy)
+  override def undoStep(): Gamestate = {
+    controller.gameState = state
+    controller.gameState
+  }
 
+  override def redoStep(): Gamestate = {
+    val newState = controller.gameState.handle(strategy)
+    controller.gameState = newState
+    state
+  }
 }
-
-

@@ -1,6 +1,7 @@
 package de.htwg.se.explodingKitten.model
 
 import de.htwg.se.explodingKitten.controller.{Controller, GameContext}
+import de.htwg.se.explodingKitten.model.strategy.TakeCard
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 

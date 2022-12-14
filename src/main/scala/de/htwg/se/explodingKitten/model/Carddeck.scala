@@ -2,18 +2,59 @@ package de.htwg.se.explodingKitten.model
 
 import scala.util.Random
 
-case class Carddeck() {
+object Carddeck {
 
     var deck = Vector[Card]()
     var drawnCards = Vector[Card]()
 
-  def addCard(card: Card, anz: Int = 1): Carddeck = {
-    val newdeck : Carddeck = Carddeck()
+
+  def initializeDeck(): Unit = this.deck = addFeralCat() ++ addExplodingKitten() ++ addDrawFromTheBottom()
+
+  // TODO: make creation of deck better
+
+  def addFeralCat(): Vector[Card] = {
+    val helpVector = Vector[Card]().padTo(2, Card("FeralCat"))
+    val newDeck: Vector[Card] = deck
+    newDeck ++ helpVector
+  }
+
+  def addDrawFromTheBottom(): Vector[Card] = {
+    val helpVector = Vector[Card]().padTo(2, Card("DrawFromTheBottom"))
+    val newDeck: Vector[Card] = deck
+    newDeck ++ helpVector
+  }
+
+  def addExplodingKitten(): Vector[Card] = {
+    val helpVector = Vector[Card]().padTo(2, Card("ExplodingKitten"))
+    val newDeck: Vector[Card] = deck
+    newDeck ++ helpVector
+  }
+
+
+  def addCard(card: Card, anz: Int = 1): Vector[Card] = {
+    //val newdeck : Vector[Card] = deck
     val helpVector = Vector[Card]().padTo(anz, card)
-    newdeck.deck = deck ++ helpVector
+    val newdeck = deck ++ helpVector
     newdeck
   }
 
+  def reduceTop(): Vector[Card] = {
+    //val newdeck: Vector[Card] = deck
+    val newdeck = deck.tail
+    newdeck
+  }
+
+
+
+  /*
+    def addCard(card: Card, anz: Int = 1): Vector[Card] = {
+      val newDeck = deck
+      val helpVector = Vector[Card]().padTo(anz, card)
+      deck ++ helpVector
+    }
+
+   */
+/*
   def takeCardTop(): Card = {
     val drawnDeck : Carddeck = Carddeck()
     val card = deck.head
@@ -62,4 +103,6 @@ case class Carddeck() {
   }
 
   def len() : Int = deck.length
+
+ */
 }

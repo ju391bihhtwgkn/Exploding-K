@@ -46,5 +46,6 @@ case class Player(name: String, handCards: Vector[Card], var hasLost: Boolean = 
     card.head
   }
 
+  //override def toString: String = name + "\n" + handCards
   override def toString: String = name
 }

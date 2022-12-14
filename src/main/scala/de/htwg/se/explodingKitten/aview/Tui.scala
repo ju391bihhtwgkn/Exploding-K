@@ -1,11 +1,13 @@
 package de.htwg.se.explodingKitten.aview
 
 import de.htwg.se.explodingKitten.controller.{Controller, GameContext}
-import de.htwg.se.explodingKitten.model.{Card, Player, newMove, playingStatus}
+import de.htwg.se.explodingKitten.model.strategy
+import de.htwg.se.explodingKitten.model.strategy.{NextPlayer, TakeCard}
+//import de.htwg.se.explodingKitten.model.strategy.{PlayCard, TakeCard, newMove}
+import de.htwg.se.explodingKitten.model.{Card, Player, playingStatus}
 import de.htwg.se.explodingKitten.util.Observer
 
 import scala.io.StdIn.readLine
-import scala.util.control.Breaks.{break, breakable}
 
 class Tui(controller: Controller) extends Observer {
 
@@ -19,78 +21,37 @@ class Tui(controller: Controller) extends Observer {
   p1.changeState(new playingStatus(p1))
   var p = Player("", Vector())
 
-  val context = new GameContext(new newMove)
+  val context = new GameContext(null)
+  controller.initializeDeck()
+  controller.initializePlayers(players)
+
+
+  //println(controller.gameState.players)
+  //println(controller.gameState.currentPlayer)
+  //println(controller.gameState.deck)
 
   def processInputLine(): Unit = {
-    breakable {
-      while(true) {
-        for (player <- players) {
-          println("Your turn! " + player + "\n")
-          println("These are you Cards\n" + player.handCards)
-          var input: String = ""
-          input = readLine()
-          input match {
-            case "t" => {
-              context.takeCard(context)
-            }
-            case "p" => {
-              context.playCard(context)
-            }
-            case "u" => {
-              context.undo
-            }
-            case "r" => {
-              context.redo
-            }
-            case _ => {
-              break
-            }
-          }
-              p = context.executeStrategy(player, controller)
-              p.state.onPlay()
-              players = (players :+ p).tail
-              players.head.changeState(new playingStatus(players.head))
-              //print("Nächster Spieler ist " + players.head.name)
-        }
-      }
-    }
-
-
-      /*
-
+    println(controller.gameState.currentPlayer)
+    println("Your turn " + controller.gameState.players(controller.gameState.currentPlayer).name)
+    println(controller.gameState.players(controller.gameState.currentPlayer).handCards.toString())
+    val input = readLine()
     input match {
-      case "0" => {
-        print("add Card to Deck")
-        controller.addCard(card, 2)
-        controller.addCard(card2, 1)
+      case "t" => {
+        // Take a Card
+        context.setStrategy(new TakeCard())
+        context.executeStrategy(controller)
+        // Next Player
+        context.setStrategy(new NextPlayer())
+        context.executeStrategy(controller)
       }
-      case "1" => {
-        print("Draw a card \n")
-        print(controller.takeTopCard())
+      case "r" => {
+        controller.redo()
       }
-      case "2" => {
-        print("Thats the first three Cards\n")
-        controller.spy().foreach {print}
+      case "u" => {
+        controller.undo
       }
-      case "3" => {
-        print("Draw from the bottom\n")
-        print(controller.takeCardBottom())
-      }
-      case "4" => {
-        print("Shuffle deck\n")
-        controller.shuffle()
-      }
-      case "5" => {
-        print("Put Card into deck\n")
-        controller.hideCardInDeck(card2, 1)
-      }
-      case _ => {
-        print("Spiel beendet\n")
-        break
-      }
+    }
     }
 
-     */
-    }
-  override def update: Unit = controller.deck
+  override def update: Unit = controller.gameState
 }
