@@ -2,7 +2,7 @@ package de.htwg.se.explodingKitten.aview
 
 import de.htwg.se.explodingKitten.controller.{Controller, GameContext}
 import de.htwg.se.explodingKitten.model.strategy
-import de.htwg.se.explodingKitten.model.strategy.{NextPlayer, TakeCard}
+import de.htwg.se.explodingKitten.model.strategy.{NextPlayer, PlayCard, TakeCard}
 //import de.htwg.se.explodingKitten.model.strategy.{PlayCard, TakeCard, newMove}
 import de.htwg.se.explodingKitten.model.{Card, Player, playingStatus}
 import de.htwg.se.explodingKitten.util.Observer
@@ -14,7 +14,7 @@ class Tui(controller: Controller) extends Observer {
   controller.add(this)
 
   var p1 = Player("Wiebke", Vector(Card("FeralCat"), Card("FeralCat"), Card("Defuse"), Card("DrawFromTheBottom")))
-  var p2 = Player("Julian", Vector(Card("SeeTheFuture"), Card("FeralCat"), Card("FeralCat")))
+  var p2 = Player("Julian", Vector(Card("Skip"), Card("SeeTheFuture"), Card("FeralCat"), Card("FeralCat")))
   var p3 = Player("Random", Vector(Card("FeralCat"), Card("SeeTheFuture"), Card("Defuse"), Card("FeralCat")))
 
   var players = Vector(p1, p2, p3)
@@ -42,6 +42,11 @@ class Tui(controller: Controller) extends Observer {
         context.executeStrategy(controller)
         // Next Player
         context.setStrategy(new NextPlayer())
+        context.executeStrategy(controller)
+      }
+      case "p" => {
+        // Play a Card
+        context.setStrategy(new PlayCard())
         context.executeStrategy(controller)
       }
       case "r" => {

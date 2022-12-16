@@ -1,6 +1,5 @@
 package de.htwg.se.explodingKitten.model.strategy
 
-import de.htwg.se.explodingKitten.controller.Controller
 import de.htwg.se.explodingKitten.model.{Card, Gamestate, Player}
 
 class TakeCard extends Move {
