@@ -75,3 +75,59 @@ class PlayCard extends Move {
     }
   }
 }
+
+    /*
+      /*
+      case 9 => {
+      // Cat Cards bei 2 von spieler ziehen, bei 3 bestimmte karte von spieler wünschen
+        var nCards = 0
+        //val cards = Vector[Card]
+        for ( n <- state.players(currentPlayer).handCards) if (n.cardName == Card("FeralCat").cardName) nCards += 1
+        if (nCards > 2) {
+          println("Choose a Card and a Player you want to draw a card from \n")
+          state.players(currentPlayer).playCard(Card("FeralCat"))
+          val newHandCards = state.players(currentPlayer).playCard(Card("FeralCat"))
+          val newPlayer = state.players.updated(currentPlayer, Player(state.players(currentPlayer).name, newHandCards))
+
+          val newState = state.copy(players = newPlayer)
+          newState
+        } else if (nCards == 2) {
+          println("Choose a Player to draw a Card from \n")
+          val newHandCards = state.players(currentPlayer).playCard(Card("FeralCat"))
+          val newPlayer = state.players.updated(currentPlayer, Player(state.players(currentPlayer).name, newHandCards))
+          val input = readLine()
+          input match {
+            case  =>
+          }
+
+          val newState = state.copy(players = newPlayer)
+          newState
+        } else {
+          println("Hallo2")
+          state
+        }
+
+       */
+        //def spy(): Vector[Card] = {
+        //  if (deck.length > 2) deck.take(3)
+        //  else
+        //    deck.take(deck.length)
+        //newPerson
+      }
+      //case 4 => {
+      //val context = new GameContext(new TakeCard)
+      //carddeck.deck.deck = carddeck.deck.deck.reverse
+      //newPerson = context.executeStrategy(newPerson, carddeck)
+      //carddeck.deck.deck = carddeck.deck.deck.reverse
+      //newPerson
+      //}
+      //case _ => {
+      //newPerson
+      //}
+    }
+    //}
+  }
+}
+
+
+     */
