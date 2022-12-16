@@ -136,7 +136,7 @@ object Card {
       case "TargetedAttack" => new TargetedAttack
       case "Defuse" => new Defuse
       case "ExplodingKitten" => new ExplodingKitten
-      case "AlterTheFuture" => new AlterTheFuture
+      case "AlterTheFuture" => new AlterTheFuture //TODO Implement
       case "FeralCat" => new FeralCat
       case "MelonCat" => new MelonCat
       case "BeardedCat" => new BeardedCat
