@@ -13,7 +13,7 @@ class Tui(controller: Controller) extends Observer {
 
   controller.add(this)
 
-  var p1 = Player("Wiebke", Vector(Card("FeralCat"), Card("FeralCat"), Card("Defuse"), Card("DrawFromTheBottom")))
+  var p1 = Player("Wiebke", Vector(Card("TargetedAttack"), Card("FeralCat"), Card("FeralCat"), Card("Defuse"), Card("DrawFromTheBottom")))
   var p2 = Player("Julian", Vector(Card("Skip"), Card("SeeTheFuture"), Card("FeralCat"), Card("FeralCat")))
   var p3 = Player("Random", Vector(Card("FeralCat"), Card("SeeTheFuture"), Card("Defuse"), Card("FeralCat")))
 
@@ -31,7 +31,6 @@ class Tui(controller: Controller) extends Observer {
   //println(controller.gameState.deck)
 
   def processInputLine(): Unit = {
-    println(controller.gameState.currentPlayer)
     println("Your turn " + controller.gameState.players(controller.gameState.currentPlayer).name)
     println(controller.gameState.players(controller.gameState.currentPlayer).handCards.toString())
     val input = readLine()

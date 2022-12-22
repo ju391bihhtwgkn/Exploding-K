@@ -1,6 +1,5 @@
 package de.htwg.se.explodingKitten.model
 
-import scala.math.random
 import scala.util.Random
 
 object Carddeck {
@@ -19,6 +18,18 @@ object Carddeck {
 
   def addFeralCat(): Vector[Card] = {
     val helpVector = Vector[Card]().padTo(2, Card("FeralCat"))
+    val newDeck: Vector[Card] = deck
+    newDeck ++ helpVector
+  }
+
+  def addAttack(): Vector[Card] = {
+    val helpVector = Vector[Card]().padTo(2, Card("Attack"))
+    val newDeck: Vector[Card] = deck
+    newDeck ++ helpVector
+  }
+
+  def addTargetedAttack(): Vector[Card] = {
+    val helpVector = Vector[Card]().padTo(2, Card("TargetedAttack"))
     val newDeck: Vector[Card] = deck
     newDeck ++ helpVector
   }

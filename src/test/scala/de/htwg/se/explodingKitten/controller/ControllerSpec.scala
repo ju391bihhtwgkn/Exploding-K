@@ -5,7 +5,6 @@ import de.htwg.se.explodingKitten.util.Observer
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-
 class ControllerSpec extends AnyWordSpec with Matchers {
 
   val card = Card("MelonCat")
@@ -13,6 +12,12 @@ class ControllerSpec extends AnyWordSpec with Matchers {
   val cardBottom = Card("DrawFromTheBottom")
   print(card)
 
+  "A Controller" when {
+    "instilizes deck" should {
+      var controller = new Controller()
+      controller.initializeDeck()
+    }
+  }
   "A Controller" when {
     "observed by an Observer" should {
       val controller = new Controller(Carddeck())

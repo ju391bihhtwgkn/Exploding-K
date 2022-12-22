@@ -17,7 +17,6 @@ class Controller() extends Observable {
 
   def initializePlayers(players: Vector[Player]): Unit = {
     gameState = gameState.copy(players = players, currentPlayer = 0)
-    //println(gameState.players)
   }
 
   def doStep(move: Move): Gamestate = {

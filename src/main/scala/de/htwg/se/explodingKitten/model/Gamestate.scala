@@ -8,7 +8,6 @@ case class Gamestate(
                     deck: Vector[Card],
                     ){
 
-
   def handle(move: Move): Gamestate = {
     move match {
       case  nextPlayer  => {
@@ -17,6 +16,9 @@ case class Gamestate(
       case takeCard => {
         takeCard.makeMove(this)
     }
+      case playCard => {
+        playCard.makeMove(this)
+      }
     }
   }
 }
