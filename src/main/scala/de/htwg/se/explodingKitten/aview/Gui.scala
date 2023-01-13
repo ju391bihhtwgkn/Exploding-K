@@ -24,9 +24,7 @@ class Gui(controller: Controller) extends MainFrame with Observer {
 
   val box = new BoxPanel(Orientation.Horizontal){
     border = BorderFactory.createEmptyBorder(10, 0, 10, 0)
+    //preferredSize = new Dimension(1600, 800)
   }
-
-  //pack()
   open()
-
 }

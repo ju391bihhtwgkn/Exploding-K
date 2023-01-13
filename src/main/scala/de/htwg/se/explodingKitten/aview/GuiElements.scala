@@ -34,31 +34,27 @@ case class GuiElements(controller: Controller) {
     //val playerLabel = new Label(player.name)
     //add(playerLabel, constraints(1,0,gridheight = 2, fill = GridBagPanel.Fill.Both))
     add(label, constraints(3, 0, fill = GridBagPanel.Fill.Vertical))
-    add(handCards, constraints(2, 0, gridheight = 2, fill = GridBagPanel.Fill.Horizontal))
+    add(handCards, constraints(1, 1, gridheight = 2, fill = GridBagPanel.Fill.Horizontal))
     add(deck, constraints(3, 1, gridheight = 1))
-    add(disCardPile, constraints(4, 1, gridheight = 1))
+    add(disCardPile, constraints(3, 2, gridheight = 1))
+    add(undo, constraints(0 ,0, gridheight = 1, gridwidth = 1))
+    add(redo, constraints(0, 1, gridheight = 1, gridwidth = 1))
   }
 
   def label : Label = new Label(controller.gameState.deck.length.toString) {
     font = new Font(Font.Serif, 1, 30)
   }
 
-  def deck : Button = new Button(controller.gameState.deck.length.toString) {
+  def deck : Button = new Button() {
     reactions += { case ButtonClicked(_) =>
       context.setStrategy(new TakeCard())
       context.executeStrategy(controller)
 
       context.setStrategy(new NextPlayer())
       context.executeStrategy(controller)
-      //controller.doStep(new TakeCard())
-      //controller.doStep(new NextPlayer())
     }
-    //minimumSize = new Dimension(1000, 1000)
-    //maximumSize = new Dimension( 1000, 1000)
     preferredSize = new Dimension(250, 380)
     icon = new ImageIcon("src/ressources/CardBack.PNG")
-    //println(icon.getIconWidth)
-    //println(icon.getIconHeight)
   }
 
   def disCardPile: Button = new Button() {
@@ -236,4 +232,23 @@ case class GuiElements(controller: Controller) {
       }
     }
   }
+
+  def undo: Button = new Button("Undo") {
+    preferredSize = new Dimension(100, 100)
+    font = new Font(Font.Serif, 1, 15)
+    reactions += {
+      case ButtonClicked(_) =>
+        controller.undo
+    }
+  }
+
+  def redo: Button = new Button("Redo") {
+    preferredSize = new Dimension(100, 100)
+    font = new Font(Font.Serif, 1, 15)
+    reactions += {
+      case ButtonClicked(_) =>
+        controller.redo()
+    }
+  }
+
 }
