@@ -1,8 +1,8 @@
 package de.htwg.se.explodingKitten
 
-import de.htwg.se.explodingKitten.aview.Tui
+import de.htwg.se.explodingKitten.aview.{Gui, Tui}
 import de.htwg.se.explodingKitten.model.{Card, Carddeck}
-import de.htwg.se.explodingKitten.controller.{Controller}
+import de.htwg.se.explodingKitten.controller.Controller
 
 
 object ExplodingKitten {
@@ -13,10 +13,11 @@ object ExplodingKitten {
 //  controller.notifyObservers
 
   def main(args: Array[String]): Unit = {
-    while(true) {
-      tui.processInputLine()
-    }
-  }
+      val gui =  new Gui(controller)
+      while(true) {
+        tui.processInputLine()
+      }
+      }
 
   //Karten Anzeigen
   //Karte Ziehen oder Legen

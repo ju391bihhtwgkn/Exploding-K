@@ -7,8 +7,9 @@ object Carddeck {
     var deck = Vector[Card]()
     var drawnCards = Vector[Card]()
 
-
-  def initializeDeck(): Unit = this.deck = addFeralCat() ++ addExplodingKitten() ++ addDrawFromTheBottom()
+  def initializeDeck(): Unit = this.deck =
+    addAttack() ++ addSkip() ++ addTargetedAttack() ++ addDrawFromTheBottom() ++ addAttack() ++ addDrawFromTheBottom() ++ addAttack() ++ addTargetedAttack() ++
+      addTargetedAttack()
 
   // TODO: make creation of deck better
   def shuffle(): Vector[Card] = {
@@ -17,25 +18,25 @@ object Carddeck {
   }
 
   def addFeralCat(): Vector[Card] = {
-    val helpVector = Vector[Card]().padTo(2, Card("FeralCat"))
+    val helpVector = Vector[Card]().padTo(3, Card("FeralCat"))
     val newDeck: Vector[Card] = deck
     newDeck ++ helpVector
   }
 
   def addAttack(): Vector[Card] = {
-    val helpVector = Vector[Card]().padTo(2, Card("Attack"))
+    val helpVector = Vector[Card]().padTo(1, Card("Attack"))
     val newDeck: Vector[Card] = deck
     newDeck ++ helpVector
   }
 
   def addTargetedAttack(): Vector[Card] = {
-    val helpVector = Vector[Card]().padTo(2, Card("TargetedAttack"))
+    val helpVector = Vector[Card]().padTo(1, Card("TargetedAttack"))
     val newDeck: Vector[Card] = deck
     newDeck ++ helpVector
   }
 
   def addDrawFromTheBottom(): Vector[Card] = {
-    val helpVector = Vector[Card]().padTo(2, Card("DrawFromTheBottom"))
+    val helpVector = Vector[Card]().padTo(1, Card("DrawFromTheBottom"))
     val newDeck: Vector[Card] = deck
     newDeck ++ helpVector
   }
@@ -47,11 +48,35 @@ object Carddeck {
   }
 
   def addSkip(): Vector[Card] = {
-    val helpVector = Vector[Card]().padTo(2, Card("Skip"))
+    val helpVector = Vector[Card]().padTo(1, Card("Skip"))
     val newDeck: Vector[Card] = deck
     newDeck ++ helpVector
   }
 
+  def addDefuse(): Vector[Card] = {
+    val helpVector = Vector[Card]().padTo(3, Card("Defuse"))
+    val newDeck: Vector[Card] = deck
+    newDeck ++ helpVector
+  }
+
+  def addSeeTheFuture(): Vector[Card] = {
+    val helpVector = Vector[Card]().padTo(3, Card("SeeTheFuture"))
+    val newDeck: Vector[Card] = deck
+    newDeck ++ helpVector
+  }
+
+
+
+  /*
+  def takeCardTop(n: Int): Card = {
+    val card = deck.head
+    val helpVector = Vector[Card]().padTo(1, card)
+    drawnDeck.drawnCards = drawnCards ++ helpVector
+    card
+  }
+
+
+   */
 
 
   def addCard(card: Card, anz: Int = 1): Vector[Card] = {
@@ -66,7 +91,6 @@ object Carddeck {
     val newdeck = deck.tail
     newdeck
   }
-
 
 
   /*

@@ -9,6 +9,8 @@ trait Card {
   def toString: String
 }
 
+//TODO: Add Favor and Shuffle
+
 object Card {
 
   val eol = sys.props("line.separator")

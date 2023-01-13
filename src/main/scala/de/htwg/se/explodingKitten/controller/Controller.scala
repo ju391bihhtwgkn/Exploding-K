@@ -6,17 +6,24 @@ import de.htwg.se.explodingKitten.util.{Observable, UndoManager}
 
 class Controller() extends Observable {
 
-  var gameState = Gamestate(0, null, null)
+  var gameState = Gamestate(0, null, null, Vector(Card("FeralCat")))
   private val undoManager = new UndoManager
   var statement = ""
+  var flag = false
 
   def initializeDeck(): Unit = {
     val deck = Carddeck.initializeDeck()
     gameState = gameState.copy(deck = Carddeck.deck)
   }
 
+  def createPlayers(names: List[String]) = {
+    gameState = gameState.copy(players = (0 until 3).map(m =>Player(names.apply(m), Carddeck.deck.take(4))).toVector)
+  }
+
   def initializePlayers(players: Vector[Player]): Unit = {
     gameState = gameState.copy(players = players, currentPlayer = 0)
+    flag = true
+    notifyObservers
   }
 
   def doStep(move: Move): Gamestate = {
@@ -32,6 +39,10 @@ class Controller() extends Observable {
 
   def redo(): Unit = {
     undoManager.redoStep
+    notifyObservers
+  }
+
+  def update(): Unit = {
     notifyObservers
   }
 

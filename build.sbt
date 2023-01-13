@@ -6,6 +6,7 @@ lazy val root = project
     scalaVersion := "2.13.10",
     libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.14",
     libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.14" % "test",
-    jacocoCoverallsRepoToken := sys.env.get("COVERALLS_REPO_TOKEN")
+    jacocoCoverallsRepoToken := sys.env.get("COVERALLS_REPO_TOKEN"),
+      libraryDependencies += "org.scala-lang.modules" %% "scala-swing" % "3.0.0"
   )
 .enablePlugins(JacocoCoverallsPlugin)
