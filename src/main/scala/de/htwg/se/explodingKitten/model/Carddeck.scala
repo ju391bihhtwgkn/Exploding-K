@@ -8,7 +8,7 @@ object Carddeck {
     var drawnCards = Vector[Card]()
 
   def initializeDeck(): Unit = this.deck =
-    addAttack() ++ addSkip() ++ addTargetedAttack() ++ addDrawFromTheBottom() ++ addAttack() ++ addDrawFromTheBottom() ++ addAttack() ++ addTargetedAttack() ++
+    addSeeTheFuture() ++ addAttack() ++ addSkip() ++ addTargetedAttack() ++ addDrawFromTheBottom() ++ addAttack() ++ addDrawFromTheBottom() ++ addAttack() ++ addTargetedAttack() ++
       addTargetedAttack()
 
   // TODO: make creation of deck better
@@ -60,7 +60,7 @@ object Carddeck {
   }
 
   def addSeeTheFuture(): Vector[Card] = {
-    val helpVector = Vector[Card]().padTo(3, Card("SeeTheFuture"))
+    val helpVector = Vector[Card]().padTo(2, Card("SeeTheFuture"))
     val newDeck: Vector[Card] = deck
     newDeck ++ helpVector
   }

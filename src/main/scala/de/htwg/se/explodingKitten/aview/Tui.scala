@@ -12,27 +12,9 @@ import scala.io.StdIn.readLine
 class Tui(controller: Controller) extends Observer {
 
   controller.add(this)
-
-  //var p1 = Player("Wiebke", Vector(Card("TargetedAttack"), Card("FeralCat"), Card("FeralCat"), Card("Defuse"), Card("DrawFromTheBottom")))
-  //var p2 = Player("Julian", Vector(Card("Skip"), Card("SeeTheFuture"), Card("FeralCat"), Card("FeralCat")))
-  //var p3 = Player("Random", Vector(Card("FeralCat"), Card("SeeTheFuture"), Card("Defuse"), Card("FeralCat")))
-
-  /*
-  var players = Vector(p1, p2, p3)
-  p1.changeState(new playingStatus(p1))
-  var p = Player("", Vector())
-
-
-   */
   val context = new GameContext(null)
 
-  //controller.initializeDeck()
-  //controller.initializePlayers(players)
 
-
-  //println(controller.gameState.players)
-  //println(controller.gameState.currentPlayer)
-  //println(controller.gameState.deck)
   def processInputLine(): Unit = {
     while (controller.flag == true) {
       println("Your turn " + controller.gameState.players(controller.gameState.currentPlayer).name)

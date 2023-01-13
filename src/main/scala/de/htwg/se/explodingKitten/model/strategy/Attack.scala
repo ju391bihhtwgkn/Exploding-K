@@ -26,7 +26,7 @@ class Attack(i: Int) extends Move {
       val newState = nextPlayerState.copy(currentPlayer = nextPlayer)
       newState
     } else {
-      val nextPlayer = nextPlayerState.currentPlayer + 1
+      val nextPlayer = nextPlayerState.currentPlayer - 2
       val newState = nextPlayerState.copy(currentPlayer = nextPlayer)
       newState
     }
