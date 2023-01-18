@@ -1,11 +1,15 @@
-package de.htwg.se.explodingKitten.model
+package de.htwg.se.explodingKitten.model.playerComponent.playerImpl
 
-case class Player(name: String, handCards: Vector[Card], var hasLost: Boolean = false) {
+import de.htwg.se.explodingKitten.model.cardComponent.Card
+import de.htwg.se.explodingKitten.model.stateComponent._
+
+
+case class PlayerClass(name: String, handCards: Vector[Card], var hasLost: Boolean = false) {
 
   var state: State = new waitingStatus(this)
 
-  def copyKonstruktor(): Player = {
-    val p = Player(this.name, this.handCards, this.hasLost)
+  def copyKonstruktor(): PlayerClass = {
+    val p = PlayerClass(this.name, this.handCards, this.hasLost)
     p.changeState(this.state)
     p
   }
@@ -14,19 +18,19 @@ case class Player(name: String, handCards: Vector[Card], var hasLost: Boolean = 
 
   def setHasLost(): Unit = hasLost = true
 
-  def takeCard(card: Card): Player = {
-    val p = Player(name, this.handCards :+ card)
+  def takeCard(card: Card): PlayerClass = {
+    val p = PlayerClass(name, this.handCards :+ card)
     p.changeState(this.state)
     p
   }
 
 
-  def playCard(stelle: Int): Player = {
+  def playCard(stelle: Int): PlayerClass = {
     val idx = stelle - 1
     var temp = Vector[Card]()
     temp = handCards.take(idx)
     temp = temp ++ handCards.takeRight(handCards.length - idx - 1)
-    val p = Player(name, temp, hasLost)
+    val p = PlayerClass(name, temp, hasLost)
     p.changeState(this.state)
     p
   }

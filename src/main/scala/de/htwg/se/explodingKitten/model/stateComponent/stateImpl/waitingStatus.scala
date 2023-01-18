@@ -1,13 +1,15 @@
-package de.htwg.se.explodingKitten.model
+package de.htwg.se.explodingKitten.model.stateComponent.stateImpl
 
-class waitingStatus(player : Player) extends State(player) {
+import de.htwg.se.explodingKitten.model.playerComponent.playerImpl.PlayerClass
+
+class waitingStatus(player : PlayerClass) extends StateImp(player) {
 
   override def onLock(): Unit = return
 
   override def onPlay(): Unit = player.changeState(new playingStatus(player))
 }
 
-class playingStatus(player: Player) extends State(player){
+class playingStatus(player: PlayerClass) extends StateImp(player){
 
   override def onLock(): Unit = player.changeState(new waitingStatus(player))
 
@@ -21,7 +23,7 @@ class playingStatus(player: Player) extends State(player){
 
 }
 
-class diedStatus(player : Player) extends State(player){
+class diedStatus(player : PlayerClass) extends StateImp(player){
 //cant do anything course it is death
 
   override def onLock(): Unit = player.changeState(new diedStatus(player))

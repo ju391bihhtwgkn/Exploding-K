@@ -1,19 +1,13 @@
-package de.htwg.se.explodingKitten.model
+package de.htwg.se.explodingKitten.model.cardComponent.cardImpl
 
-trait Card {
-  def apply(unit: Unit): Any = ???
-  def cardName: String
-  def cardDescription: String
-  def card: String
-  def actionCode: Int
-  def toString: String
-}
+import de.htwg.se.explodingKitten.model.cardComponent.Card
 
 //TODO: Add Favor and Shuffle
 
-object Card {
+object Cards {
 
   val eol = sys.props("line.separator")
+
   private class DrawFromTheBottom extends Card {
     override def cardName: String = "Draw from the Bottom"
     override def cardDescription: String = "Draw a card from the Bottom"
@@ -126,8 +120,6 @@ object Card {
     override def actionCode: Int = 14
     override def toString: String = card
   }
-
-
 
   def apply(s: String): Card = {
     s match {

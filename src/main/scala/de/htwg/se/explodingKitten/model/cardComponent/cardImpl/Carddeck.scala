@@ -1,11 +1,13 @@
-package de.htwg.se.explodingKitten.model
+package de.htwg.se.explodingKitten.model.cardComponent.cardImpl
+
+import de.htwg.se.explodingKitten.model.cardComponent._
 
 import scala.util.Random
 
-object Carddeck {
+object Carddeck extends carddeckInterface{
 
-    var deck = Vector[Card]()
-    var drawnCards = Vector[Card]()
+  override var deck = Vector[Card]()
+  override var drawnCards = Vector[Card]()
 
   def initializeDeck(): Unit = this.deck =
     addSeeTheFuture() ++ addAttack() ++ addSkip() ++ addTargetedAttack() ++ addDrawFromTheBottom() ++ addAttack() ++ addDrawFromTheBottom() ++ addAttack() ++ addTargetedAttack() ++
@@ -18,49 +20,49 @@ object Carddeck {
   }
 
   def addFeralCat(): Vector[Card] = {
-    val helpVector = Vector[Card]().padTo(3, Card("FeralCat"))
+    val helpVector = Vector[Card]().padTo(3, Cards("FeralCat"))
     val newDeck: Vector[Card] = deck
     newDeck ++ helpVector
   }
 
   def addAttack(): Vector[Card] = {
-    val helpVector = Vector[Card]().padTo(1, Card("Attack"))
+    val helpVector = Vector[Card]().padTo(1, Cards("Attack"))
     val newDeck: Vector[Card] = deck
     newDeck ++ helpVector
   }
 
   def addTargetedAttack(): Vector[Card] = {
-    val helpVector = Vector[Card]().padTo(1, Card("TargetedAttack"))
+    val helpVector = Vector[Card]().padTo(1, Cards("TargetedAttack"))
     val newDeck: Vector[Card] = deck
     newDeck ++ helpVector
   }
 
   def addDrawFromTheBottom(): Vector[Card] = {
-    val helpVector = Vector[Card]().padTo(1, Card("DrawFromTheBottom"))
+    val helpVector = Vector[Card]().padTo(1, Cards("DrawFromTheBottom"))
     val newDeck: Vector[Card] = deck
     newDeck ++ helpVector
   }
 
   def addExplodingKitten(): Vector[Card] = {
-    val helpVector = Vector[Card]().padTo(2, Card("ExplodingKitten"))
+    val helpVector = Vector[Card]().padTo(2, Cards("ExplodingKitten"))
     val newDeck: Vector[Card] = deck
     newDeck ++ helpVector
   }
 
   def addSkip(): Vector[Card] = {
-    val helpVector = Vector[Card]().padTo(1, Card("Skip"))
+    val helpVector = Vector[Card]().padTo(1, Cards("Skip"))
     val newDeck: Vector[Card] = deck
     newDeck ++ helpVector
   }
 
   def addDefuse(): Vector[Card] = {
-    val helpVector = Vector[Card]().padTo(3, Card("Defuse"))
+    val helpVector = Vector[Card]().padTo(3, Cards("Defuse"))
     val newDeck: Vector[Card] = deck
     newDeck ++ helpVector
   }
 
   def addSeeTheFuture(): Vector[Card] = {
-    val helpVector = Vector[Card]().padTo(2, Card("SeeTheFuture"))
+    val helpVector = Vector[Card]().padTo(2, Cards("SeeTheFuture"))
     val newDeck: Vector[Card] = deck
     newDeck ++ helpVector
   }
@@ -101,7 +103,7 @@ object Carddeck {
     }
 
    */
-/*
+  /*
   def takeCardTop(): Card = {
     val drawnDeck : Carddeck = Carddeck()
     val card = deck.head
@@ -152,4 +154,6 @@ object Carddeck {
   def len() : Int = deck.length
 
  */
+
+  override def apply(s: String): Card = Cards.apply(s)
 }

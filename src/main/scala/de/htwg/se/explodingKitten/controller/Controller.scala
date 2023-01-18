@@ -1,7 +1,6 @@
 package de.htwg.se.explodingKitten.controller
 
-import de.htwg.se.explodingKitten.model.strategy.Move
-import de.htwg.se.explodingKitten.model.{Card, Carddeck, Gamestate, Player}
+import de.htwg.se.explodingKitten.model.cardComponent._
 import de.htwg.se.explodingKitten.util.{Observable, UndoManager}
 
 class Controller() extends Observable {

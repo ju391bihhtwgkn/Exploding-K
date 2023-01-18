@@ -1,6 +1,7 @@
-package de.htwg.se.explodingKitten.model.strategy
+package de.htwg.se.explodingKitten.model.moveComponent.moveBaseImpl
 
-import de.htwg.se.explodingKitten.model.{Card, Gamestate, Player}
+import de.htwg.se.explodingKitten.model.moveComponent.Move
+import de.htwg.se.explodingKitten.model.playerComponent.playerImpl.PlayerClass
 
 import scala.io.StdIn.{readInt, readLine}
 
@@ -48,7 +49,7 @@ class PlayCard(i: Int) extends Move {
         // See the Future
         case 2 => {
           val newHandCards = state.players(currentPlayer).playCard(card)
-          val newPlayer = state.players.updated(currentPlayer, Player(state.players(currentPlayer).name, newHandCards))
+          val newPlayer = state.players.updated(currentPlayer, PlayerClass(state.players(currentPlayer).name, newHandCards))
           val newState = state.copy(players = newPlayer)
 
           if (newState.deck.length > 2) {
@@ -64,7 +65,7 @@ class PlayCard(i: Int) extends Move {
         // Skip
         case 3 => {
           val newHandCards = state.players(currentPlayer).playCard(card)
-          val newPlayer = state.players.updated(currentPlayer, Player(state.players(currentPlayer).name, newHandCards))
+          val newPlayer = state.players.updated(currentPlayer, PlayerClass(state.players(currentPlayer).name, newHandCards))
           val nextPlayerState = state.copy(players = newPlayer)
           if (nextPlayerState.currentPlayer == 0) {
             val nextPlayer = nextPlayerState.currentPlayer + 1
@@ -83,7 +84,7 @@ class PlayCard(i: Int) extends Move {
         // Attack
         case 4 => {
           val newHandCards = state.players(currentPlayer).playCard(card)
-          val newPlayer = state.players.updated(currentPlayer, Player(state.players(currentPlayer).name, newHandCards))
+          val newPlayer = state.players.updated(currentPlayer, PlayerClass(state.players(currentPlayer).name, newHandCards))
           val nextPlayerState = state.copy(players = newPlayer)
           if (nextPlayerState.currentPlayer == 0) {
             val nextPlayer = nextPlayerState.currentPlayer + 1
@@ -103,7 +104,7 @@ class PlayCard(i: Int) extends Move {
         // Targeted attack
         case 5 => {
           val newHandCards = state.players(currentPlayer).playCard(card)
-          val newPlayer = state.players.updated(currentPlayer, Player(state.players(currentPlayer).name, newHandCards))
+          val newPlayer = state.players.updated(currentPlayer, PlayerClass(state.players(currentPlayer).name, newHandCards))
           val nextPlayerState = state.copy(players = newPlayer)
           val otherPlayers = state.players.filterNot(x => {
             x.name == state.players(currentPlayer).name
@@ -157,7 +158,7 @@ class PlayCard(i: Int) extends Move {
     println(flag)
     if (flag == true) {
       val newHandCards = gameState.players(currentPlayer).playCard(Card("Defuse"))
-      val newPlayer = gameState.players.updated(currentPlayer, Player(gameState.players(currentPlayer).name, newHandCards))
+      val newPlayer = gameState.players.updated(currentPlayer, PlayerClass(gameState.players(currentPlayer).name, newHandCards))
       println("Where do you want to put the Exploding Kitten into the deck?")
       println("Choose from " + "1 to " + gameState.deck.length)
       val input = readLine().toInt

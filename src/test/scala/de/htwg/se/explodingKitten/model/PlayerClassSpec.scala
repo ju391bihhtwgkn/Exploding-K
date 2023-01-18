@@ -1,14 +1,16 @@
 package de.htwg.se.explodingKitten.model
 
+import de.htwg.se.explodingKitten.model.playerComponent.playerImpl.PlayerClass
+import de.htwg.se.explodingKitten.model.stateComponent.stateImpl.playingStatus
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-class PlayerSpec() extends AnyWordSpec with Matchers {
+class PlayerClassSpec() extends AnyWordSpec with Matchers {
   val eol = sys.props("line.separator")
   val card = Card("MelonCat")
   "A Player" when {
     "set to Julian" should {
-      val player = Player("Julian", Vector(Card("Melon Cat")))
+      val player = PlayerClass("Julian", Vector(Card("Melon Cat")))
       "have a name" in {
         player.name should be("Julian")
       }
@@ -22,7 +24,7 @@ class PlayerSpec() extends AnyWordSpec with Matchers {
   }
   "A Player" when {
     "at the start of the game" should {
-      val player = Player("Julian", Vector(Card("MelonCat")))
+      val player = PlayerClass("Julian", Vector(Card("MelonCat")))
       "have not lost" in {
         player.hasLost should be(false)
       }
@@ -34,7 +36,7 @@ class PlayerSpec() extends AnyWordSpec with Matchers {
   }
 
   "Player should Play with Cards" should {
-    val player2 = Player("Wiebke", Vector(Card("MelonCat"), Card("ExplodingKitten"), Card("SeeTheFuture"), Card("Defuse"), Card("MelonCat")))
+    val player2 = PlayerClass("Wiebke", Vector(Card("MelonCat"), Card("ExplodingKitten"), Card("SeeTheFuture"), Card("Defuse"), Card("MelonCat")))
     "Take a Card" in{
       player2.takeCard(Card("MelonCat")).handCards should be (Vector(Card("MelonCat"), Card("ExplodingKitten"), Card("SeeTheFuture"), Card("Defuse"), Card("MelonCat"), Card("MelonCat")))
     }
@@ -50,14 +52,14 @@ class PlayerSpec() extends AnyWordSpec with Matchers {
   }
 
   "Choose a Card to Play" in {
-    val player = Player("Julian", Vector(Card("MelonCat"), Card("Defuse"), Card("SeeTheFuture")))
+    val player = PlayerClass("Julian", Vector(Card("MelonCat"), Card("Defuse"), Card("SeeTheFuture")))
     player.chooseCardToPlay(2) should be (Card("Defuse"))
     player.chooseCardToPlay(1) should be (Card("MelonCat"))
     player.chooseCardToPlay(3) should be (Card("SeeTheFuture"))
   }
 
   "check Status" when {
-    val p1 = Player("P1", Vector(Card("MelonCat")))
+    val p1 = PlayerClass("P1", Vector(Card("MelonCat")))
     p1.changeState(new playingStatus(p1))
     "Status play" in {
       p1.state shouldBe a [playingStatus]

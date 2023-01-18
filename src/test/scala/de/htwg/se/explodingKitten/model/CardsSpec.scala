@@ -1,24 +1,25 @@
 package de.htwg.se.explodingKitten.model
 
+import de.htwg.se.explodingKitten.model.cardComponent._
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
-class CardSpec() extends AnyWordSpec with Matchers {
+class CardsSpec() extends AnyWordSpec with Matchers {
   val eol: String = sys.props("line.separator")
-  val DrawFromTheBottom: Card = Card("DrawFromTheBottom")
-  val SeeTheFuture: Card = Card("SeeTheFuture")
-  val Skip: Card = Card("Skip")
-  val Attack: Card = Card("Attack")
-  val TargetedAttack: Card = Card("TargetedAttack")
-  val Defuse: Card = Card("Defuse")
-  val ExplodingKitten: Card = Card("ExplodingKitten")
-  val AlterTheFuture: Card = Card("AlterTheFuture")
-  val FeralCat: Card = Card("FeralCat")
-  val MelonCat: Card = Card("MelonCat")
-  val BeardedCat: Card = Card("BeardedCat")
-  val TacoCat: Card = Card("TacoCat")
-  val HairyPotatoCat: Card = Card("HairyPotatoCat")
-  val RainbowCat: Card = Card("RainbowCat")
+  val DrawFromTheBottom: Card = Cards("DrawFromTheBottom")
+  val SeeTheFuture: Card = Cards("SeeTheFuture")
+  val Skip: Card = Cards("Skip")
+  val Attack: Card = Cards("Attack")
+  val TargetedAttack: Card = Cards("TargetedAttack")
+  val Defuse: Card = Cards("Defuse")
+  val ExplodingKitten: Card = Cards("ExplodingKitten")
+  val AlterTheFuture: Card = Cards("AlterTheFuture")
+  val FeralCat: Card = Cards("FeralCat")
+  val MelonCat: Card = Cards("MelonCat")
+  val BeardedCat: Card = Cards("BeardedCat")
+  val TacoCat: Card = Cards("TacoCat")
+  val HairyPotatoCat: Card = Cards("HairyPotatoCat")
+  val RainbowCat: Card = Cards("RainbowCat")
 
   "have a name " in {
     DrawFromTheBottom.cardName should be("Draw from the Bottom")

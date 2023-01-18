@@ -1,6 +1,7 @@
-package de.htwg.se.explodingKitten.model.strategy
+package de.htwg.se.explodingKitten.model.moveComponent.moveBaseImpl
 
-import de.htwg.se.explodingKitten.model.{Card, Gamestate, Player}
+import de.htwg.se.explodingKitten.model.moveComponent.Move
+import de.htwg.se.explodingKitten.model.playerComponent.playerImpl.PlayerClass
 
 import scala.io.StdIn.readLine
 
@@ -15,7 +16,7 @@ class TakeCard extends Move {
     // remove top card
     val newDeck = state.deck.drop(1)
     // new state for player
-    val newPlayer = state.players.updated(state.currentPlayer, Player(state.players(state.currentPlayer).name
+    val newPlayer = state.players.updated(state.currentPlayer, PlayerClass(state.players(state.currentPlayer).name
       , state.players(state.currentPlayer).handCards.appended(tempCard)))
     if (tempCard.cardName == Card("ExplodingKitten").cardName) {
       val afterCheckState = checkOnExploding(state.currentPlayer, state)
@@ -36,7 +37,7 @@ class TakeCard extends Move {
     }
       if (flag == true) {
         val newHandCards = gameState.players(currentPlayer).playCard(Card("Defuse"))
-        val newPlayer = gameState.players.updated(currentPlayer, Player(gameState.players(currentPlayer).name, newHandCards))
+        val newPlayer = gameState.players.updated(currentPlayer, PlayerClass(gameState.players(currentPlayer).name, newHandCards))
         println("Where do you want to put the Exploding Kitten into the deck?")
         println("Choose from " + "1 to " + gameState.deck.length)
         val input = readLine().toInt

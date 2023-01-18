@@ -1,7 +1,6 @@
 package de.htwg.se.explodingKitten.controller
 
-import de.htwg.se.explodingKitten.model.strategy.Move
-import de.htwg.se.explodingKitten.model.{Gamestate}
+import de.htwg.se.explodingKitten.model.moveComponent.moveBaseImpl.Gamestate
 import de.htwg.se.explodingKitten.util.{Observable, UndoManager}
 
 class GameContext(var strategy: Move) extends Observable {

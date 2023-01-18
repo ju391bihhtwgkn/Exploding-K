@@ -1,13 +1,15 @@
 package de.htwg.se.explodingKitten.model
 
 import de.htwg.se.explodingKitten.controller.{Controller, GameContext}
-import de.htwg.se.explodingKitten.model.strategy.TakeCard
+import de.htwg.se.explodingKitten.model.cardComponent.cardImpl.Carddeck
+import de.htwg.se.explodingKitten.model.moveComponent.moveBaseImpl.TakeCard
+import de.htwg.se.explodingKitten.model.playerComponent.playerImpl.PlayerClass
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
 
-class TakeCardSpec() extends AnyWordSpec with Matchers{
-  var p = Player("Ich", Vector(Card("SeeTheFuture")))
+class TakeCardsSpec() extends AnyWordSpec with Matchers{
+  var p = PlayerClass("Ich", Vector(Card("SeeTheFuture")))
   val c = new Controller(Carddeck().addCard(Card("TacoCat"), 2).addCard(Card("ExplodingKitten")).addCard(Card("DrawFromTheBottom"), 2))
 
   "Create a context" when {

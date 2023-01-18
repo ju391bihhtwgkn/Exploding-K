@@ -1,8 +1,9 @@
 package de.htwg.se.explodingKitten.aview
 
 import de.htwg.se.explodingKitten.controller.{Controller, GameContext}
-import de.htwg.se.explodingKitten.model.Card
-import de.htwg.se.explodingKitten.model.strategy.{Attack, DrawFromTheBottom, NextPlayer, PlayCard, SeeTheFuture, Skip, TakeCard, TargetedAttack}
+import de.htwg.se.explodingKitten.model.cardComponent._
+import de.htwg.se.explodingKitten.model.moveComponent._
+import de.htwg.se.explodingKitten.model.playerComponent._
 
 import java.awt.{Color, Point}
 import javax.swing.{BorderFactory, Box, ImageIcon}

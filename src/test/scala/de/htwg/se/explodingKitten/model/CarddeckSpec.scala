@@ -1,5 +1,6 @@
 package de.htwg.se.explodingKitten.model
 
+import de.htwg.se.explodingKitten.model.cardComponent._
 import org.scalatest.matchers.should._
 import org.scalatest.wordspec.AnyWordSpec
 
@@ -8,8 +9,8 @@ class CarddeckSpec() extends AnyWordSpec with Matchers {
   val eol = sys.props("line.separator")
 
   val kartenstapel: Carddeck = Carddeck()
-  val card: Card = Card("ExplodingKitten")
-  val card2 : Card = Card("MelonCat")
+  val card: Card = Cards("ExplodingKitten")
+  val card2 : Card = Cards("MelonCat")
 
   "Create empty Carddeck" in {
     kartenstapel.len() should be (0)
@@ -68,8 +69,8 @@ class CarddeckSpec() extends AnyWordSpec with Matchers {
   }
 
   "Put Exploding Kitten in the Deck" should  {
-    val c1 = Card("MelonCat")
-    val c2 = Card("ExplodingKitten")
+    val c1 = Cards("MelonCat")
+    val c2 = Cards("ExplodingKitten")
     val cDeck = Carddeck().addCard(c1, 4)
     "On Top" in {
       cDeck.hideCardInDeck(c2, 0).deck should be (Vector(c2, c1, c1, c1, c1))

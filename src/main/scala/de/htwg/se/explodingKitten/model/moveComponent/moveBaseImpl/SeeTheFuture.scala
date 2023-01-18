@@ -1,6 +1,7 @@
-package de.htwg.se.explodingKitten.model.strategy
+package de.htwg.se.explodingKitten.model.moveComponent.moveBaseImpl
 
-import de.htwg.se.explodingKitten.model.{Gamestate, Player}
+import de.htwg.se.explodingKitten.model.moveComponent.Move
+import de.htwg.se.explodingKitten.model.playerComponent.playerImpl.PlayerClass
 
 class SeeTheFuture(i: Int) extends Move {
 
@@ -13,7 +14,7 @@ class SeeTheFuture(i: Int) extends Move {
     println("You played: " + card.cardName)
     val newDiscardPile = state.discardPile.appended(card)
     val newHandCards = state.players(currentPlayer).playCard(card)
-    val newPlayer = state.players.updated(currentPlayer, Player(state.players(currentPlayer).name, newHandCards))
+    val newPlayer = state.players.updated(currentPlayer, PlayerClass(state.players(currentPlayer).name, newHandCards))
     val newState = state.copy(players = newPlayer, discardPile = newDiscardPile)
 
     if (newState.deck.length > 2) {

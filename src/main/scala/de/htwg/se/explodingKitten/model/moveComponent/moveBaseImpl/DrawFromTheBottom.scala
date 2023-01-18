@@ -1,6 +1,7 @@
-package de.htwg.se.explodingKitten.model.strategy
+package de.htwg.se.explodingKitten.model.moveComponent.moveBaseImpl
 
-import de.htwg.se.explodingKitten.model.{Card, Gamestate, Player}
+import de.htwg.se.explodingKitten.model.moveComponent.Move
+import de.htwg.se.explodingKitten.model.playerComponent.playerImpl.PlayerClass
 
 import scala.io.StdIn.readLine
 
@@ -16,12 +17,12 @@ class DrawFromTheBottom(i: Int) extends Move {
     val newDiscardPile = state.discardPile.appended(card)
     // Draw from the Bottom
     val newHandCards = state.players(currentPlayer).playCard(card)
-    val newPlayerr = state.players.updated(currentPlayer, Player(state.players(currentPlayer).name, newHandCards))
+    val newPlayerr = state.players.updated(currentPlayer, PlayerClass(state.players(currentPlayer).name, newHandCards))
     val newStatee = state.copy(players = newPlayerr, discardPile = newDiscardPile)
     val tempCard = state.deck.last
     println(state.players(state.currentPlayer).name + " you have drawn this card: \n" + tempCard + "\n")
     val newDeck = state.deck.dropRight(1)
-    val newPlayer = newStatee.players.updated(newStatee.currentPlayer, Player(newStatee.players(newStatee.currentPlayer).name
+    val newPlayer = newStatee.players.updated(newStatee.currentPlayer, PlayerClass(newStatee.players(newStatee.currentPlayer).name
       , newStatee.players(newStatee.currentPlayer).handCards.appended(tempCard)))
     if (tempCard.cardName == Card("ExplodingKitten").cardName) {
       val afterCheckState = checkOnExploding(state.currentPlayer, state)
@@ -41,7 +42,7 @@ class DrawFromTheBottom(i: Int) extends Move {
     }
     if (flag == true) {
       val newHandCards = gameState.players(currentPlayer).playCard(Card("Defuse"))
-      val newPlayer = gameState.players.updated(currentPlayer, Player(gameState.players(currentPlayer).name, newHandCards))
+      val newPlayer = gameState.players.updated(currentPlayer, PlayerClass(gameState.players(currentPlayer).name, newHandCards))
       println("Where do you want to put the Exploding Kitten into the deck?")
       println("Choose from " + "1 to " + gameState.deck.length)
       val input = readLine().toInt

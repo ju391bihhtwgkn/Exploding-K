@@ -1,7 +1,7 @@
 package de.htwg.se.explodingKitten.aview
 
 import de.htwg.se.explodingKitten.controller.Controller
-import de.htwg.se.explodingKitten.model.strategy.TakeCard
+import de.htwg.se.explodingKitten.model.moveComponent.moveBaseImpl.TakeCard
 import de.htwg.se.explodingKitten.util.Observer
 
 import javax.swing.BorderFactory

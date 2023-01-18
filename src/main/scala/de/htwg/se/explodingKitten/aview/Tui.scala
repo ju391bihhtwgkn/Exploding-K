@@ -1,10 +1,10 @@
 package de.htwg.se.explodingKitten.aview
 
 import de.htwg.se.explodingKitten.controller.{Controller, GameContext}
-import de.htwg.se.explodingKitten.model.strategy
-import de.htwg.se.explodingKitten.model.strategy.{Attack, DrawFromTheBottom, NextPlayer, PlayCard, SeeTheFuture, Skip, TakeCard, TargetedAttack}
+import de.htwg.se.explodingKitten.model.moveComponent
+import de.htwg.se.explodingKitten.model.moveComponent.moveBaseImpl.{Attack, DrawFromTheBottom, NextPlayer, PlayCard, SeeTheFuture, Skip, TakeCard, TargetedAttack}
+import de.htwg.se.explodingKitten.model.playerComponent.playerImpl.PlayerClass
 //import de.htwg.se.explodingKitten.model.strategy.{PlayCard, TakeCard, newMove}
-import de.htwg.se.explodingKitten.model.{Card, Player, playingStatus}
 import de.htwg.se.explodingKitten.util.Observer
 
 import scala.io.StdIn.readLine
