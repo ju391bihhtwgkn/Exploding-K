@@ -1,4 +1,4 @@
-package de.htwg.se.explodingKitten.model
+package de.htwg.se.explodingKitten.model.GamestateBaseImplementation
 
 trait Card {
   def cardName: String
@@ -126,6 +126,14 @@ object Card {
     override def toString: String = card
   }
 
+  private class Shuffle extends Card {
+    override def cardName: String = "Shuffle"
+    override def cardDescription: String = "Shuffle the deck"
+    override def card:String = cardName + eol + cardDescription
+    override def actionCode: Int = 15
+    override def toString: String = card
+  }
+
 
 
   def apply(s: String): Card = {
@@ -144,6 +152,7 @@ object Card {
       case "TacoCat" => new TacoCat
       case "HairyPotatoCat" => new HairyPotatoCat
       case "RainbowCat" => new RainbowCat
+      case "Shuffle" => new Shuffle
     }
   }
 }

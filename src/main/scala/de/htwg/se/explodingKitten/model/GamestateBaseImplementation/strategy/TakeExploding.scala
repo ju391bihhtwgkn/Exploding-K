@@ -1,7 +1,7 @@
-package de.htwg.se.explodingKitten.model.strategy
+package de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy
 
-import de.htwg.se.explodingKitten.model.Carddeck.deck
-import de.htwg.se.explodingKitten.model.{Card, Gamestate, Player}
+import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.Carddeck.deck
+import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{Card, Gamestate, Player}
 
 class TakeExploding(i : Int) extends Move {
 

@@ -1,14 +1,14 @@
-package de.htwg.se.explodingKitten.model
+package de.htwg.se.explodingKitten.model.GamestateBaseImplementation
 
 import scala.util.Random
 
 object Carddeck {
 
-    var deck = Vector[Card]()
-    var drawnCards = Vector[Card]()
+  var deck = Vector[Card]()
+  var drawnCards = Vector[Card]()
 
   def initializeDeck(): Unit = this.deck =
-    addAttack() ++ addSkip() ++ addTargetedAttack() ++ addDrawFromTheBottom() ++ addExplodingKitten() ++ addDrawFromTheBottom() ++ addAttack() ++ addTargetedAttack() ++
+    addAttack() ++ addShuffle() ++ addTargetedAttack() ++ addDrawFromTheBottom() ++ addExplodingKitten() ++ addDrawFromTheBottom() ++ addAttack() ++ addTargetedAttack() ++
       addTargetedAttack()
 
   // TODO: make creation of deck better
@@ -16,6 +16,13 @@ object Carddeck {
     val newDeck = Random.shuffle(deck)
     newDeck
   }
+
+  def addShuffle(): Vector[Card] = {
+    val helpVector = Vector[Card]().padTo(3, Card("Shuffle"))
+    val newDeck: Vector[Card] = deck
+    newDeck ++ helpVector
+  }
+
 
   def addFeralCat(): Vector[Card] = {
     val helpVector = Vector[Card]().padTo(3, Card("FeralCat"))

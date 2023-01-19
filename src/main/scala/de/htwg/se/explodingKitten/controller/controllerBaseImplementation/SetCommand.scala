@@ -1,7 +1,7 @@
-package de.htwg.se.explodingKitten.controller
+package de.htwg.se.explodingKitten.controller.controllerBaseImplementation
 
-import de.htwg.se.explodingKitten.model.Gamestate
-import de.htwg.se.explodingKitten.model.strategy.{Move}
+import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.Gamestate
+import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy.Move
 import de.htwg.se.explodingKitten.util.Command
 
 

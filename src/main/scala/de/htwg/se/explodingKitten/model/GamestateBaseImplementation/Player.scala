@@ -1,4 +1,4 @@
-package de.htwg.se.explodingKitten.model
+package de.htwg.se.explodingKitten.model.GamestateBaseImplementation
 
 case class Player(name: String, handCards: Vector[Card], var hasLost: Boolean = false) {
 
@@ -20,7 +20,7 @@ case class Player(name: String, handCards: Vector[Card], var hasLost: Boolean = 
     p
   }
 
-/*
+  /*
   def playCard(stelle: Int): Player = {
     val idx = stelle - 1
     var temp = Vector[Card]()

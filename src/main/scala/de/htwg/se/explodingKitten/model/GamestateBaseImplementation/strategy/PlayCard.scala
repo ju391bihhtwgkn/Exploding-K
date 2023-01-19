@@ -1,6 +1,6 @@
-package de.htwg.se.explodingKitten.model.strategy
+package de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy
 
-import de.htwg.se.explodingKitten.model.{Card, Gamestate, Player}
+import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{Card, Gamestate, Player}
 
 import scala.io.StdIn.{readInt, readLine}
 

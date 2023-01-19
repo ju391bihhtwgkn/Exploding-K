@@ -1,8 +1,8 @@
-package de.htwg.se.explodingKitten.model.strategy
+package de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy
 
-import de.htwg.se.explodingKitten.model.{Gamestate, Player}
+import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{Gamestate, Player}
 
-class Attack(i: Int) extends Move {
+class Skip(i: Int) extends Move {
 
   var flag = false
 
@@ -10,9 +10,8 @@ class Attack(i: Int) extends Move {
 
     val currentPlayer = state.currentPlayer
     val card = state.players(currentPlayer).handCards(i)
-    println("You played: " + card.cardName)
-    val newDiscardPile = state.discardPile.appended(card)
     val newHandCards = state.players(currentPlayer).playCard(card)
+    val newDiscardPile = state.discardPile.appended(card)
     val newPlayer = state.players.updated(currentPlayer, Player(state.players(currentPlayer).name, newHandCards))
     val nextPlayerState = state.copy(players = newPlayer, discardPile = newDiscardPile)
 

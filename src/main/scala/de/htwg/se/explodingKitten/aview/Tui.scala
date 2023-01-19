@@ -1,10 +1,10 @@
 package de.htwg.se.explodingKitten.aview
 
-import de.htwg.se.explodingKitten.controller.{Controller, GameContext}
-import de.htwg.se.explodingKitten.model.strategy
-import de.htwg.se.explodingKitten.model.strategy.{Attack, DrawFromTheBottom, NextPlayer, PlayCard, SeeTheFuture, Skip, TakeCard, TakeExploding, TargetedAttack}
-//import de.htwg.se.explodingKitten.model.strategy.{PlayCard, TakeCard, newMove}
-import de.htwg.se.explodingKitten.model.{Card, Player, playingStatus}
+import de.htwg.se.explodingKitten.controller.controllerBaseImplementation.{Controller, GameContext}
+import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy
+import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy.{Attack, DrawFromTheBottom, NextPlayer, PlayCard, SeeTheFuture, Shuffle, Skip, TakeCard, TakeExploding, TargetedAttack}
+//import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy.{PlayCard, TakeCard, newMove}
+import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{Card, Player, playingStatus}
 import de.htwg.se.explodingKitten.util.Observer
 
 import scala.io.StdIn.readLine
@@ -57,12 +57,13 @@ class Tui(controller: Controller) extends Observer {
               context.executeStrategy(controller)
             case 4 =>
               context.setStrategy(new Attack(input))
-            case 5 => {
+            case 5 =>
               println("Choose a Player to Attack")
               context.setStrategy(new TargetedAttack(input, readLine().toInt))
               context.executeStrategy(controller)
-            }
-
+            case 14 =>
+              context.setStrategy(new Shuffle(input))
+              context.executeStrategy(controller)
           }
         }
 

@@ -1,8 +1,9 @@
 package de.htwg.se.explodingKitten.aview
 
-import de.htwg.se.explodingKitten.controller.{Controller, GameContext}
-import de.htwg.se.explodingKitten.model.Card
-import de.htwg.se.explodingKitten.model.strategy.{Attack, DrawFromTheBottom, NextPlayer, PlayCard, SeeTheFuture, Skip, TakeCard, TakeExploding, TargetedAttack}
+import de.htwg.se.explodingKitten.controller.ControllerInterface
+import de.htwg.se.explodingKitten.controller.controllerBaseImplementation.{Controller, GameContext}
+import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.Card
+import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy.{Attack, DrawFromTheBottom, NextPlayer, PlayCard, SeeTheFuture, Shuffle, Skip, TakeCard, TakeExploding, TargetedAttack}
 
 import java.awt.{Color, Point}
 import javax.swing.{BorderFactory, Box, ImageIcon}
@@ -10,7 +11,7 @@ import scala.swing.Alignment.{Center, Top}
 import scala.swing.event.{ButtonClicked, MouseClicked}
 import scala.swing.{BoxPanel, Button, Dimension, Font, Frame, GridBagPanel, GridPanel, Insets, InternalFrame, Label, Menu, Orientation, PopupMenu, ScrollPane, Slider, TextArea, TextField}
 
-case class GuiElements(controller: Controller) {
+case class GuiElements(controller: ControllerInterface) {
 
   var context = new GameContext(null)
   var popup = new PopupMenu
@@ -52,8 +53,6 @@ case class GuiElements(controller: Controller) {
       } else if (controller.gameState.deck.head.cardName == "Exploding Kitten" && hasDefuse == -1) {
         context.setStrategy(new TakeCard())
         context.executeStrategy(controller)
-        //context.setStrategy(new NextPlayer())
-        //context.executeStrategy(controller)
       } else {
         context.setStrategy(new TakeCard())
         context.executeStrategy(controller)
@@ -84,6 +83,7 @@ case class GuiElements(controller: Controller) {
         case "Taco Cat" => new ImageIcon("src/ressources/TacoCat.PNG")
         case "Hairy Potato Cat" => new ImageIcon("src/ressources/HairyPotatoCat.PNG")
         case "Rainbow Cat" => new ImageIcon("src/ressources/RainbowCat.PNG")
+        case "Shuffle" => new ImageIcon("src/resscources/Shuffle.PNG")
       }
       preferredSize = new Dimension(250, 380)
     }
@@ -134,6 +134,7 @@ case class GuiElements(controller: Controller) {
               case "Taco Cat" => new ImageIcon("src/ressources/TacoCat.PNG")
               case "Hairy Potato Cat" => new ImageIcon("src/ressources/HairyPotatoCat.PNG")
               case "Rainbow Cat" => new ImageIcon("src/ressources/RainbowCat.PNG")
+              case "Shuffle" => new ImageIcon("src/ressources/Shuffle.PNG")
             }
             preferredSize = new Dimension(100, 200)
             border = BorderFactory.createLineBorder(Color.BLACK, 2, true)
@@ -157,6 +158,9 @@ case class GuiElements(controller: Controller) {
                 case 5 =>
                   popup = popupMenu(i)
                   popup.visible = true
+                case 15 =>
+                  context.setStrategy(new Shuffle(i))
+                  context.executeStrategy(controller)
               }
             }
           }, constraints(i % 4, x, gridheight = 1, gridwidth = 1, insets = new Insets(2, 2, 2, 2)))

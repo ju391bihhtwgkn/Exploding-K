@@ -1,7 +1,8 @@
 package de.htwg.se.explodingKitten.model
 
-import de.htwg.se.explodingKitten.controller.{Controller, GameContext}
-import de.htwg.se.explodingKitten.model.strategy.PlayCard
+import de.htwg.se.explodingKitten.controller.controllerBaseImplementation.{Controller, GameContext}
+import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{Carddeck, Player}
+import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy.PlayCard
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 

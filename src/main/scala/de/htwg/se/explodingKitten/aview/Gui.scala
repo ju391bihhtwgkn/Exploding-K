@@ -1,6 +1,6 @@
 package de.htwg.se.explodingKitten.aview
 
-import de.htwg.se.explodingKitten.controller.Controller
+import de.htwg.se.explodingKitten.controller.controllerBaseImplementation.Controller
 import de.htwg.se.explodingKitten.util.Observer
 
 import javax.swing.BorderFactory

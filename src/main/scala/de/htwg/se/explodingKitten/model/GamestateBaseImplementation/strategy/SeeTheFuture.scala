@@ -1,6 +1,6 @@
-package de.htwg.se.explodingKitten.model.strategy
+package de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy
 
-import de.htwg.se.explodingKitten.model.{Gamestate, Player}
+import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{Gamestate, Player}
 
 class SeeTheFuture(i: Int) extends Move {
 

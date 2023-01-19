@@ -1,4 +1,4 @@
-package de.htwg.se.explodingKitten.model
+package de.htwg.se.explodingKitten.model.GamestateBaseImplementation
 
 class waitingStatus(player : Player) extends State(player) {
 

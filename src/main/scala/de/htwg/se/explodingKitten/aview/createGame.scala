@@ -1,7 +1,6 @@
 package de.htwg.se.explodingKitten.aview
 
-import de.htwg.se.explodingKitten.controller.Controller
-
+import de.htwg.se.explodingKitten.controller.controllerBaseImplementation.Controller
 import javax.swing.BorderFactory
 import scala.swing.event.ButtonClicked
 import scala.swing.{Button, Dimension, GridPanel, Label, Orientation, TextArea}

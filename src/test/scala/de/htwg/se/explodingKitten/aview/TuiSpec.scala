@@ -1,7 +1,7 @@
 package de.htwg.se.explodingKitten.aview
 
-import de.htwg.se.explodingKitten.controller.Controller
-import de.htwg.se.explodingKitten.model.Carddeck
+import de.htwg.se.explodingKitten.controller.controllerBaseImplementation.Controller
+import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.Carddeck
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
