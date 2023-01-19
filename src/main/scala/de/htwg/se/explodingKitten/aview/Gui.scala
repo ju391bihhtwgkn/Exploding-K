@@ -12,9 +12,6 @@ class Gui(controller: Controller) extends MainFrame with Observer {
   title = "Exploding Kitten"
 
   contents = createGame(controller).start
-  //val b = GuiElements(controller).deck
-  //val a = GuiElements(controller).handCards
-  //var c = GuiElements(controller).gridBagPanel
 
   override def update: Unit = {
     box.contents.clear()
@@ -24,7 +21,7 @@ class Gui(controller: Controller) extends MainFrame with Observer {
 
   val box = new BoxPanel(Orientation.Horizontal){
     border = BorderFactory.createEmptyBorder(10, 0, 10, 0)
-    //preferredSize = new Dimension(1600, 800)
+    preferredSize = new Dimension(1600, 900)
   }
   open()
 }

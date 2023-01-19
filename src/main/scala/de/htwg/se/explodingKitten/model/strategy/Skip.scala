@@ -19,8 +19,12 @@ class Skip(i: Int) extends Move {
       val nextPlayer = nextPlayerState.currentPlayer + 1
       val newState = nextPlayerState.copy(currentPlayer = nextPlayer)
       newState
-    } else if (nextPlayerState.currentPlayer == 1) {
+    } else if (nextPlayerState.currentPlayer == 1 && nextPlayerState.players.length == 3) {
       val nextPlayer = nextPlayerState.currentPlayer + 1
+      val newState = nextPlayerState.copy(currentPlayer = nextPlayer)
+      newState
+    } else if (nextPlayerState.currentPlayer == 1 && nextPlayerState.players.length == 2) {
+      val nextPlayer = nextPlayerState.currentPlayer - 1
       val newState = nextPlayerState.copy(currentPlayer = nextPlayer)
       newState
     } else {

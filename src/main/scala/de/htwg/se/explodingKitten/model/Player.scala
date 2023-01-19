@@ -20,7 +20,7 @@ case class Player(name: String, handCards: Vector[Card], var hasLost: Boolean = 
     p
   }
 
-
+/*
   def playCard(stelle: Int): Player = {
     val idx = stelle - 1
     var temp = Vector[Card]()
@@ -31,14 +31,13 @@ case class Player(name: String, handCards: Vector[Card], var hasLost: Boolean = 
     p
   }
 
+ */
+
   def playCard(card: Card): Vector[Card] = {
     val idx = handCards.indexOf(card)
     var temp = Vector[Card]()
     temp = handCards.take(idx)
     temp = temp ++ handCards.takeRight(handCards.length - idx - 1)
-    //val p = Player(name, temp, hasLost)
-    //p.changeState(this.state)
-    //p
     temp
   }
 

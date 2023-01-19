@@ -2,7 +2,7 @@ package de.htwg.se.explodingKitten.aview
 
 import de.htwg.se.explodingKitten.controller.{Controller, GameContext}
 import de.htwg.se.explodingKitten.model.strategy
-import de.htwg.se.explodingKitten.model.strategy.{Attack, DrawFromTheBottom, NextPlayer, PlayCard, SeeTheFuture, Skip, TakeCard, TargetedAttack}
+import de.htwg.se.explodingKitten.model.strategy.{Attack, DrawFromTheBottom, NextPlayer, PlayCard, SeeTheFuture, Skip, TakeCard, TakeExploding, TargetedAttack}
 //import de.htwg.se.explodingKitten.model.strategy.{PlayCard, TakeCard, newMove}
 import de.htwg.se.explodingKitten.model.{Card, Player, playingStatus}
 import de.htwg.se.explodingKitten.util.Observer
@@ -22,12 +22,22 @@ class Tui(controller: Controller) extends Observer {
       val input = readLine()
       input match {
         case "t" => {
-          // Take a Card
-          context.setStrategy(new TakeCard())
-          context.executeStrategy(controller)
-          // Next Player
-          context.setStrategy(new NextPlayer())
-          context.executeStrategy(controller)
+          if(controller.gameState.deck.head.cardName == "Exploding Kitten") {
+            println("You have drawn a Exploding Kitten")
+            println("Choose a place to put it into the deck!")
+            context.setStrategy(new TakeExploding(readLine().toInt))
+            context.executeStrategy(controller)
+
+            context.setStrategy(new NextPlayer())
+            context.executeStrategy(controller)
+          } else {
+            // Take a Card
+            context.setStrategy(new TakeCard())
+            context.executeStrategy(controller)
+            // Next Player
+            context.setStrategy(new NextPlayer())
+            context.executeStrategy(controller)
+          }
         }
         case "p" => {
           // Play a Card
@@ -54,8 +64,6 @@ class Tui(controller: Controller) extends Observer {
             }
 
           }
-          //context.setStrategy(new PlayCard(readLine().toInt))
-          //context.executeStrategy(controller)
         }
 
         case "r" => {

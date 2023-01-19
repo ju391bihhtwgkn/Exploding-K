@@ -15,14 +15,17 @@ class Attack(i: Int) extends Move {
     val newHandCards = state.players(currentPlayer).playCard(card)
     val newPlayer = state.players.updated(currentPlayer, Player(state.players(currentPlayer).name, newHandCards))
     val nextPlayerState = state.copy(players = newPlayer, discardPile = newDiscardPile)
-    println(nextPlayerState.discardPile)
+
     if (nextPlayerState.currentPlayer == 0) {
       val nextPlayer = nextPlayerState.currentPlayer + 1
-      println(nextPlayer)
       val newState = nextPlayerState.copy(currentPlayer = nextPlayer)
       newState
-    } else if (nextPlayerState.currentPlayer == 1) {
+    } else if (nextPlayerState.currentPlayer == 1 && nextPlayerState.players.length == 3) {
       val nextPlayer = nextPlayerState.currentPlayer + 1
+      val newState = nextPlayerState.copy(currentPlayer = nextPlayer)
+      newState
+    } else if (nextPlayerState.currentPlayer == 1 && nextPlayerState.players.length == 2) {
+      val nextPlayer = nextPlayerState.currentPlayer - 1
       val newState = nextPlayerState.copy(currentPlayer = nextPlayer)
       newState
     } else {

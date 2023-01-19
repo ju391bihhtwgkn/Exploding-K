@@ -2,18 +2,19 @@ package de.htwg.se.explodingKitten.aview
 
 import de.htwg.se.explodingKitten.controller.{Controller, GameContext}
 import de.htwg.se.explodingKitten.model.Card
-import de.htwg.se.explodingKitten.model.strategy.{Attack, DrawFromTheBottom, NextPlayer, PlayCard, SeeTheFuture, Skip, TakeCard, TargetedAttack}
+import de.htwg.se.explodingKitten.model.strategy.{Attack, DrawFromTheBottom, NextPlayer, PlayCard, SeeTheFuture, Skip, TakeCard, TakeExploding, TargetedAttack}
 
 import java.awt.{Color, Point}
 import javax.swing.{BorderFactory, Box, ImageIcon}
 import scala.swing.Alignment.{Center, Top}
 import scala.swing.event.{ButtonClicked, MouseClicked}
-import scala.swing.{BoxPanel, Button, Dimension, Font, GridBagPanel, GridPanel, Insets, Label, Menu, Orientation, PopupMenu}
+import scala.swing.{BoxPanel, Button, Dimension, Font, Frame, GridBagPanel, GridPanel, Insets, InternalFrame, Label, Menu, Orientation, PopupMenu, ScrollPane, Slider, TextArea, TextField}
 
 case class GuiElements(controller: Controller) {
 
-  val context = new GameContext(null)
+  var context = new GameContext(null)
   var popup = new PopupMenu
+  var explodingPopup = new PopupMenu
   var seeFuturePopUp = new PopupMenu
 
   def gridBagPanel: GridBagPanel = new GridBagPanel {
@@ -29,10 +30,6 @@ case class GuiElements(controller: Controller) {
       c.fill = fill
       c
     }
-    //preferredSize = new Dimension(600, 300)
-    //val player = controller.gameState.players(controller.gameState.currentPlayer)
-    //val playerLabel = new Label(player.name)
-    //add(playerLabel, constraints(1,0,gridheight = 2, fill = GridBagPanel.Fill.Both))
     add(label, constraints(3, 0, fill = GridBagPanel.Fill.Vertical))
     add(handCards, constraints(1, 1, gridheight = 2, fill = GridBagPanel.Fill.Horizontal))
     add(deck, constraints(3, 1, gridheight = 1))
@@ -46,12 +43,25 @@ case class GuiElements(controller: Controller) {
   }
 
   def deck : Button = new Button() {
+    val hasDefuse = controller.gameState.players(controller.gameState.currentPlayer).handCards.indexWhere(Card => Card.cardName == "Defuse")
+    println(hasDefuse)
     reactions += { case ButtonClicked(_) =>
-      context.setStrategy(new TakeCard())
-      context.executeStrategy(controller)
+      if (controller.gameState.deck.head.cardName == "Exploding Kitten" && hasDefuse != -1) {
+        explodingPopup = explodingPopUp()
+        explodingPopup.visible = true
+      } else if (controller.gameState.deck.head.cardName == "Exploding Kitten" && hasDefuse == -1) {
+        context.setStrategy(new TakeCard())
+        context.executeStrategy(controller)
+        //context.setStrategy(new NextPlayer())
+        //context.executeStrategy(controller)
+      } else {
+        context.setStrategy(new TakeCard())
+        context.executeStrategy(controller)
 
-      context.setStrategy(new NextPlayer())
-      context.executeStrategy(controller)
+        context.setStrategy(new NextPlayer())
+        context.executeStrategy(controller)
+      }
+
     }
     preferredSize = new Dimension(250, 380)
     icon = new ImageIcon("src/ressources/CardBack.PNG")
@@ -78,10 +88,6 @@ case class GuiElements(controller: Controller) {
       preferredSize = new Dimension(250, 380)
     }
 
-  //controller.initializeDeck()
-  //controller.createPlayers(List("hallo", "Hallo2", "Hi"))
-  //controller.initializePlayers(controller.gameState.players)
-  //println(controller.gameState.players)
   def handCards : GridBagPanel = new GridBagPanel {
     def constraints(x: Int, y: Int,
                     gridwidth: Int, gridheight: Int,
@@ -101,6 +107,8 @@ case class GuiElements(controller: Controller) {
     preferredSize = new Dimension(1000, 599)
 
     if (controller.gameState.players != null) {
+      println("players")
+      println(controller.gameState.currentPlayer)
       val player = controller.gameState.players(controller.gameState.currentPlayer)
       val label = new Label(player.name)
       label.preferredSize = new Dimension(100, 40)
@@ -146,10 +154,9 @@ case class GuiElements(controller: Controller) {
                 case 4 =>
                   context.setStrategy(new Attack(i))
                   context.executeStrategy(controller)
-                case 5 => {
+                case 5 =>
                   popup = popupMenu(i)
                   popup.visible = true
-                }
               }
             }
           }, constraints(i % 4, x, gridheight = 1, gridwidth = 1, insets = new Insets(2, 2, 2, 2)))
@@ -162,28 +169,77 @@ case class GuiElements(controller: Controller) {
     }
   }
   def popupMenu(i: Int): PopupMenu = new PopupMenu {
+    preferredSize = new Dimension(400, 400)
     val otherPlayers = controller.gameState.players.filterNot(x => {
       x.name == controller.gameState.players(controller.gameState.currentPlayer).name
     })
-    contents += new BoxPanel(Orientation.Horizontal) {
-      contents += new Button() {
-        preferredSize = new Dimension(200, 200)
-        text = otherPlayers(0).name
-        reactions += { case ButtonClicked(_) =>
-          context.setStrategy(new TargetedAttack(i, 1))
-          context.executeStrategy(controller)
-          popup.visible = false
+    if(controller.gameState.players.length > 2) {
+      contents += new BoxPanel(Orientation.Horizontal) {
+        contents += new Button() {
+          preferredSize = new Dimension(200, 200)
+          text = otherPlayers(0).name
+          reactions += { case ButtonClicked(_) =>
+            context.setStrategy(new TargetedAttack(i, 1))
+            context.executeStrategy(controller)
+            popup.visible = false
+          }
+        }
+        contents += new Button() {
+          preferredSize = new Dimension(200, 200)
+          text = otherPlayers(1).name
+          reactions += { case ButtonClicked(_) =>
+            context.setStrategy(new TargetedAttack(i, 2))
+            context.executeStrategy(controller)
+            popup.visible = false
+          }
         }
       }
-      contents += new Button() {
-        preferredSize = new Dimension(200, 200)
-        text = otherPlayers(1).name
-        reactions += { case ButtonClicked(_) =>
-          context.setStrategy(new TargetedAttack(i, 2))
-          context.executeStrategy(controller)
-          popup.visible = false
+    } else {
+      contents += new BoxPanel(Orientation.Horizontal) {
+        contents += new Button() {
+          preferredSize = new Dimension(200, 200)
+          text = otherPlayers(0).name
+          reactions += { case ButtonClicked(_) =>
+            context.setStrategy(new TargetedAttack(i, 1))
+            context.executeStrategy(controller)
+            popup.visible = false
+          }
         }
       }
+    }
+  }
+
+  val label1 = new Label("Where do you want to put the Exploding Kitten?") {
+    preferredSize = new Dimension(200, 200)
+  }
+
+  val slider = new Slider {
+    min = 1
+    max = controller.gameState.deck.length - 1
+    minorTickSpacing = 1
+    majorTickSpacing = 5
+    paintTicks = true
+  }
+
+  val button = new Button("Put card into deck") {
+    preferredSize = new Dimension(200, 200)
+    reactions += {
+      case ButtonClicked(_) =>
+        println(slider.value)
+        context.setStrategy(new TakeExploding(slider.value))
+        context.executeStrategy(controller)
+        context.setStrategy(new NextPlayer())
+        context.executeStrategy(controller)
+        explodingPopup.visible = false
+    }
+  }
+
+  def explodingPopUp(): PopupMenu = new PopupMenu() {
+    preferredSize = new Dimension(400, 400)
+    contents += new BoxPanel(Orientation.Vertical) {
+      contents += label1
+      contents += slider
+      contents += button
     }
   }
 

@@ -41,10 +41,6 @@ case class createGame(controller: Controller) {
       controller.initializeDeck()
       controller.createPlayers(List(player1.text, player2.text, player3.text))
       controller.initializePlayers(controller.gameState.players)
-      println("Game started")
-      //println(controller.gameState.deck)
-      //println(controller.gameState.players)
-      //println(controller.gameState.currentPlayer)
     }
 
     border = BorderFactory.createRaisedBevelBorder();

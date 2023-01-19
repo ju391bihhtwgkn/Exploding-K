@@ -1,7 +1,6 @@
 package de.htwg.se.explodingKitten.model
 
 trait Card {
-  def apply(unit: Unit): Any = ???
   def cardName: String
   def cardDescription: String
   def card: String

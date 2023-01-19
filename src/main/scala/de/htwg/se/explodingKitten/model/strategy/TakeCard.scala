@@ -26,7 +26,6 @@ class TakeCard extends Move {
       return afterCheckState
     }
     val newState = state.copy(deck = newDeck, players = newPlayer)
-    //println(newState.players(state.currentPlayer).name + " Deine handkarten \n" + newState.players(state.currentPlayer).handCards)
     newState
   }
 
@@ -51,10 +50,15 @@ class TakeCard extends Move {
         }
       } else {
         gameState.players(gameState.currentPlayer).setHasLost()
-        println(gameState.players(currentPlayer).name + "You have lost :(")
+        println(gameState.players(currentPlayer).name + " You have lost :(")
         val newPlayers = gameState.players.patch(currentPlayer, Nil, 1)
         val newState = gameState.copy(players = newPlayers)
-        println(newState.players)
+        println(currentPlayer)
+        if (currentPlayer == 2) {
+          val nextPlayer = 0
+          val finalState = newState.copy(currentPlayer = nextPlayer)
+          return finalState
+        }
         newState
       }
     }
