@@ -1,6 +1,7 @@
 package de.htwg.se.explodingKitten.model
 
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{Player, diedStatus, playingStatus, waitingStatus}
+import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{diedStatus, playingStatus, waitingStatus}
+import de.htwg.se.explodingKitten.model.PlayerComponent.Player
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
 import org.scalatest.wordspec.AnyWordSpec

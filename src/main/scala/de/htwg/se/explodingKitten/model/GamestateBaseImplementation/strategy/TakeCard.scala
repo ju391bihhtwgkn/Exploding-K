@@ -1,6 +1,7 @@
 package de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy
 
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{Card, Gamestate, Player}
+import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{Card, Gamestate}
+import de.htwg.se.explodingKitten.model.PlayerComponent.Player
 
 import scala.io.StdIn.readLine
 
@@ -49,7 +50,6 @@ class TakeCard extends Move {
           gameState
         }
       } else {
-        gameState.players(gameState.currentPlayer).setHasLost()
         println(gameState.players(currentPlayer).name + " You have lost :(")
         val newPlayers = gameState.players.patch(currentPlayer, Nil, 1)
         val newState = gameState.copy(players = newPlayers)

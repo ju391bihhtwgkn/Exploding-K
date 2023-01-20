@@ -2,11 +2,10 @@ package de.htwg.se.explodingKitten.controller.controllerBaseImplementation
 
 import de.htwg.se.explodingKitten.controller.ControllerInterface
 import de.htwg.se.explodingKitten.model.GameStateInterface
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{Card, Carddeck, Gamestate, Player}
+import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{Card, Carddeck, Gamestate}
 import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy.Move
+import de.htwg.se.explodingKitten.model.PlayerComponent.Player
 import de.htwg.se.explodingKitten.util.{Observable, UndoManager}
-
-import scala.util.Random
 
 case class Controller() extends ControllerInterface with Observable {
 
@@ -44,12 +43,4 @@ case class Controller() extends ControllerInterface with Observable {
     undoManager.redoStep
     notifyObservers
   }
-
-  // removed, maybe gebraucht später
-/*
-  def update(): Unit = {
-    notifyObservers
-  }
-
- */
 }

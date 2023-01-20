@@ -1,7 +1,8 @@
 package de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy
 
 import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.Carddeck.deck
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{Card, Gamestate, Player}
+import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{Card, Gamestate}
+import de.htwg.se.explodingKitten.model.PlayerComponent.Player
 
 class TakeExploding(i : Int) extends Move {
 
@@ -39,7 +40,6 @@ class TakeExploding(i : Int) extends Move {
         state
       }
   } else {
-      state.players(currentPlayer).setHasLost()
       println(state.players(currentPlayer).name + "You have lost :(")
       val newPlayers = state.players.patch(currentPlayer, Nil, 1)
       val newState = state.copy(players = newPlayers, currentPlayer = currentPlayer - 1)

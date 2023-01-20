@@ -2,6 +2,7 @@ package de.htwg.se.explodingKitten.model.GamestateBaseImplementation
 
 import de.htwg.se.explodingKitten.model.GameStateInterface
 import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy.Move
+import de.htwg.se.explodingKitten.model.PlayerComponent.Player
 
 case class Gamestate(
                       currentPlayer: Int,

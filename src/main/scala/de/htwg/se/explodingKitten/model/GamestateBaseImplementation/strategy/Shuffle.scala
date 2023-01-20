@@ -1,6 +1,7 @@
 package de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy
 
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{Gamestate, Player}
+import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.Gamestate
+import de.htwg.se.explodingKitten.model.PlayerComponent.Player
 
 import scala.util.Random
 

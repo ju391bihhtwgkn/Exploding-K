@@ -1,6 +1,7 @@
 package de.htwg.se.explodingKitten.model
 
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{Player, playingStatus}
+import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.playingStatus
+import de.htwg.se.explodingKitten.model.PlayerComponent.Player
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 

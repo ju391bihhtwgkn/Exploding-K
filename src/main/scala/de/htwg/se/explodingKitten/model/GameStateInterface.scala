@@ -1,8 +1,8 @@
 package de.htwg.se.explodingKitten.model
 
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{Card, Gamestate, Player}
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.Carddeck.deck
+import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{Card, Gamestate}
 import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy.Move
+import de.htwg.se.explodingKitten.model.PlayerComponent.Player
 
 
 trait GameStateInterface {
@@ -10,5 +10,5 @@ trait GameStateInterface {
   def players:Vector[Player]
   def deck: Vector[Card]
   def discardPile: Vector[Card]
-  def handle(move: Move) : Gamestate
+  def handle(move: Move) : GameStateInterface
 }

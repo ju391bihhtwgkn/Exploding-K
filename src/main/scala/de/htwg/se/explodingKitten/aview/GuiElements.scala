@@ -1,15 +1,16 @@
 package de.htwg.se.explodingKitten.aview
 
 import de.htwg.se.explodingKitten.controller.ControllerInterface
-import de.htwg.se.explodingKitten.controller.controllerBaseImplementation.{Controller, GameContext}
+import de.htwg.se.explodingKitten.controller.controllerBaseImplementation.{GameContext}
 import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.Card
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy.{Attack, DrawFromTheBottom, NextPlayer, PlayCard, SeeTheFuture, Shuffle, Skip, TakeCard, TakeExploding, TargetedAttack}
+import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy.{Attack, DrawFromTheBottom, NextPlayer,
+  SeeTheFuture, Shuffle, Skip, TakeCard, TakeExploding, TargetedAttack}
 
-import java.awt.{Color, Point}
-import javax.swing.{BorderFactory, Box, ImageIcon}
-import scala.swing.Alignment.{Center, Top}
+import java.awt.{Color}
+import javax.swing.{BorderFactory, ImageIcon}
+import scala.swing.Alignment.{Top}
 import scala.swing.event.{ButtonClicked, MouseClicked}
-import scala.swing.{BoxPanel, Button, Dimension, Font, Frame, GridBagPanel, GridPanel, Insets, InternalFrame, Label, Menu, Orientation, PopupMenu, ScrollPane, Slider, TextArea, TextField}
+import scala.swing.{BoxPanel, Button, Dimension, Font, GridBagPanel, Insets, Label, Orientation, PopupMenu, Slider}
 
 case class GuiElements(controller: ControllerInterface) {
 
@@ -44,8 +45,9 @@ case class GuiElements(controller: ControllerInterface) {
   }
 
   def deck : Button = new Button() {
-    val hasDefuse = controller.gameState.players(controller.gameState.currentPlayer).handCards.indexWhere(Card => Card.cardName == "Defuse")
-    println(hasDefuse)
+    val hasDefuse = controller.gameState.players(controller.gameState.currentPlayer)
+      .handCards.indexWhere(Card => Card.cardName == "Defuse")
+
     reactions += { case ButtonClicked(_) =>
       if (controller.gameState.deck.head.cardName == "Exploding Kitten" && hasDefuse != -1) {
         explodingPopup = explodingPopUp()
@@ -56,11 +58,9 @@ case class GuiElements(controller: ControllerInterface) {
       } else {
         context.setStrategy(new TakeCard())
         context.executeStrategy(controller)
-
         context.setStrategy(new NextPlayer())
         context.executeStrategy(controller)
       }
-
     }
     preferredSize = new Dimension(250, 380)
     icon = new ImageIcon("src/ressources/CardBack.PNG")
@@ -227,7 +227,6 @@ case class GuiElements(controller: ControllerInterface) {
     preferredSize = new Dimension(200, 200)
     reactions += {
       case ButtonClicked(_) =>
-        println(slider.value)
         context.setStrategy(new TakeExploding(slider.value))
         context.executeStrategy(controller)
         context.setStrategy(new NextPlayer())

@@ -9,20 +9,20 @@ class SetCommand(strategy: Move, controller: Controller) extends Command {
 
   val state: Gamestate = controller.gameState
 
-  override def doStep(): Gamestate = {
+  override def doStep(): Unit = {
     val newState = controller.gameState.handle(strategy)
     controller.gameState = newState
-    state
+    //state
   }
 
-  override def undoStep(): Gamestate = {
+  override def undoStep(): Unit = {
     controller.gameState = state
-    controller.gameState
+    //controller.gameState
   }
 
-  override def redoStep(): Gamestate = {
+  override def redoStep(): Unit = {
     val newState = controller.gameState.handle(strategy)
     controller.gameState = newState
-    state
+    //state
   }
 }
