@@ -1,5 +1,6 @@
 package de.htwg.se.explodingKitten.controller.controllerBaseImplementation
 
+import com.google.inject.Inject
 import de.htwg.se.explodingKitten.controller.ControllerInterface
 import de.htwg.se.explodingKitten.model.GameStateInterface
 import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{Card, Carddeck, Gamestate}
@@ -7,7 +8,7 @@ import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy.Mov
 import de.htwg.se.explodingKitten.model.PlayerComponent.Player
 import de.htwg.se.explodingKitten.util.{Observable, UndoManager}
 
-case class Controller() extends ControllerInterface with Observable {
+case class Controller@Inject()() extends ControllerInterface with Observable {
 
   var gameState = Gamestate(0, Vector[Player](), Vector[Card](), Vector(Card("FeralCat")))
   val undoManager = new UndoManager
