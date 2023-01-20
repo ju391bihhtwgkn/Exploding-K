@@ -1,15 +1,13 @@
 package de.htwg.se.explodingKitten.aview
 
-import de.htwg.se.explodingKitten.controller.controllerBaseImplementation.{Controller, GameContext}
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy
+import de.htwg.se.explodingKitten.controller.ControllerInterface
+import de.htwg.se.explodingKitten.controller.controllerBaseImplementation.{GameContext}
 import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy.{Attack, DrawFromTheBottom, NextPlayer, PlayCard, SeeTheFuture, Shuffle, Skip, TakeCard, TakeExploding, TargetedAttack}
-//import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy.{PlayCard, TakeCard, newMove}
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{Card, Player, playingStatus}
 import de.htwg.se.explodingKitten.util.Observer
 
 import scala.io.StdIn.readLine
 
-class Tui(controller: Controller) extends Observer {
+class Tui(controller: ControllerInterface) extends Observer {
 
   controller.add(this)
   val context = new GameContext(null)
@@ -39,9 +37,9 @@ class Tui(controller: Controller) extends Observer {
             context.executeStrategy(controller)
           }
         }
-        case "p" => {
+        case "p" =>
           // Play a Card
-          println("Which Card do you want to play ? Please enter the Number of the Card") //Tui aktivieren
+          println("Which Card do you want to play ? Please enter the Number of the Card")
           val input = readLine().toInt
           val cardType = controller.gameState.players(controller.gameState.currentPlayer).handCards(input).actionCode
 
@@ -65,14 +63,10 @@ class Tui(controller: Controller) extends Observer {
               context.setStrategy(new Shuffle(input))
               context.executeStrategy(controller)
           }
-        }
-
-        case "r" => {
+        case "r" =>
           controller.redo()
-        }
-        case "u" => {
-          controller.undo
-        }
+        case "u" =>
+          controller.undo()
       }
     }
   }

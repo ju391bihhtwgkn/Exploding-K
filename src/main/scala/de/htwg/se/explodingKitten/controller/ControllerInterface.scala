@@ -6,9 +6,10 @@ import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy.Mov
 import de.htwg.se.explodingKitten.util.{Observable, UndoManager}
 
 trait ControllerInterface extends Observable {
-  var gameState : Gamestate
-  val undoManager : UndoManager
-  var flag : Boolean
+  // def or var ??
+  def gameState : Gamestate
+  def undoManager : UndoManager
+  def flag : Boolean
   def initializeDeck(): Unit
   def createPlayers(names: List[String]): Unit
   def initializePlayers(players: Vector[Player]): Unit

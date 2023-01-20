@@ -1,12 +1,13 @@
 package de.htwg.se.explodingKitten.aview
 
+import de.htwg.se.explodingKitten.controller.ControllerInterface
 import de.htwg.se.explodingKitten.controller.controllerBaseImplementation.Controller
 import de.htwg.se.explodingKitten.util.Observer
 
 import javax.swing.BorderFactory
 import scala.swing._
 
-class Gui(controller: Controller) extends MainFrame with Observer {
+class Gui(controller: ControllerInterface) extends MainFrame with Observer {
   controller.add(this)
   title = "Exploding Kitten"
 

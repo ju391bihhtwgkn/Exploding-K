@@ -107,8 +107,6 @@ case class GuiElements(controller: ControllerInterface) {
     preferredSize = new Dimension(1000, 599)
 
     if (controller.gameState.players != null) {
-      println("players")
-      println(controller.gameState.currentPlayer)
       val player = controller.gameState.players(controller.gameState.currentPlayer)
       val label = new Label(player.name)
       label.preferredSize = new Dimension(100, 40)

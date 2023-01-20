@@ -6,6 +6,8 @@ import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{Card, Cardd
 import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy.Move
 import de.htwg.se.explodingKitten.util.{Observable, UndoManager}
 
+import scala.util.Random
+
 case class Controller() extends ControllerInterface with Observable {
 
   var gameState = Gamestate(0, Vector[Player](), Vector[Card](), Vector(Card("FeralCat")))
@@ -33,7 +35,7 @@ case class Controller() extends ControllerInterface with Observable {
     this.gameState
   }
 
-  def undo: Unit = {
+  def undo(): Unit = {
     undoManager.undoStep
     notifyObservers
   }

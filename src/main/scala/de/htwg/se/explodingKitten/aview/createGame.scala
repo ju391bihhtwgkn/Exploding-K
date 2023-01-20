@@ -1,11 +1,13 @@
 package de.htwg.se.explodingKitten.aview
 
+import de.htwg.se.explodingKitten.controller.ControllerInterface
 import de.htwg.se.explodingKitten.controller.controllerBaseImplementation.Controller
+
 import javax.swing.BorderFactory
 import scala.swing.event.ButtonClicked
 import scala.swing.{Button, Dimension, GridPanel, Label, Orientation, TextArea}
 
-case class createGame(controller: Controller) {
+case class createGame(controller: ControllerInterface) {
   val label1 = new Label("Player 1 - Enter your Name below") {
     maximumSize = new Dimension(30, 5)
     minimumSize = new Dimension(30, 5)
