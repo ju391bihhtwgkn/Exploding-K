@@ -17,6 +17,7 @@ case class Controller@Inject()() extends ControllerInterface with Observable {
   def initializeDeck(): Unit = {
     val deck = Carddeck.initializeDeck()
     gameState = gameState.copy(deck = Carddeck.deck)
+    //gamestate = gamestate.deck = Carddeck.deck
   }
 
   def createPlayers(names: List[String]): Unit = {

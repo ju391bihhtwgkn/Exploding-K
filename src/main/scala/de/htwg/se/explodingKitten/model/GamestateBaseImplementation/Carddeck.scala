@@ -11,7 +11,6 @@ object Carddeck {
     addAttack() ++ addShuffle() ++ addTargetedAttack() ++ addDrawFromTheBottom() ++ addExplodingKitten() ++ addDrawFromTheBottom() ++ addAttack() ++ addTargetedAttack() ++
       addTargetedAttack()
 
-  // TODO: make creation of deck better
   def shuffle(): Vector[Card] = {
     val newDeck = Random.shuffle(deck)
     newDeck

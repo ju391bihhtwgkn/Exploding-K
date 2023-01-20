@@ -8,7 +8,7 @@ import de.htwg.se.explodingKitten.util.{Observable, UndoManager}
 
 trait ControllerInterface extends Observable {
   // def or var ??
-  def gameState: GameStateInterface
+  def gameState : GameStateInterface
   def undoManager : UndoManager
   def flag : Boolean
   def initializeDeck(): Unit
