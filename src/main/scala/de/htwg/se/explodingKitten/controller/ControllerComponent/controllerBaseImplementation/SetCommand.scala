@@ -1,13 +1,12 @@
-package de.htwg.se.explodingKitten.controller.controllerBaseImplementation
+package de.htwg.se.explodingKitten.controller.ControllerComponent.controllerBaseImplementation
 
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.Gamestate
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy.Move
+import de.htwg.se.explodingKitten.model.StrategyComponent.Move
 import de.htwg.se.explodingKitten.util.Command
 
 
 class SetCommand(strategy: Move, controller: Controller) extends Command {
 
-  val state: Gamestate = controller.gameState
+  val state = controller.gameState
 
   override def doStep(): Unit = {
     val newState = controller.gameState.handle(strategy)

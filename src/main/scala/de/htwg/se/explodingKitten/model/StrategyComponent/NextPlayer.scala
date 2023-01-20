@@ -1,6 +1,6 @@
-package de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy
+package de.htwg.se.explodingKitten.model.StrategyComponent
 
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.Gamestate
+import de.htwg.se.explodingKitten.model.GameStateComponent.GameStateBaseimplementation.Gamestate
 
 class NextPlayer extends Move {
   override def makeMove(state: Gamestate): Gamestate = {

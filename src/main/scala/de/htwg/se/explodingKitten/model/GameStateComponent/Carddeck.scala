@@ -1,4 +1,4 @@
-package de.htwg.se.explodingKitten.model.GamestateBaseImplementation
+package de.htwg.se.explodingKitten.model.GameStateComponent
 
 import scala.util.Random
 
@@ -8,7 +8,7 @@ object Carddeck {
   var drawnCards = Vector[Card]()
 
   def initializeDeck(): Unit = this.deck =
-    addAttack() ++ addShuffle() ++ addTargetedAttack() ++ addDrawFromTheBottom() ++ addExplodingKitten() ++ addDrawFromTheBottom() ++ addAttack() ++ addTargetedAttack() ++
+    addAttack() ++ addSkip() ++ addTargetedAttack() ++ addDrawFromTheBottom() ++ addExplodingKitten() ++ addDrawFromTheBottom() ++ addAttack() ++ addTargetedAttack() ++
       addTargetedAttack()
 
   def shuffle(): Vector[Card] = {
@@ -21,7 +21,6 @@ object Carddeck {
     val newDeck: Vector[Card] = deck
     newDeck ++ helpVector
   }
-
 
   def addFeralCat(): Vector[Card] = {
     val helpVector = Vector[Card]().padTo(3, Card("FeralCat"))

@@ -1,6 +1,6 @@
 package de.htwg.se.explodingKitten.model.PlayerComponent
 
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{Card}
+import de.htwg.se.explodingKitten.model.GameStateComponent.Card
 
 case class Player(name: String, handCards: Vector[Card]) {
 

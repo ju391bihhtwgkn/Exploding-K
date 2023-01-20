@@ -1,6 +1,6 @@
-package de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy
+package de.htwg.se.explodingKitten.model.StrategyComponent
 
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.Gamestate
+import de.htwg.se.explodingKitten.model.GameStateComponent.GameStateBaseimplementation.Gamestate
 import de.htwg.se.explodingKitten.model.PlayerComponent.Player
 
 class Attack(i: Int) extends Move {

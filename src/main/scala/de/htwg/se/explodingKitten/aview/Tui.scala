@@ -1,17 +1,15 @@
 package de.htwg.se.explodingKitten.aview
 
-import de.htwg.se.explodingKitten.controller.ControllerInterface
-import de.htwg.se.explodingKitten.controller.controllerBaseImplementation.{GameContext}
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy.{Attack, DrawFromTheBottom, NextPlayer, PlayCard, SeeTheFuture, Shuffle, Skip, TakeCard, TakeExploding, TargetedAttack}
+import de.htwg.se.explodingKitten.controller.ContextComponent.ContextInterface
+import de.htwg.se.explodingKitten.controller.ControllerComponent.ControllerInterface
+import de.htwg.se.explodingKitten.model.StrategyComponent._
 import de.htwg.se.explodingKitten.util.Observer
 
 import scala.io.StdIn.readLine
 
-class Tui(controller: ControllerInterface) extends Observer {
+class Tui(controller: ControllerInterface, context: ContextInterface) extends Observer {
 
   controller.add(this)
-  val context = new GameContext(null)
-
 
   def processInputLine(): Unit = {
     while (controller.flag == true) {

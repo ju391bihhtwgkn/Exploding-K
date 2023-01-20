@@ -1,20 +1,26 @@
-package de.htwg.se.explodingKitten.controller
+package de.htwg.se.explodingKitten.controller.ControllerComponent
 
-import de.htwg.se.explodingKitten.model.GameStateInterface
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.Gamestate
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy.Move
+import de.htwg.se.explodingKitten.model.GameStateComponent.GameStateInterface
 import de.htwg.se.explodingKitten.model.PlayerComponent.Player
+import de.htwg.se.explodingKitten.model.StrategyComponent.Move
 import de.htwg.se.explodingKitten.util.{Observable, UndoManager}
 
 trait ControllerInterface extends Observable {
-  // def or var ??
-  def gameState : GameStateInterface
-  def undoManager : UndoManager
-  def flag : Boolean
+  var gameState: GameStateInterface
+
+  def undoManager: UndoManager
+
+  def flag: Boolean
+
   def initializeDeck(): Unit
+
   def createPlayers(names: List[String]): Unit
+
   def initializePlayers(players: Vector[Player]): Unit
+
   def doStep(move: Move): GameStateInterface
+
   def undo(): Unit
+
   def redo(): Unit
 }

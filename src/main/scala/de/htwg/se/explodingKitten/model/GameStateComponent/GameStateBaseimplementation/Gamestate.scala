@@ -1,8 +1,8 @@
-package de.htwg.se.explodingKitten.model.GamestateBaseImplementation
+package de.htwg.se.explodingKitten.model.GameStateComponent.GameStateBaseimplementation
 
-import de.htwg.se.explodingKitten.model.GameStateInterface
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy.Move
+import de.htwg.se.explodingKitten.model.GameStateComponent.{Card, GameStateInterface}
 import de.htwg.se.explodingKitten.model.PlayerComponent.Player
+import de.htwg.se.explodingKitten.model.StrategyComponent.Move
 
 case class Gamestate(
                       currentPlayer: Int,

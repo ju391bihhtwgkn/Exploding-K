@@ -1,13 +1,13 @@
 package de.htwg.se.explodingKitten.aview
 
-import de.htwg.se.explodingKitten.controller.ControllerInterface
-import de.htwg.se.explodingKitten.controller.controllerBaseImplementation.Controller
+import de.htwg.se.explodingKitten.controller.ContextComponent.ContextInterface
+import de.htwg.se.explodingKitten.controller.ControllerComponent.ControllerInterface
 import de.htwg.se.explodingKitten.util.Observer
 
 import javax.swing.BorderFactory
 import scala.swing._
 
-class Gui(controller: ControllerInterface) extends MainFrame with Observer {
+class Gui(controller: ControllerInterface, context: ContextInterface) extends MainFrame with Observer {
   controller.add(this)
   title = "Exploding Kitten"
 
@@ -15,7 +15,7 @@ class Gui(controller: ControllerInterface) extends MainFrame with Observer {
 
   override def update: Unit = {
     box.contents.clear()
-    box.contents += GuiElements(controller).gridBagPanel
+    box.contents += GuiElements(controller, context).gridBagPanel
       contents = box
   }
 

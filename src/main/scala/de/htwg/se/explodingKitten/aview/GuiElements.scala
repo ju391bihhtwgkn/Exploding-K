@@ -1,20 +1,19 @@
 package de.htwg.se.explodingKitten.aview
 
-import de.htwg.se.explodingKitten.controller.ControllerInterface
-import de.htwg.se.explodingKitten.controller.controllerBaseImplementation.{GameContext}
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.Card
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy.{Attack, DrawFromTheBottom, NextPlayer,
-  SeeTheFuture, Shuffle, Skip, TakeCard, TakeExploding, TargetedAttack}
+import de.htwg.se.explodingKitten.controller.ContextComponent.ContextInterface
+import de.htwg.se.explodingKitten.controller.ControllerComponent.ControllerInterface
+import de.htwg.se.explodingKitten.model.GameStateComponent._
+import de.htwg.se.explodingKitten.model.StrategyComponent._
 
-import java.awt.{Color}
+import java.awt.Color
 import javax.swing.{BorderFactory, ImageIcon}
-import scala.swing.Alignment.{Top}
+import scala.swing.Alignment.Top
 import scala.swing.event.{ButtonClicked, MouseClicked}
 import scala.swing.{BoxPanel, Button, Dimension, Font, GridBagPanel, Insets, Label, Orientation, PopupMenu, Slider}
 
-case class GuiElements(controller: ControllerInterface) {
+case class GuiElements(controller: ControllerInterface, context: ContextInterface) {
 
-  var context = new GameContext(null)
+  //var context = new GameContext(null)
   var popup = new PopupMenu
   var explodingPopup = new PopupMenu
   var seeFuturePopUp = new PopupMenu

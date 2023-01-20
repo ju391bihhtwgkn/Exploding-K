@@ -1,9 +1,11 @@
-package de.htwg.se.explodingKitten.model.GamestateBaseImplementation.strategy
+package de.htwg.se.explodingKitten.model.StrategyComponent
 
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.Gamestate
+import de.htwg.se.explodingKitten.model.GameStateComponent.GameStateBaseimplementation.Gamestate
 import de.htwg.se.explodingKitten.model.PlayerComponent.Player
 
-class Skip(i: Int) extends Move {
+import scala.util.Random
+
+class Shuffle(i: Int) extends Move {
 
   var flag = false
 
@@ -14,7 +16,8 @@ class Skip(i: Int) extends Move {
     val newHandCards = state.players(currentPlayer).playCard(card)
     val newDiscardPile = state.discardPile.appended(card)
     val newPlayer = state.players.updated(currentPlayer, Player(state.players(currentPlayer).name, newHandCards))
-    val nextPlayerState = state.copy(players = newPlayer, discardPile = newDiscardPile)
+    val newDeck = Random.shuffle(state.deck)
+    val nextPlayerState = state.copy(players = newPlayer, discardPile = newDiscardPile, deck = newDeck)
 
     if (nextPlayerState.currentPlayer == 0) {
       val nextPlayer = nextPlayerState.currentPlayer + 1

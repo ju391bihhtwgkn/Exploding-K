@@ -1,4 +1,4 @@
-package de.htwg.se.explodingKitten.model.GamestateBaseImplementation
+package de.htwg.se.explodingKitten.model.GameStateComponent
 
 trait Card {
   def cardName: String
@@ -7,8 +7,6 @@ trait Card {
   def actionCode: Int
   def toString: String
 }
-
-//TODO: Add Favor and Shuffle
 
 object Card {
 

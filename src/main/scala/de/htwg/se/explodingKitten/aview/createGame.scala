@@ -1,7 +1,6 @@
 package de.htwg.se.explodingKitten.aview
 
-import de.htwg.se.explodingKitten.controller.ControllerInterface
-import de.htwg.se.explodingKitten.controller.controllerBaseImplementation.Controller
+import de.htwg.se.explodingKitten.controller.ControllerComponent.ControllerInterface
 
 import javax.swing.BorderFactory
 import scala.swing.event.ButtonClicked

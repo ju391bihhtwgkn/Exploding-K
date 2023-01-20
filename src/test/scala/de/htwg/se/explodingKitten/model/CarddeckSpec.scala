@@ -1,6 +1,6 @@
 package de.htwg.se.explodingKitten.model
 
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{Card, Carddeck}
+import de.htwg.se.explodingKitten.model.GameStateComponent.{Card, Carddeck}
 import org.scalatest.matchers.should._
 import org.scalatest.wordspec.AnyWordSpec
 
