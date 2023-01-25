@@ -13,7 +13,6 @@ import scala.swing.{BoxPanel, Button, Dimension, Font, GridBagPanel, Insets, Lab
 
 case class GuiElements(controller: ControllerInterface, context: ContextInterface) {
 
-  //var context = new GameContext(null)
   var popup = new PopupMenu
   var explodingPopup = new PopupMenu
   var seeFuturePopUp = new PopupMenu
@@ -105,7 +104,7 @@ case class GuiElements(controller: ControllerInterface, context: ContextInterfac
     }
     preferredSize = new Dimension(1000, 599)
 
-    if (controller.gameState.players != null) {
+    if (controller.gameState.players.nonEmpty) {
       val player = controller.gameState.players(controller.gameState.currentPlayer)
       val label = new Label(player.name)
       label.preferredSize = new Dimension(100, 40)
