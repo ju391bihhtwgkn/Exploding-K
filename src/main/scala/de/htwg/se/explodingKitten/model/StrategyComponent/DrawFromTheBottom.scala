@@ -13,7 +13,7 @@ class DrawFromTheBottom(i: Int) extends Move {
   override def makeMove(state: Gamestate): Gamestate = {
 
     val currentPlayer = state.currentPlayer
-    val card = state.players(currentPlayer).chooseCardToPlay(i)
+    val card = state.players(currentPlayer).handCards(i)
     println("You played: " + card.cardName)
     val newDiscardPile = state.discardPile.appended(card)
     // Draw from the Bottom

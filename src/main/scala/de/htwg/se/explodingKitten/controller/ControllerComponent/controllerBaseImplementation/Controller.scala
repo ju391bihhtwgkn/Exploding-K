@@ -9,6 +9,8 @@ import de.htwg.se.explodingKitten.model.PlayerComponent.Player
 import de.htwg.se.explodingKitten.model.StrategyComponent.Move
 import de.htwg.se.explodingKitten.util.{Observable, UndoManager}
 
+import scala.util.Random
+
 case class Controller@Inject()(var gameState: GameStateInterface) extends ControllerInterface with Observable {
 
   val undoManager = new UndoManager
@@ -16,7 +18,8 @@ case class Controller@Inject()(var gameState: GameStateInterface) extends Contro
 
   def initializeDeck(): Unit = {
     CardDeck.initializeDeck()
-    gameState = Gamestate(0, Vector[Player](), deck = CardDeck.deck, Vector(Card("FeralCat")))
+    val shuffledDeck = Random.shuffle(CardDeck.deck)
+    gameState = Gamestate(0, Vector[Player](), deck = shuffledDeck, Vector(Card("FeralCat")))
   }
 
   def createPlayers(names: List[String]): Unit = {

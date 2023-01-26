@@ -1,11 +1,9 @@
 package de.htwg.se.explodingKitten.aview
 
 import de.htwg.se.explodingKitten.controller.ControllerComponent.controllerBaseImplementation.Controller
-import de.htwg.se.explodingKitten.model.GameStateComponent.Carddeck
+import de.htwg.se.explodingKitten.model.GameStateComponent.CardDeck
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 
 class TuiSpec extends AnyWordSpec with Matchers{
-
-
 }
