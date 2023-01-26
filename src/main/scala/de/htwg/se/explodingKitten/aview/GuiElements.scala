@@ -5,7 +5,7 @@ import de.htwg.se.explodingKitten.controller.ControllerComponent.ControllerInter
 import de.htwg.se.explodingKitten.model.GameStateComponent._
 import de.htwg.se.explodingKitten.model.StrategyComponent._
 
-import java.awt.{Color, ComponentOrientation}
+import java.awt.{Color}
 import javax.swing.{BorderFactory, ImageIcon}
 import scala.swing.Alignment.Top
 import scala.swing.event.{ButtonClicked, MouseClicked}
@@ -122,7 +122,6 @@ case class GuiElements(controller: ControllerInterface, context: ContextInterfac
       c.insets = insets
       c
     }
-    border = BorderFactory.createLineBorder(Color.BLACK, 1, true)
     preferredSize = new Dimension(550, 300)
 
     if (controller.gameState.players.nonEmpty) {
