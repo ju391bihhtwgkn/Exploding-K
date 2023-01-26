@@ -1,7 +1,8 @@
 package de.htwg.se.explodingKitten.controller
 
 import de.htwg.se.explodingKitten.controller.ControllerComponent.controllerBaseImplementation.Controller
-import de.htwg.se.explodingKitten.model.GameStateComponent.{Card, Carddeck}
+import de.htwg.se.explodingKitten.model.GameStateComponent._
+import de.htwg.se.explodingKitten.model.StrategyComponent.TakeCard
 import de.htwg.se.explodingKitten.util.Observer
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
@@ -12,6 +13,7 @@ class ControllerSpec extends AnyWordSpec with Matchers {
   val card2 = Card("ExplodingKitten")
   val cardBottom = Card("DrawFromTheBottom")
   print(card)
+  val move = new TakeCard()
 
   "A Controller" when {
     "instilizes deck" should {

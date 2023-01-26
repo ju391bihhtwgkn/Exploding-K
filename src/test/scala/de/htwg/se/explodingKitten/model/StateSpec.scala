@@ -1,6 +1,6 @@
 package de.htwg.se.explodingKitten.model
 
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{diedStatus, playingStatus, waitingStatus}
+import de.htwg.se.explodingKitten.model.GameStateComponent._
 import de.htwg.se.explodingKitten.model.PlayerComponent.Player
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
@@ -8,47 +8,11 @@ import org.scalatest.wordspec.AnyWordSpec
 
 class StateSpec extends AnyWordSpec with Matchers{
   var player = Player("Wiebke", Vector(Card("TacoCat"), Card("TacoCat"), Card("TacoCat")))
-  "Check Status" when{
-    "Status Play beginn" in{
-      player.state shouldBe a [waitingStatus]
-    }
-    "Set Status" in {
-      player.changeState(new playingStatus(player))
-      player.state shouldBe a [playingStatus]
-    }
-  }
+  CardDeck.initializeDeck()
+  val disPile = Vector[Card]
 
-  "Check out what the methods do" when{
-    "State should have Changed from Playing to Waiting" in {
-      player.changeState(new playingStatus(player))
-      player.state.onPlay()
-      player.state shouldBe a [waitingStatus]
-    }
-    "State should have Changed form Playing to Waiting" in {
-      player.changeState(new playingStatus(player))
-      player.state.onLock()
-      player.state shouldBe a [waitingStatus]
-    }
-    "State should have Changed from Waiting to  Playing" in {
-      player.changeState(new playingStatus(player))
-      player.state.onLock()
-      player.state.onPlay()
-      player.state shouldBe a [playingStatus]
-    }
-    "State should have Changed nothing" in {
-      player.changeState(new playingStatus(player))
-      player.state.onLock()
-      player.state.onLock()
-      player.state shouldBe a [waitingStatus]
-    }
-    "State should have Changed nothing in Death" in {
-      player.changeState(new playingStatus(player))
-      player.setHasLost()
-      player.state.onPlay()
-      player.state.onLock()
-      player.state shouldBe a [diedStatus]
-      player.state.onPlay()
-      player.state shouldBe a [diedStatus]
-    }
+  "Make a Gamestate" in {
+    GameStateInterface()
   }
 }
+

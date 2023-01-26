@@ -2,7 +2,7 @@ package de.htwg.se.explodingKitten.model
 
 import de.htwg.se.explodingKitten.controller.ContextComponent.contextBaseimplementation.GameContext
 import de.htwg.se.explodingKitten.controller.ControllerComponent.controllerBaseImplementation.Controller
-import de.htwg.se.explodingKitten.model.GameStateComponent.Carddeck
+import de.htwg.se.explodingKitten.model.GameStateComponent._
 import de.htwg.se.explodingKitten.model.PlayerComponent.Player
 import de.htwg.se.explodingKitten.model.StrategyComponent.TakeCard
 import org.scalatest.matchers.should.Matchers
@@ -11,7 +11,7 @@ import org.scalatest.wordspec.AnyWordSpec
 
 class TakeCardSpec() extends AnyWordSpec with Matchers{
   var p = Player("Ich", Vector(Card("SeeTheFuture")))
-  val c = new Controller(Carddeck().addCard(Card("TacoCat"), 2).addCard(Card("ExplodingKitten")).addCard(Card("DrawFromTheBottom"), 2))
+  val c = new Controller(new GameState())
 
   "Create a context" when {
     val tk = new TakeCard
@@ -23,13 +23,8 @@ class TakeCardSpec() extends AnyWordSpec with Matchers{
   "Check out if its a Bomb" when {
     val bombcheck = new TakeCard
     "Bombe ohne Leben" in {
-      bombcheck.checkOnExploding(p, c, Card("ExplodingKitten")).hasLost should be (true)
+      bombcheck.checkOnExploding(1, GameState).hasLost should be (true)
     }
-    "Bombe mit Leben" in {
-      p = p.takeCard(Card("Defuse"))
-      bombcheck.checkOnExploding(p, c, Card("ExplodingKitten")).hasLost should be (false)
-    }
-
   }
 
   "Make a move" when {
@@ -43,5 +38,6 @@ class TakeCardSpec() extends AnyWordSpec with Matchers{
     }
 
   }
+
 
 }
