@@ -1,6 +1,6 @@
 package de.htwg.se.explodingKitten.model
 
-import de.htwg.se.explodingKitten.model.GamestateBaseImplementation.{diedStatus, playingStatus, waitingStatus}
+import de.htwg.se.explodingKitten.model.GameStateComponent._
 import de.htwg.se.explodingKitten.model.PlayerComponent.Player
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
@@ -8,6 +8,9 @@ import org.scalatest.wordspec.AnyWordSpec
 
 class StateSpec extends AnyWordSpec with Matchers{
   var player = Player("Wiebke", Vector(Card("TacoCat"), Card("TacoCat"), Card("TacoCat")))
+  CardDeck.initializeDeck()
+  val disPile = Vector[Card]
+
   "Check Status" when{
     "Status Play beginn" in{
       player.state shouldBe a [waitingStatus]
@@ -52,3 +55,4 @@ class StateSpec extends AnyWordSpec with Matchers{
     }
   }
 }
+
