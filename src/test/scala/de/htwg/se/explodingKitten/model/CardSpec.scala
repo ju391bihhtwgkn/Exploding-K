@@ -20,6 +20,7 @@ class CardSpec() extends AnyWordSpec with Matchers {
   val TacoCat: Card = Card("TacoCat")
   val HairyPotatoCat: Card = Card("HairyPotatoCat")
   val RainbowCat: Card = Card("RainbowCat")
+  val Shuffle: Card = Card("Shuffle")
 
   "have a name " in {
     DrawFromTheBottom.cardName should be("Draw from the Bottom")
@@ -36,6 +37,7 @@ class CardSpec() extends AnyWordSpec with Matchers {
     TacoCat.cardName should be("Taco Cat")
     HairyPotatoCat.cardName should be("Hairy Potato Cat")
     RainbowCat.cardName should be("Rainbow Cat")
+    Shuffle.cardName should be("Shuffle")
   }
   "have a description" in {
     DrawFromTheBottom.cardDescription should be("Draw a card from the Bottom")
@@ -52,6 +54,7 @@ class CardSpec() extends AnyWordSpec with Matchers {
     TacoCat.cardDescription should be("Combine 2 or 3 to draw a card from a player")
     HairyPotatoCat.cardDescription should be("Combine 2 or 3 to draw a card from a player")
     RainbowCat.cardDescription should be("Combine 2 or 3 to draw a card from a player")
+    Shuffle.cardDescription should be("Shuffle the deck")
   }
   "have a name and description" in {
     DrawFromTheBottom.card should be ("Draw from the Bottom" + eol + "Draw a card from the Bottom")
@@ -68,21 +71,41 @@ class CardSpec() extends AnyWordSpec with Matchers {
     TacoCat.card should be("Taco Cat" + eol + "Combine 2 or 3 to draw a card from a player")
     HairyPotatoCat.card should be("Hairy Potato Cat" + eol + "Combine 2 or 3 to draw a card from a player")
     RainbowCat.card should be("Rainbow Cat" + eol + "Combine 2 or 3 to draw a card from a player")
+    Shuffle.card should be("Shuffle" + eol + "Shuffle the deck")
   }
+  "have a actioncode" in {
+    DrawFromTheBottom.actionCode should be(1)
+    SeeTheFuture.actionCode should be(2)
+    Skip.actionCode should be(3)
+    Attack.actionCode should be(4)
+    TargetedAttack.actionCode should be(5)
+    Defuse.actionCode should be(6)
+    ExplodingKitten.actionCode should be(7)
+    AlterTheFuture.actionCode should be(8)
+    FeralCat.actionCode should be(9)
+    MelonCat.actionCode should be(10)
+    BeardedCat.actionCode should be(11)
+    TacoCat.actionCode should be(12)
+    HairyPotatoCat.actionCode should be(13)
+    RainbowCat.actionCode should be(14)
+    Shuffle.actionCode should be(15)
+  }
+
   "should have a nice string representation" in {
-    DrawFromTheBottom.toString() should be ("Draw from the Bottom" + eol + "Draw a card from the Bottom")
-    SeeTheFuture.toString() should be("See the Future" + eol + "Look at the top 3 cards")
-    Skip.toString() should be("Skip" + eol + "End your turn without drawing a card")
-    Attack.toString() should be("Attack" + eol + "End your turn without drawing a card.\n" + "Force the next player to take 2 turns")
-    TargetedAttack.toString() should be("Targeted Attack" + eol + "End your turn and force the player of your choice to take two turns.")
-    Defuse.toString() should be("Defuse" + eol + "Defuse the exploding kitten")
-    ExplodingKitten.toString() should be("Exploding Kitten" + eol + "BOOOOM!")
-    AlterTheFuture.toString() should be("Alter the Future" + eol + "Privately view and rearrange the top three cards in the draw pile")
-    FeralCat.toString() should be("Feral Cat" + eol + "Use this as any cat card")
-    MelonCat.toString() should be("Melon Cat" + eol + "Combine 2 or 3 to draw a card from a player")
-    BeardedCat.toString() should be("Bearded Cat" + eol + "Combine 2 or 3 to draw a card from a player")
-    TacoCat.toString() should be("Taco Cat" + eol + "Combine 2 or 3 to draw a card from a player")
-    HairyPotatoCat.toString() should be("Hairy Potato Cat" + eol + "Combine 2 or 3 to draw a card from a player")
-    RainbowCat.toString() should be("Rainbow Cat" + eol + "Combine 2 or 3 to draw a card from a player")
+    DrawFromTheBottom.toString should be ("Draw from the Bottom" + eol + "Draw a card from the Bottom")
+    SeeTheFuture.toString should be("See the Future" + eol + "Look at the top 3 cards")
+    Skip.toString should be("Skip" + eol + "End your turn without drawing a card")
+    Attack.toString should be("Attack" + eol + "End your turn without drawing a card.\n" + "Force the next player to take 2 turns")
+    TargetedAttack.toString should be("Targeted Attack" + eol + "End your turn and force the player of your choice to take two turns.")
+    Defuse.toString should be("Defuse" + eol + "Defuse the exploding kitten")
+    ExplodingKitten.toString should be("Exploding Kitten" + eol + "BOOOOM!")
+    AlterTheFuture.toString should be("Alter the Future" + eol + "Privately view and rearrange the top three cards in the draw pile")
+    FeralCat.toString should be("Feral Cat" + eol + "Use this as any cat card")
+    MelonCat.toString should be("Melon Cat" + eol + "Combine 2 or 3 to draw a card from a player")
+    BeardedCat.toString should be("Bearded Cat" + eol + "Combine 2 or 3 to draw a card from a player")
+    TacoCat.toString should be("Taco Cat" + eol + "Combine 2 or 3 to draw a card from a player")
+    HairyPotatoCat.toString should be("Hairy Potato Cat" + eol + "Combine 2 or 3 to draw a card from a player")
+    RainbowCat.toString should be("Rainbow Cat" + eol + "Combine 2 or 3 to draw a card from a player")
+    Shuffle.toString should be("Shuffle" + eol + "Shuffle the deck")
   }
 }
