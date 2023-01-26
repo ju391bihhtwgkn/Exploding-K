@@ -15,7 +15,6 @@ case class Gamestate(
     move match {
       case nextPlayer => nextPlayer.makeMove(this)
       case takeCard => takeCard.makeMove(this)
-      case playCard => playCard.makeMove(this)
     }
   }
 }
