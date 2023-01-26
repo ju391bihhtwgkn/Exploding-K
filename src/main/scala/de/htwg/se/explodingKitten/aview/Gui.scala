@@ -20,8 +20,7 @@ class Gui(controller: ControllerInterface, context: ContextInterface) extends Ma
   }
 
   val box = new BoxPanel(Orientation.Horizontal){
-    border = BorderFactory.createEmptyBorder(10, 0, 10, 0)
-    preferredSize = new Dimension(1600, 900)
+    preferredSize = new Dimension(1600, 1000)
   }
   open()
 }

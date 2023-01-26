@@ -2,7 +2,7 @@ package de.htwg.se.explodingKitten.controller.ControllerComponent.controllerBase
 
 import com.google.inject.Inject
 import de.htwg.se.explodingKitten.controller.ControllerComponent.ControllerInterface
-import de.htwg.se.explodingKitten.model.GameStateComponent.{Card, Carddeck}
+import de.htwg.se.explodingKitten.model.GameStateComponent.{Card, CardDeck}
 import de.htwg.se.explodingKitten.model.GameStateComponent.GameStateBaseimplementation.Gamestate
 import de.htwg.se.explodingKitten.model.GameStateComponent.GameStateInterface
 import de.htwg.se.explodingKitten.model.PlayerComponent.Player
@@ -11,39 +11,38 @@ import de.htwg.se.explodingKitten.util.{Observable, UndoManager}
 
 case class Controller@Inject()(var gameState: GameStateInterface) extends ControllerInterface with Observable {
 
-  //var gameState = Gamestate(0, Vector[Player](), Vector[Card](), Vector(Card("FeralCat")))
   val undoManager = new UndoManager
   var flag = false
 
   def initializeDeck(): Unit = {
-    Carddeck.initializeDeck()
-    gameState = Gamestate(0, Vector[Player](), deck = Carddeck.deck, Vector(Card("FeralCat")))
+    CardDeck.initializeDeck()
+    gameState = Gamestate(0, Vector[Player](), deck = CardDeck.deck, Vector(Card("FeralCat")))
   }
 
   def createPlayers(names: List[String]): Unit = {
-    gameState = Gamestate(currentPlayer = gameState.currentPlayer, players = (0 until 3).map(m =>Player(names.apply(m), Carddeck.deck.take(4))).toVector,
+    gameState = Gamestate(currentPlayer = gameState.currentPlayer, players = (0 until 3).map(m =>Player(names.apply(m), CardDeck.deck.take(4))).toVector,
       deck = gameState.deck, discardPile = gameState.discardPile)
   }
 
   def initializePlayers(players: Vector[Player]): Unit = {
     gameState = Gamestate(currentPlayer = 0, players = gameState.players, deck = gameState.deck, discardPile = gameState.discardPile)
     flag = true
-    notifyObservers
+    notifyObservers()
   }
 
   def doStep(move: Move): GameStateInterface = {
     undoManager.doStep(new SetCommand(move, this))
-    notifyObservers
+    notifyObservers()
     this.gameState
   }
 
   def undo(): Unit = {
     undoManager.undoStep
-    notifyObservers
+    notifyObservers()
   }
 
   def redo(): Unit = {
     undoManager.redoStep
-    notifyObservers
+    notifyObservers()
   }
 }

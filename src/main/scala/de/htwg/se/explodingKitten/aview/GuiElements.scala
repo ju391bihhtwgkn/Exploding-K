@@ -5,11 +5,11 @@ import de.htwg.se.explodingKitten.controller.ControllerComponent.ControllerInter
 import de.htwg.se.explodingKitten.model.GameStateComponent._
 import de.htwg.se.explodingKitten.model.StrategyComponent._
 
-import java.awt.Color
+import java.awt.{Color, ComponentOrientation}
 import javax.swing.{BorderFactory, ImageIcon}
 import scala.swing.Alignment.Top
 import scala.swing.event.{ButtonClicked, MouseClicked}
-import scala.swing.{BoxPanel, Button, Dimension, Font, GridBagPanel, Insets, Label, Orientation, PopupMenu, Slider}
+import scala.swing.{BoxPanel, Button, Dimension, Font, GridBagPanel, Insets, Label, Orientation, PopupMenu, Slider, Swing}
 
 case class GuiElements(controller: ControllerInterface, context: ContextInterface) {
 
@@ -30,19 +30,30 @@ case class GuiElements(controller: ControllerInterface, context: ContextInterfac
       c.fill = fill
       c
     }
-    add(label, constraints(3, 0, fill = GridBagPanel.Fill.Vertical))
-    add(handCards, constraints(1, 1, gridheight = 2, fill = GridBagPanel.Fill.Horizontal))
-    add(deck, constraints(3, 1, gridheight = 1))
-    add(disCardPile, constraints(3, 2, gridheight = 1))
-    add(undo, constraints(0 ,0, gridheight = 1, gridwidth = 1))
-    add(redo, constraints(0, 1, gridheight = 1, gridwidth = 1))
+    //println(xLayoutAlignment)
+    //border = BorderFactory.createEmptyBorder(20,20,20,20)
+    add(label, constraints(0, 0, fill = GridBagPanel.Fill.Vertical))
+    add(handCards, constraints(4, 0, gridheight = 1))
+    add(deck, constraints(0, 1, gridheight = 1))
+    add(disCardPile, constraints(1, 1, gridheight = 1))
+    //add(undo, constraints(5 ,0, gridheight = 1, gridwidth = 1))
+    //add(redo, constraints(5, 1, gridheight = 1, gridwidth = 1))
+    add(undoBox, constraints(5,0))
   }
 
   def label : Label = new Label(controller.gameState.deck.length.toString) {
-    font = new Font(Font.Serif, 1, 30)
+    font = new Font("Arial", 1, 30)
+    println("Label")
+    println(xLayoutAlignment)
+    println(yLayoutAlignment)
   }
 
   def deck : Button = new Button() {
+    println("deck")
+    xLayoutAlignment = 1.0
+    yLayoutAlignment = 1.0
+    println(xLayoutAlignment)
+    println(yLayoutAlignment)
     val hasDefuse = controller.gameState.players(controller.gameState.currentPlayer)
       .handCards.indexWhere(Card => Card.cardName == "Defuse")
 
@@ -60,11 +71,17 @@ case class GuiElements(controller: ControllerInterface, context: ContextInterfac
         context.executeStrategy(controller)
       }
     }
+    border = BorderFactory.createEmptyBorder(10,10,10,10)
+    minimumSize = new Dimension(250, 380)
+    maximumSize = new Dimension(250, 380)
     preferredSize = new Dimension(250, 380)
     icon = new ImageIcon("src/ressources/CardBack.PNG")
   }
 
   def disCardPile: Button = new Button() {
+    println("discard")
+    println(xLayoutAlignment)
+    println(yLayoutAlignment)
     val card = controller.gameState.discardPile.last
       icon = card.cardName match {
         case "Draw from the Bottom" => new ImageIcon("src/ressources/DrawFromTheBottom.PNG")
@@ -83,7 +100,10 @@ case class GuiElements(controller: ControllerInterface, context: ContextInterfac
         case "Rainbow Cat" => new ImageIcon("src/ressources/RainbowCat.PNG")
         case "Shuffle" => new ImageIcon("src/resscources/Shuffle.PNG")
       }
-      preferredSize = new Dimension(250, 380)
+    border = BorderFactory.createEmptyBorder(10,10,10,10)
+    minimumSize = new Dimension(250, 380)
+    maximumSize = new Dimension(250, 380)
+    preferredSize = new Dimension(250, 380)
     }
 
   def handCards : GridBagPanel = new GridBagPanel {
@@ -102,7 +122,8 @@ case class GuiElements(controller: ControllerInterface, context: ContextInterfac
       c.insets = insets
       c
     }
-    preferredSize = new Dimension(1000, 599)
+    border = BorderFactory.createLineBorder(Color.BLACK, 1, true)
+    preferredSize = new Dimension(550, 300)
 
     if (controller.gameState.players.nonEmpty) {
       val player = controller.gameState.players(controller.gameState.currentPlayer)
@@ -288,7 +309,21 @@ case class GuiElements(controller: ControllerInterface, context: ContextInterfac
     }
   }
 
+  def undoBox : BoxPanel = new BoxPanel(Orientation.Horizontal) {
+    contents += Swing.HStrut(40)
+    contents += undo
+    contents += Swing.HStrut(10)
+    contents += redo
+    //border = BorderFactory.createEmptyBorder(20,20,20,20)
+  }
+
   def undo: Button = new Button("Undo") {
+    println("undo")
+    xLayoutAlignment = 0.0
+    println(xLayoutAlignment)
+    println("y")
+    println(yLayoutAlignment)
+
     preferredSize = new Dimension(100, 100)
     font = new Font(Font.Serif, 1, 15)
     reactions += {
@@ -298,6 +333,13 @@ case class GuiElements(controller: ControllerInterface, context: ContextInterfac
   }
 
   def redo: Button = new Button("Redo") {
+    println("redo")
+    xLayoutAlignment = 0.5
+    println(xLayoutAlignment)
+    println("y")
+    //yLayoutAlignment = 1.0
+    println(yLayoutAlignment)
+
     preferredSize = new Dimension(100, 100)
     font = new Font(Font.Serif, 1, 15)
     reactions += {
