@@ -4,12 +4,6 @@ import de.htwg.se.explodingKitten.model.PlayerComponent.Player
 import de.htwg.se.explodingKitten.model.StrategyComponent.Move
 
 trait GameStateInterface {
-  /*
-  def currentPlayer:Int
-  def players:Vector[Player]
-  def deck: Vector[Card]
-  def discardPile: Vector[Card]
-   */
 
   val currentPlayer: Int
   val players: Vector[Player]
