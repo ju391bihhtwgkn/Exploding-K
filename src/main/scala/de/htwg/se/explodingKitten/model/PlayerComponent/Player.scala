@@ -12,10 +12,5 @@ case class Player(name: String, handCards: Vector[Card]) {
     temp
   }
 
-  def chooseCardToPlay(cardNr: Int): Card = {
-    val card = handCards.slice(cardNr - 1, cardNr)
-    card.head
-  }
-
   override def toString: String = name
 }
