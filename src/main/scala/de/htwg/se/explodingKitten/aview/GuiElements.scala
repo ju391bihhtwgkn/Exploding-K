@@ -32,14 +32,12 @@ case class GuiElements(controller: ControllerInterface, context: ContextInterfac
     }
     //println(xLayoutAlignment)
     //border = BorderFactory.createEmptyBorder(20,20,20,20)
-    add(label, constraints(0, 0, fill = GridBagPanel.Fill.Vertical))
-    add(handCards, constraints(4, 0, gridheight = 1))
-    add(deck, constraints(0, 1, gridheight = 1))
-    add(disCardPile, constraints(1, 1, gridheight = 1))
-    //add(undo, constraints(5 ,0, gridheight = 1, gridwidth = 1))
-    //add(redo, constraints(5, 1, gridheight = 1, gridwidth = 1))
-    //add(undoBox, constraints(5,0))
-    add(itemBox, constraints(5,0))
+
+    add(label, constraints(3, 0))
+    add(handCards, constraints(0, 0, gridheight = 2, gridwidth = 2))
+    add(deck, constraints(3, 1, gridheight = 1))
+    add(disCardPile, constraints(3, 2, gridheight = 1))
+    add(itemBox, constraints(4,1))
   }
 
   def label : Label = new Label(controller.gameState.deck.length.toString) {
@@ -67,9 +65,9 @@ case class GuiElements(controller: ControllerInterface, context: ContextInterfac
       }
     }
     border = BorderFactory.createEmptyBorder(10,10,10,10)
-    minimumSize = new Dimension(250, 380)
-    maximumSize = new Dimension(250, 380)
-    preferredSize = new Dimension(250, 380)
+    minimumSize = new Dimension(250, 350)
+    maximumSize = new Dimension(250, 350)
+    preferredSize = new Dimension(250, 350)
     icon = new ImageIcon("src/ressources/CardBack.PNG")
   }
 
@@ -93,9 +91,9 @@ case class GuiElements(controller: ControllerInterface, context: ContextInterfac
         case "Shuffle" => new ImageIcon("src/resscources/Shuffle.PNG")
       }
     border = BorderFactory.createEmptyBorder(10,10,10,10)
-    minimumSize = new Dimension(250, 380)
-    maximumSize = new Dimension(250, 380)
-    preferredSize = new Dimension(250, 380)
+    minimumSize = new Dimension(250, 350)
+    maximumSize = new Dimension(250, 350)
+    preferredSize = new Dimension(250, 350)
     }
 
   def handCards : GridBagPanel = new GridBagPanel {
@@ -114,7 +112,7 @@ case class GuiElements(controller: ControllerInterface, context: ContextInterfac
       c.insets = insets
       c
     }
-    preferredSize = new Dimension(550, 300)
+    new Dimension(1000, 600)
 
     if (controller.gameState.players.nonEmpty) {
       val player = controller.gameState.players(controller.gameState.currentPlayer)

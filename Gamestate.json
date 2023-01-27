@@ -1,29 +1,24 @@
 {
   "gameState" : {
-    "currentPlayer" : "1",
-    "playerLength" : "3",
+    "currentPlayer" : "0",
+    "playerLength" : "2",
     "player 1" : {
       "name" : "1",
-      "cards" : [ "Shuffle", "Shuffle", "Shuffle", "Feral Cat", "Defuse" ],
-      "cardLength" : "5"
+      "cards" : [ "Shuffle", "Defuse", "Targeted Attack", "Shuffle", "Attack", "Draw From The Bottom", "See The Future" ],
+      "cardLength" : "7"
     },
     "player 2" : {
       "name" : "2",
-      "cards" : [ "Shuffle", "Shuffle", "Shuffle", "Feral Cat" ],
-      "cardLength" : "4"
-    },
-    "player 3" : {
-      "name" : "3",
-      "cards" : [ "Shuffle", "Shuffle", "Shuffle", "Feral Cat" ],
-      "cardLength" : "4"
+      "cards" : [ "Shuffle", "Targeted Attack", "Targeted Attack" ],
+      "cardLength" : "3"
     },
     "deck" : {
-      "cards" : [ "Attack", "Skip", "Attack", "Draw From The Bottom", "Draw From The Bottom", "Skip", "See The Future", "Feral Cat", "Defuse", "Targeted Attack", "Shuffle", "Exploding Kitten", "Skip", "Feral Cat", "Attack", "See The Future", "Exploding Kitten", "Draw From The Bottom", "Shuffle", "Feral Cat", "Shuffle", "Defuse", "See The Future", "Targeted Attack", "Exploding Kitten", "Targeted Attack" ],
-      "cardLength" : "26"
+      "cards" : [ "Attack", "Skip", "Exploding Kitten", "Exploding Kitten", "Exploding Kitten", "Skip", "Skip", "Targeted Attack" ],
+      "cardLength" : "8"
     },
     "discardPile" : {
-      "cards" : [ "Feral Cat" ],
-      "cardLength" : "1"
+      "cards" : [ "Feral Cat", "Targeted Attack", "Shuffle", "Draw From The Bottom", "See The Future", "See The Future", "Attack", "Draw From The Bottom" ],
+      "cardLength" : "8"
     }
   }
 }

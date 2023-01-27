@@ -20,7 +20,7 @@ case class Controller@Inject()(var gameState: GameStateInterface) extends Contro
 
   def initializeDeck(): Unit = {
     CardDeck.initializeDeck()
-    val shuffledDeck = Random.shuffle(CardDeck.deck)
+    val shuffledDeck = CardDeck.deck
     gameState = Gamestate(0, Vector[Player](), deck = shuffledDeck, Vector(Card("FeralCat")))
   }
 

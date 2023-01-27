@@ -63,5 +63,6 @@ class TakeCard extends Move {
         newState
       }
     }
+  flag = false
 }
 
