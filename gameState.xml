@@ -1,0 +1,51 @@
+<gameState>
+    <currentPlayer> 2 </currentPlayer>
+    <playerLength> 3 </playerLength>
+    <player1>
+        <player>
+            <name>1 </name>
+            <cards>Shuffle,Shuffle,Shuffle,Feral Cat,Attack,Feral Cat,Skip, </cards>
+            <cardLength>7 </cardLength>
+        </player>
+    </player1>
+    <player2>
+        <player>
+            <name>2 </name>
+            <cards>Shuffle,Shuffle,Shuffle,Feral Cat,Feral Cat,Attack,Defuse, </cards>
+            <cardLength>7 </cardLength>
+        </player>
+    </player2>
+    <player3>
+        <player>
+            <name>2 </name>
+            <cards>Shuffle,Shuffle,Shuffle,Feral Cat,Feral Cat,Attack,Defuse, </cards>
+            <cardLength>7 </cardLength>
+        </player>
+    </player3>
+    <deck>
+        <cards>
+            Shuffle,
+            Shuffle,
+            Targeted Attack,
+            Defuse,
+            Exploding Kitten,
+            Skip,
+            Draw From The Bottom,
+            See The Future,
+            Shuffle,
+            Draw From The Bottom,
+            Exploding Kitten,
+            Skip,
+            Feral Cat,
+            See The Future,
+            Targeted Attack,
+            Exploding Kitten,
+            Defuse,
+            See The Future,
+            Targeted Attack,
+        </cards>
+    </deck>
+    <discardPile>
+        <cards>Feral Cat, </cards>
+    </discardPile>
+</gameState>
