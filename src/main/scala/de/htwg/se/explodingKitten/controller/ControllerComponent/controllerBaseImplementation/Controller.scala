@@ -1,7 +1,9 @@
 package de.htwg.se.explodingKitten.controller.ControllerComponent.controllerBaseImplementation
 
-import com.google.inject.Inject
+import com.google.inject.{Guice, Inject}
+import de.htwg.se.explodingKitten.ExplodingKittenModule
 import de.htwg.se.explodingKitten.controller.ControllerComponent.ControllerInterface
+import de.htwg.se.explodingKitten.model.FileIOComponent.FileIOInterface
 import de.htwg.se.explodingKitten.model.GameStateComponent.{Card, CardDeck}
 import de.htwg.se.explodingKitten.model.GameStateComponent.GameStateBaseimplementation.Gamestate
 import de.htwg.se.explodingKitten.model.GameStateComponent.GameStateInterface
@@ -48,4 +50,17 @@ case class Controller@Inject()(var gameState: GameStateInterface) extends Contro
     undoManager.redoStep
     notifyObservers()
   }
+
+  def save(): Unit = {
+    def fileIO = Guice.createInjector(new ExplodingKittenModule).getInstance(classOf[FileIOInterface])
+    fileIO.save(gameState)
+    notifyObservers()
+  }
+
+  def load(): Unit = {
+    def fileIO = Guice.createInjector(new ExplodingKittenModule).getInstance(classOf[FileIOInterface])
+    gameState = fileIO.load
+    notifyObservers()
+  }
+
 }

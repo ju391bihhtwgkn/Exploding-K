@@ -12,7 +12,7 @@ object Card {
 
   val eol = sys.props("line.separator")
   private class DrawFromTheBottom extends Card {
-    override def cardName: String = "Draw from the Bottom"
+    override def cardName: String = "Draw From The Bottom"
     override def cardDescription: String = "Draw a card from the Bottom"
     override def card:String = cardName + eol + cardDescription
     override def actionCode: Int = 1
@@ -20,7 +20,7 @@ object Card {
   }
 
   private class SeeTheFuture extends Card {
-    override def cardName: String = "See the Future"
+    override def cardName: String = "See The Future"
     override def cardDescription: String = "Look at the top 3 cards"
     override def card:String = cardName + eol + cardDescription
     override def actionCode: Int = 2
@@ -70,7 +70,7 @@ object Card {
   }
 
   private class AlterTheFuture extends Card {
-    override def cardName: String = "Alter the Future"
+    override def cardName: String = "Alter The Future"
     override def cardDescription: String = "Privately view and rearrange the top three cards in the draw pile"
     override def card:String = cardName + eol + cardDescription
     override def actionCode: Int = 8

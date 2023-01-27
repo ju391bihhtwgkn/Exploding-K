@@ -5,11 +5,11 @@ import de.htwg.se.explodingKitten.controller.ControllerComponent.ControllerInter
 import de.htwg.se.explodingKitten.model.GameStateComponent._
 import de.htwg.se.explodingKitten.model.StrategyComponent._
 
-import java.awt.{Color}
+import java.awt.Color
 import javax.swing.{BorderFactory, ImageIcon}
 import scala.swing.Alignment.Top
 import scala.swing.event.{ButtonClicked, MouseClicked}
-import scala.swing.{BoxPanel, Button, Dimension, Font, GridBagPanel, Insets, Label, Orientation, PopupMenu, Slider, Swing}
+import scala.swing.{Action, BoxPanel, Button, Dimension, FlowPanel, Font, GridBagPanel, Insets, Label, Menu, MenuBar, MenuItem, Orientation, PopupMenu, Slider, Swing}
 
 case class GuiElements(controller: ControllerInterface, context: ContextInterface) {
 
@@ -38,22 +38,17 @@ case class GuiElements(controller: ControllerInterface, context: ContextInterfac
     add(disCardPile, constraints(1, 1, gridheight = 1))
     //add(undo, constraints(5 ,0, gridheight = 1, gridwidth = 1))
     //add(redo, constraints(5, 1, gridheight = 1, gridwidth = 1))
-    add(undoBox, constraints(5,0))
+    //add(undoBox, constraints(5,0))
+    add(itemBox, constraints(5,0))
   }
 
   def label : Label = new Label(controller.gameState.deck.length.toString) {
     font = new Font("Arial", 1, 30)
-    println("Label")
-    println(xLayoutAlignment)
-    println(yLayoutAlignment)
   }
 
   def deck : Button = new Button() {
-    println("deck")
     xLayoutAlignment = 1.0
     yLayoutAlignment = 1.0
-    println(xLayoutAlignment)
-    println(yLayoutAlignment)
     val hasDefuse = controller.gameState.players(controller.gameState.currentPlayer)
       .handCards.indexWhere(Card => Card.cardName == "Defuse")
 
@@ -79,13 +74,10 @@ case class GuiElements(controller: ControllerInterface, context: ContextInterfac
   }
 
   def disCardPile: Button = new Button() {
-    println("discard")
-    println(xLayoutAlignment)
-    println(yLayoutAlignment)
     val card = controller.gameState.discardPile.last
       icon = card.cardName match {
-        case "Draw from the Bottom" => new ImageIcon("src/ressources/DrawFromTheBottom.PNG")
-        case "See the Future" => new ImageIcon("src/ressources/SeeTheFuture.PNG")
+        case "Draw From The Bottom" => new ImageIcon("src/ressources/DrawFromTheBottom.PNG")
+        case "See The Future" => new ImageIcon("src/ressources/SeeTheFuture.PNG")
         case "Skip" => new ImageIcon("src/ressources/Skip.PNG")
         case "Attack" => new ImageIcon("src/ressources/Attack.PNG")
         case "Targeted Attack" => new ImageIcon("src/ressources/TargetedAttack.PNG")
@@ -136,8 +128,8 @@ case class GuiElements(controller: ControllerInterface, context: ContextInterfac
       for (i <- 0 to player.handCards.length - 1) {
           add(new Button() {
             icon = player.handCards(i).cardName match {
-              case "Draw from the Bottom" => new ImageIcon("src/ressources/DrawFromTheBottom.PNG")
-              case "See the Future" => new ImageIcon("src/ressources/SeeTheFuture.PNG")
+              case "Draw From The Bottom" => new ImageIcon("src/ressources/DrawFromTheBottom.PNG")
+              case "See The Future" => new ImageIcon("src/ressources/SeeTheFuture.PNG")
               case "Skip" => new ImageIcon("src/ressources/Skip.PNG")
               case "Attack" => new ImageIcon("src/ressources/Attack.PNG")
               case "Targeted Attack" => new ImageIcon("src/ressources/TargetedAttack.PNG")
@@ -158,7 +150,7 @@ case class GuiElements(controller: ControllerInterface, context: ContextInterfac
             reactions += { case a: MouseClicked =>
               player.handCards(i).actionCode match {
                 case 1 =>
-                  context.setStrategy(new DrawFromTheBottom(i + 1))
+                  context.setStrategy(new DrawFromTheBottom(i))
                   context.executeStrategy(controller)
                   context.setStrategy(new NextPlayer())
                   context.executeStrategy(controller)
@@ -276,8 +268,8 @@ case class GuiElements(controller: ControllerInterface, context: ContextInterfac
       for (n <- 0 until topCards.length) {
       contents += new Button() {
         icon = topCards(n).cardName match {
-          case "Draw from the Bottom" => new ImageIcon("src/ressources/DrawFromTheBottom.PNG")
-          case "See the Future" => new ImageIcon("src/ressources/SeeTheFuture.PNG")
+          case "Draw From The Bottom" => new ImageIcon("src/ressources/DrawFromTheBottom.PNG")
+          case "See The Future" => new ImageIcon("src/ressources/SeeTheFuture.PNG")
           case "Skip" => new ImageIcon("src/ressources/Skip.PNG")
           case "Attack" => new ImageIcon("src/ressources/Attack.PNG")
           case "Targeted Attack" => new ImageIcon("src/ressources/TargetedAttack.PNG")
@@ -290,6 +282,7 @@ case class GuiElements(controller: ControllerInterface, context: ContextInterfac
           case "Taco Cat" => new ImageIcon("src/ressources/TacoCat.PNG")
           case "Hairy Potato Cat" => new ImageIcon("src/ressources/HairyPotatoCat.PNG")
           case "Rainbow Cat" => new ImageIcon("src/ressources/RainbowCat.PNG")
+          case "Shuffle" => new ImageIcon("src/ressources/Shuffle.PNG")
         }
         preferredSize = new Dimension(100, 100)
         border = BorderFactory.createLineBorder(Color.BLACK, 2, true)
@@ -308,21 +301,22 @@ case class GuiElements(controller: ControllerInterface, context: ContextInterfac
     }
   }
 
+  def itemBox: FlowPanel = new FlowPanel() {
+    contents += undo
+    contents += redo
+    contents += save
+    contents += load
+  }
+
   def undoBox : BoxPanel = new BoxPanel(Orientation.Horizontal) {
     contents += Swing.HStrut(40)
     contents += undo
     contents += Swing.HStrut(10)
     contents += redo
-    //border = BorderFactory.createEmptyBorder(20,20,20,20)
   }
 
   def undo: Button = new Button("Undo") {
-    println("undo")
     xLayoutAlignment = 0.0
-    println(xLayoutAlignment)
-    println("y")
-    println(yLayoutAlignment)
-
     preferredSize = new Dimension(100, 100)
     font = new Font(Font.Serif, 1, 15)
     reactions += {
@@ -332,12 +326,10 @@ case class GuiElements(controller: ControllerInterface, context: ContextInterfac
   }
 
   def redo: Button = new Button("Redo") {
-    println("redo")
+
     xLayoutAlignment = 0.5
-    println(xLayoutAlignment)
-    println("y")
+
     //yLayoutAlignment = 1.0
-    println(yLayoutAlignment)
 
     preferredSize = new Dimension(100, 100)
     font = new Font(Font.Serif, 1, 15)
@@ -345,6 +337,43 @@ case class GuiElements(controller: ControllerInterface, context: ContextInterfac
       case ButtonClicked(_) =>
         controller.redo()
     }
+  }
+
+  def save: Button = new Button("Save") {
+    xLayoutAlignment = 0.0
+    preferredSize = new Dimension(100, 100)
+    font = new Font(Font.Serif, 1, 15)
+    reactions += {
+      case ButtonClicked(_) =>
+        controller.save
+    }
+  }
+
+  def load: Button = new Button("Load") {
+    xLayoutAlignment = 0.0
+    preferredSize = new Dimension(100, 100)
+    font = new Font(Font.Serif, 1, 15)
+    reactions += {
+      case ButtonClicked(_) =>
+        controller.load
+    }
+  }
+
+  def menuBar = new MenuBar() {
+    contents += new Menu("Edit")
+    contents += new MenuItem(Action("Undo") {
+      controller.undo()
+    })
+    contents += new MenuItem(Action("Redo") {
+      controller.redo()
+    })
+    contents += new Menu("File")
+    contents += new MenuItem(Action("Save") {
+      controller.save()
+    })
+    contents += new MenuItem(Action("Load") {
+      controller.load()
+    })
   }
 
 }

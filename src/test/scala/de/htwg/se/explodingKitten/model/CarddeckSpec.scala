@@ -26,7 +26,4 @@ class CarddeckSpec() extends AnyWordSpec with Matchers {
   "Reduce Carddeck" in{
     CardDeck.reduceTop().length should be (26)
   }
-
-
-
 }

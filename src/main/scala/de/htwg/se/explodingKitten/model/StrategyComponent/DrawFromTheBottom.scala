@@ -64,4 +64,5 @@ class DrawFromTheBottom(i: Int) extends Move {
       newState
     }
   }
+  flag = false
 }

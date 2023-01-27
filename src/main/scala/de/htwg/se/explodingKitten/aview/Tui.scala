@@ -65,6 +65,10 @@ class Tui(controller: ControllerInterface, context: ContextInterface) extends Ob
           controller.redo()
         case "u" =>
           controller.undo()
+        case "s" =>
+          controller.save()
+        case "l" =>
+          controller.load()
       }
     }
   }

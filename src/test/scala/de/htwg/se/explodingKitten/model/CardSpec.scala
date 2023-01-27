@@ -23,14 +23,14 @@ class CardSpec() extends AnyWordSpec with Matchers {
   val Shuffle: Card = Card("Shuffle")
 
   "have a name " in {
-    DrawFromTheBottom.cardName should be("Draw from the Bottom")
-    SeeTheFuture.cardName should be("See the Future")
+    DrawFromTheBottom.cardName should be("Draw From The Bottom")
+    SeeTheFuture.cardName should be("See The Future")
     Skip.cardName should be("Skip")
     Attack.cardName should be("Attack")
     TargetedAttack.cardName should be("Targeted Attack")
     Defuse.cardName should be("Defuse")
     ExplodingKitten.cardName should be("Exploding Kitten")
-    AlterTheFuture.cardName should be("Alter the Future")
+    AlterTheFuture.cardName should be("Alter The Future")
     FeralCat.cardName should be("Feral Cat")
     MelonCat.cardName should be("Melon Cat")
     BeardedCat.cardName should be("Bearded Cat")
@@ -57,14 +57,14 @@ class CardSpec() extends AnyWordSpec with Matchers {
     Shuffle.cardDescription should be("Shuffle the deck")
   }
   "have a name and description" in {
-    DrawFromTheBottom.card should be ("Draw from the Bottom" + eol + "Draw a card from the Bottom")
-    SeeTheFuture.card should be("See the Future" + eol + "Look at the top 3 cards")
+    DrawFromTheBottom.card should be ("Draw From The Bottom" + eol + "Draw a card from the Bottom")
+    SeeTheFuture.card should be("See The Future" + eol + "Look at the top 3 cards")
     Skip.card should be("Skip" + eol + "End your turn without drawing a card")
     Attack.card should be("Attack" + eol + "End your turn without drawing a card.\n" + "Force the next player to take 2 turns")
     TargetedAttack.card should be("Targeted Attack" + eol + "End your turn and force the player of your choice to take two turns.")
     Defuse.card should be("Defuse" + eol + "Defuse the exploding kitten")
     ExplodingKitten.card should be("Exploding Kitten" + eol + "BOOOOM!")
-    AlterTheFuture.card should be("Alter the Future" + eol + "Privately view and rearrange the top three cards in the draw pile")
+    AlterTheFuture.card should be("Alter The Future" + eol + "Privately view and rearrange the top three cards in the draw pile")
     FeralCat.card should be("Feral Cat" + eol + "Use this as any cat card")
     MelonCat.card should be("Melon Cat" + eol + "Combine 2 or 3 to draw a card from a player")
     BeardedCat.card should be("Bearded Cat" + eol + "Combine 2 or 3 to draw a card from a player")
@@ -92,14 +92,14 @@ class CardSpec() extends AnyWordSpec with Matchers {
   }
 
   "should have a nice string representation" in {
-    DrawFromTheBottom.toString should be ("Draw from the Bottom" + eol + "Draw a card from the Bottom")
-    SeeTheFuture.toString should be("See the Future" + eol + "Look at the top 3 cards")
+    DrawFromTheBottom.toString should be ("Draw From The Bottom" + eol + "Draw a card from the Bottom")
+    SeeTheFuture.toString should be("See The Future" + eol + "Look at the top 3 cards")
     Skip.toString should be("Skip" + eol + "End your turn without drawing a card")
     Attack.toString should be("Attack" + eol + "End your turn without drawing a card.\n" + "Force the next player to take 2 turns")
     TargetedAttack.toString should be("Targeted Attack" + eol + "End your turn and force the player of your choice to take two turns.")
     Defuse.toString should be("Defuse" + eol + "Defuse the exploding kitten")
     ExplodingKitten.toString should be("Exploding Kitten" + eol + "BOOOOM!")
-    AlterTheFuture.toString should be("Alter the Future" + eol + "Privately view and rearrange the top three cards in the draw pile")
+    AlterTheFuture.toString should be("Alter The Future" + eol + "Privately view and rearrange the top three cards in the draw pile")
     FeralCat.toString should be("Feral Cat" + eol + "Use this as any cat card")
     MelonCat.toString should be("Melon Cat" + eol + "Combine 2 or 3 to draw a card from a player")
     BeardedCat.toString should be("Bearded Cat" + eol + "Combine 2 or 3 to draw a card from a player")
